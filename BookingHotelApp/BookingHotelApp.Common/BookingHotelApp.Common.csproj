@@ -5,9 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DAL\" />
-    <Folder Include="BLL\" />
-    <Folder Include="Response\" />
     <Folder Include="Request\" />
   </ItemGroup>
 
