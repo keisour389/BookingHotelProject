@@ -38,9 +38,9 @@ namespace BookingHotelApp.Common.DAL
             _context.SaveChanges();
         }
 
-        public void Read(Expression<Func<T, bool>> parameter)
+        public IQueryable<T> Read(Expression<Func<T, bool>> parameter)
         {
-            _context.Set<T>().Where(parameter);
+            return _context.Set<T>().Where(parameter);
         }
 
         public void Update(T table)
@@ -54,6 +54,7 @@ namespace BookingHotelApp.Common.DAL
             _context.Set<T>().UpdateRange(listTable);
             _context.SaveChanges();
         }
+
         #endregion
     }
 }
