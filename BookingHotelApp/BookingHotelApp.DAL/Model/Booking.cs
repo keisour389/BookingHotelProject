@@ -21,6 +21,10 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public DateTime BookingDate { get; set; }
 
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String BookingStatus { get; set; }
+
         [Column(TypeName = "int")]
         [Required]
         public int NumberOfPeople { get; set; }

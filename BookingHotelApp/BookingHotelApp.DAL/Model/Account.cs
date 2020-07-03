@@ -23,7 +23,11 @@ namespace BookingHotelApp.DAL.Model
 
         [Column(TypeName = "datetime")]
         [Required]
-        public DateTime CreatedDateOfAT { get; set; }
+        public DateTime AccountCreatedDate { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String AccountStatus { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
         public String Note { get; set; }

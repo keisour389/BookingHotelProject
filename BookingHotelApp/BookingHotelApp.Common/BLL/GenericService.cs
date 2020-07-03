@@ -26,9 +26,9 @@ namespace BookingHotelApp.Common.BLL
             }
         }
 
-        public virtual SingleRespone Create(T table)
+        public virtual SingleResponse Create(T table)
         {
-            var result = new SingleRespone();
+            var result = new SingleResponse();
 
             try
             {
@@ -64,9 +64,9 @@ namespace BookingHotelApp.Common.BLL
             return _rep.Read(parameter);
         }
 
-        public SingleRespone Update(T table)
+        public SingleResponse Update(T table)
         {
-            var result = new SingleRespone();
+            var result = new SingleResponse();
 
             try
             {

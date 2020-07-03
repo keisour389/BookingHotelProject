@@ -4,27 +4,27 @@ using System.Text;
 
 namespace LTCSDL.Common.Rsp
 {
-    public class SingleRespone : BaseResponse
+    public class SingleResponse : BaseResponse
     {
         #region -- Methods --
 
         /// <summary>
         /// Initialize
         /// </summary>
-        public SingleRespone() : base() { }
+        public SingleResponse() : base() { }
 
         /// <summary>
         /// Initialize
         /// </summary>
         /// <param name="message">Message</param>
-        public SingleRespone(string message) : base(message) { }
+        public SingleResponse(string message) : base(message) { }
 
         /// <summary>
         /// Initialize
         /// </summary>
         /// <param name="message">Message</param>
         /// <param name="titleError">Title error</param>
-        public SingleRespone(string message, string titleError) : base(message, titleError) { }
+        public SingleResponse(string message, string titleError) : base(message, titleError) { }
 
         /// <summary>
         /// Set data

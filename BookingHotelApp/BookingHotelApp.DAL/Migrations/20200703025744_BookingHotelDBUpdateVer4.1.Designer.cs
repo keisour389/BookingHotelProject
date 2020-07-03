@@ -4,14 +4,16 @@ using BookingHotelApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookingHotelApp.DAL.Migrations
 {
     [DbContext(typeof(BookingHotelContext))]
-    partial class BookingHotelContextModelSnapshot : ModelSnapshot
+    [Migration("20200703025744_BookingHotelDBUpdateVer4.1")]
+    partial class BookingHotelDBUpdateVer41
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,16 +26,12 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<DateTime>("AccountCreatedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("AccountStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
                     b.Property<string>("AccountType")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("CreatedDateOfAT")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
@@ -59,10 +57,6 @@ namespace BookingHotelApp.DAL.Migrations
 
                     b.Property<string>("BookingNote")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BookingStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("BookingType")
                         .IsRequired()
@@ -282,10 +276,6 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("HotelStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
@@ -339,10 +329,6 @@ namespace BookingHotelApp.DAL.Migrations
 
                     b.Property<string>("PartnerNote")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PartnerStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("TotalHotel")
                         .HasColumnType("int");

@@ -53,6 +53,10 @@ namespace BookingHotelApp.DAL.Model
         [Column(TypeName = "nvarchar(max)")]
         public String HotelDescription { get; set; }
 
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String HotelStatus { get; set; }
+
         [Column(TypeName = "float")]
         public float Rank { get; set; }
 

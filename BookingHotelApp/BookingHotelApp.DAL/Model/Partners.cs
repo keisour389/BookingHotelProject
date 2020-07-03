@@ -33,6 +33,14 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String Office { get; set; }
 
+        [Column(TypeName = "int")]
+        [Required]
+        public int TotalHotel { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String PartnerStatus { get; set; }
+
         [Column(TypeName = "nvarchar(max)")]
         public String PartnerNote { get; set; }
 
