@@ -28,19 +28,7 @@ namespace BookingHotelApp.Common.BLL
 
         public virtual SingleResponse Create(T table)
         {
-            var result = new SingleResponse();
-
-            try
-            {
-                var now = DateTime.Now;
-                _rep.Create(table); //?
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.StackTrace);
-            }
-
-            return result;
+            return _rep.Create(table); //Service gọi hàm từ Repository
         }
 
         public MultipleResponse CreateRange(List<T> listTable)
@@ -59,25 +47,31 @@ namespace BookingHotelApp.Common.BLL
             return result;
         }
 
-        public IQueryable<T> Read(Expression<Func<T, bool>> parameter)
+        //IQueryable<T> với T là table. Result được lọc qua bằng keyword sau đó truyền vào
+        public object SearchPagination(int size, int page, IQueryable<T> resultAfterFill)
         {
-            return _rep.Read(parameter);
+            //Độ dời
+            int offset = (page - 1) * size;
+            //Tổng số dữ liệu
+            int total = resultAfterFill.Count();
+            //Tổng số trang
+            //Ví dụ: 12 DL / Size 5 thì bằng 2 sẽ dư 2. Do đó phải có 3 trang để chứa đủ 12 DL
+            int totalPage = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            //Dữ liệu theo trang
+            var data = resultAfterFill.Skip(offset).Take(size).ToList(); //Trả về danh sách
+            var result = new
+            {
+                Data = data,
+                totalRecords = total,
+                Page = page,
+                Size = size,
+                TotalPages = totalPage
+            };
+            return result;
         }
-
         public SingleResponse Update(T table)
         {
-            var result = new SingleResponse();
-
-            try
-            {
-                _rep.Update(table);
-            }
-            catch (Exception ex)
-            {
-                result.SetError(ex.StackTrace);
-            }
-
-            return result;
+            return _rep.Update(table); //Service gọi hàm từ Repository
         }
 
         public MultipleResponse UpdateRange(List<T> listTable)
@@ -95,6 +89,12 @@ namespace BookingHotelApp.Common.BLL
 
             return result;
         }
+
+        public IQueryable<T> Read(Expression<Func<T, bool>> parameter)
+        {
+            return _rep.Read(parameter);
+        }
+
         #endregion
     }
 }
