@@ -13,6 +13,10 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String RoomID { get; set; }
 
+        [Column(TypeName = "nvarchar(50)")]
+        [Required]
+        public String RoomName { get; set; }
+
         [Column(TypeName = "nvarchar(30)")]
         [Required]
         public String RoomType { get; set; }

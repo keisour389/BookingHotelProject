@@ -64,7 +64,8 @@ namespace BookingHotelApp.BLL.Service
         public SingleResponse RemoveAccount(string userName)
         {
             var result = new SingleResponse();
-            result = _rep.Remove(userName); //_rep là biến protected, và _rep được get từ D
+            //_rep là biến protected, và _rep được get từ D
+            result = _rep.Remove(userName); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
             result.Data = userName;
             return result;
         }

@@ -80,7 +80,7 @@ namespace BookingHotelApp.BLL.Service
         public SingleResponse RemoveCustomer(string customerId)
         {
             var result = new SingleResponse();
-            result = _rep.Remove(customerId);
+            result = _rep.Remove(customerId); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
             result.Data = customerId;
             return result;
         }

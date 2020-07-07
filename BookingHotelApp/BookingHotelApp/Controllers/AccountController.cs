@@ -27,7 +27,7 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("search-account-pagination")]
+        [HttpGet("search-account-pagination/{size}/{page}")]
         public IActionResult SearchAccountPagination(int size, int page, string keyWord)
         {
             var result = _svc.SearchAccountPagination(size, page, keyWord);
@@ -41,7 +41,7 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("remove-account")]
+        [HttpDelete("remove-account/{userName}")]
         public IActionResult RemoveAccount(string userName)
         {
             var result = _svc.RemoveAccount(userName);
