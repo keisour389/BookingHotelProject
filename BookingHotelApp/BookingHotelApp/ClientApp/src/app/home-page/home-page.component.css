@@ -1,0 +1,81 @@
+/*Banner*/
+/*banner-adv*/
+.banner-adv{
+    width: 100%;
+    height: 350px;
+    background-color: aqua;
+}
+/*main-booking-room*/
+.main-booking-room{
+    width: 80%;
+    height: 100%;
+    /*Auto set cho div nằm giữa*/
+    margin: auto; /*top-right-bottom-left*/
+    margin-top: -50px;
+    background-color: white;
+    border: outset;
+}
+/*nights-amount*/
+#nights-amount, #customers-amount, #rooms-amount{
+    /*Set đều chiều cao và chiều ngang*/
+    width: 100%;
+    height: 100%;
+}
+/*customers-amount, #rooms-amount*/
+#customers-amount, #rooms-amount{
+    /*Set đều chiều cao và chiều ngang*/
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+/*main-booking-room*/
+
+/*customer-benefit*/
+.customer-benefit{
+    margin-top: 50px;
+}
+.customer-benefit-text, .customer-benefit-options{
+    text-align: center;
+}
+.sign-up-customer-benefit-text{
+    display: inline;
+    color: turquoise;
+}
+.customer-benefit-option{
+    display: inline;
+    font-size: 18px;
+    color: black;
+}
+.customer-benefit-option-arrow{
+    display: inline;
+    margin: 5px; 
+}
+/*customer-benefit*/
+
+/*favorite-destination*/
+.favorite-destination{
+    width: 90%;
+    margin: 30px auto;
+}
+.img-favorite-destination{
+    /*Scale image*/
+    height: 100px;
+    width: 150px;
+    border-radius: 15px; /*Tạo bo tròn cho đường viền*/
+}
+.favorite-place{
+    width: 150px;
+    display: inline-block; /*Sử dụng inline-block đi kèm*/
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.favorite-place-title{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+/*favorite-destination*/
+

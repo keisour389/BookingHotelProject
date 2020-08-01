@@ -27,7 +27,7 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("search-booking-details/{size}/{page}")]
+        [HttpGet("search-booking-details/{size},{page}")]
         public IActionResult SearchBookingDetailsPagination(int size, int page, int bookingId, string keyWord)
         {
             var result = _svc.SearchBookingDetailsPagination(size, page, bookingId, keyWord);
@@ -41,7 +41,7 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("remove-booking-details/{bookingId}/{hotelId}/{roomId}")]
+        [HttpDelete("remove-booking-details/{bookingId}/{hotelId},{roomId}")]
         public IActionResult RemoveBookingDetails(int bookingId, string hotelId, string roomId)
         {
             var result = _svc.RemoveBookingDetails(bookingId, hotelId, roomId);

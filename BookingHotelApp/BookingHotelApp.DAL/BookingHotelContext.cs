@@ -29,7 +29,7 @@ namespace BookingHotelApp.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Chỉnh đường dẫn CSDL ở đây
-            optionsBuilder.UseSqlServer(@"Server=.;Initial Catalog=BookingHotelDB;Trusted_Connection=True;"); //Windows Authencation
+            optionsBuilder.UseSqlServer(@"Server=FOURLEAFCLOVER;Initial Catalog=BookingHotelDB;Trusted_Connection=True;"); //Windows Authencation
             //optionsBuilder.UseSqlServer(@"Data Source =.\SQLEXPRESS; Initial Catalog = BookingHotelDB; Persist Security Info = True; User ID = sa; Password = sa;
             //Pooling = False; MultipleActiveResultSets = False; Encrypt = False; TrustServerCertificate = True"; //SQL Server Authencation
         }

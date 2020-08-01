@@ -21,13 +21,21 @@ namespace BookingHotelApp.Controllers
         }
 
         [HttpPost("create-account")]
-        public IActionResult CreateAccount([FromBody]AccountReq req)
+        //Xác thực việc gửi API, phòng ngừa việc gửi API giả mạo
+        //Ngăn việc lấy đường link API từ web này mà gửi từ web khác
+        [ValidateAntiForgeryToken] 
+        public IActionResult CreateAccount([Bind("UserName,Password,AccountType,AccountCreatedDate,AccountStatus")]
+            AccountReq req)
         {
-            var result = _svc.CreateAccount(req);
-            return Ok(result);
+            if(ModelState.IsValid)
+            {
+                var result = _svc.CreateAccount(req);
+                return Ok(result);
+            }
+            return Ok("failed");
         }
 
-        [HttpGet("search-account-pagination/{size}/{page}")]
+        [HttpGet("search-account-pagination/{size},{page}")]
         public IActionResult SearchAccountPagination(int size, int page, string keyWord)
         {
             var result = _svc.SearchAccountPagination(size, page, keyWord);

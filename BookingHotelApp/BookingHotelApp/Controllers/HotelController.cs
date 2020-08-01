@@ -6,6 +6,7 @@ using BookingHotelApp.BLL.Service;
 using BookingHotelApp.Common.Request;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
 
 namespace BookingHotelApp.Controllers
 {
@@ -27,7 +28,7 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("search-hotel-pagination/{size}/{page}")]
+        [HttpGet("search-hotel-pagination/{size},{page}")]
         public IActionResult SearchHotelPagination(int size, int page, string keyWord)
         {
             var result = _svc.SearchHotelPagination(size, page, keyWord);

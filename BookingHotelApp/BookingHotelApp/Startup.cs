@@ -84,6 +84,9 @@ namespace BookingHotelApp
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "API v2.0");
             });
             #endregion
+
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -123,7 +126,7 @@ namespace BookingHotelApp
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-        
+
         }
     }
 }

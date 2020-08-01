@@ -32,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\HotelController.cs~RF19fc6751.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BookingHotelApp.BLL\BookingHotelApp.BLL.csproj" />
     <ProjectReference Include="..\BookingHotelApp.Common\BookingHotelApp.Common.csproj" />
     <ProjectReference Include="..\BookingHotelApp.DAL\BookingHotelApp.DAL.csproj" />

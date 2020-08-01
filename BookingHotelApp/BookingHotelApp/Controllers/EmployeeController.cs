@@ -27,7 +27,7 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("search-employee-pagination/{size}/{page}")]
+        [HttpGet("search-employee-pagination/{size},{page}")]
         public IActionResult SearchCustomerPagination(int size, int page, string keyWord)
         {
             var result = _svc.SearchEmployeePagination(size, page, keyWord);
