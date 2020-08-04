@@ -1,0 +1,91 @@
+/*hotel-main-info*/
+/*hotel-address*/
+.hotel-street-address{
+    color: grey;
+    vertical-align: middle;
+}
+/*hotel-image-slide-show*/
+#hotel-image-slider{
+    width: 100%;
+    height: 100px;
+}
+.hotel-image-slider{
+    width: 100%;
+    height: 350px;
+}
+/*hotel-info-and-price*/
+.hotel-info-and-price{
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+}
+.hotel-info{
+    display: inline-block;
+}
+.hotel-price{
+    float: right;
+    text-align: right;
+}
+/*hotel-convenient-list*/
+.hotel-convenient-list{
+    border: 1px solid black;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.hotel-convenient{
+    display: inline-block;
+    text-align: center; /*Đẩy các object ra giữa*/
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.hotel-convenient-image{
+    width: 50px;
+    height: 50px;
+}
+/*hotel-main-info*/
+
+/*room-of-hotel*/
+.room-of-hotel{
+    margin-top: 20px;
+    background-color: #dedcdc;
+    padding: 5px;
+    border-radius: 5px;
+}
+/*room-details*/
+.room-details{
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    background-color: white;
+    padding: 1px; /*padding để hình có thể cong theo radius*/
+    border-radius: 5px;
+    box-shadow: black;
+}
+.room-info{
+    width: 73%;
+    float: right;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: black;
+}
+.room-of-hotel-image{
+    max-width: 100%;
+    height: 200px;
+}
+/*room-policy*/
+.policy-apply{
+    color:  rgb(0, 166, 81);
+}
+.policy-not-apply{
+    color: grey;
+}
+/*room-of-hotel*/
+
+/*another*/
+.text-with-svg{
+    vertical-align: middle;
+    margin-left: 10px;
+}
+/*another*/

@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchHotelComponent } from './search-hotel/search-hotel.component';
+import { ChoseHotelComponent } from './chose-hotel/chose-hotel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SearchHotelComponent } from './search-hotel/search-hotel.component';
     CounterComponent,
     FetchDataComponent,
     HomePageComponent,
-    SearchHotelComponent
+    SearchHotelComponent,
+    ChoseHotelComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +33,8 @@ import { SearchHotelComponent } from './search-hotel/search-hotel.component';
       // { path: 'counter', component: CounterComponent },
       // { path: 'fetch-data', component: FetchDataComponent },
       { path: '', component: HomePageComponent, pathMatch: 'full' },
-      { path: 'search-hotel', component: SearchHotelComponent }
+      { path: 'search-hotel', component: SearchHotelComponent },
+      { path: 'chose-hotel', component: ChoseHotelComponent }
     ])
   ],
   providers: [],

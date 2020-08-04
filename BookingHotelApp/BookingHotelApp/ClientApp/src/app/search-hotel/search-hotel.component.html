@@ -93,9 +93,9 @@
                     </div>
                     <div class="hotel-rating-options">
                         <label class="select-hotel-rating">
-                            <input type="checkbox" id="one-star" value="1 sao"/>
-                            <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star"
-                                height="24" stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                            <input type="checkbox" id="one-star" value="1 sao" />
+                            <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g transform="translate(-0.133333,-1)">
                                     <path
@@ -107,8 +107,8 @@
                         <label class="select-hotel-rating">
                             <input type="checkbox" id="two-star" value="2 sao" />
                             <span *ngFor="let i of [0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star"
-                                    height="24" stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <g transform="translate(-0.133333,-1)">
                                         <path
@@ -121,8 +121,8 @@
                         <label class="select-hotel-rating">
                             <input type="checkbox" id="three-star" value="3 sao" />
                             <span *ngFor="let i of [0,0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star"
-                                    height="24" stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <g transform="translate(-0.133333,-1)">
                                         <path
@@ -135,8 +135,8 @@
                         <label class="select-hotel-rating">
                             <input type="checkbox" id="four-star" value="4 sao" />
                             <span *ngFor="let i of [0,0,0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star"
-                                    height="24" stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <g transform="translate(-0.133333,-1)">
                                         <path
@@ -149,8 +149,8 @@
                         <label class="select-hotel-rating">
                             <input type="checkbox" id="five-star" value="5 sao" />
                             <span *ngFor="let i of [0,0,0,0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star"
-                                    height="24" stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <g transform="translate(-0.133333,-1)">
                                         <path
@@ -191,8 +191,8 @@
                 </div>
             </div>
             <div class="hotel-search-list">
-                <div *ngFor="let hotel of hotels.data" class="hotel-search" >
-                    <img class="hotel-search-image" src="{{hotel.image}}\main_image.jpg" />
+                <div *ngFor="let hotel of hotelSearchResult" class="hotel-search">
+                    <img class="hotel-search-image" src="{{hotel.hotelImage}}\main_image.jpg" />
                     <div class="hotel-search-info">
                         <h5 class="hotel-search-name">{{hotel.hotelName}}</h5>
                         <span class="hotel-search-type">
@@ -203,13 +203,13 @@
                         <div style="color: aquamarine;">Ấn tượng - {{hotel.rank}}</div>
                     </div>
                     <div class="hotel-search-price">
-                        <span style="color: green;">Giảm 33%</span>
+                        <span style="color: green;">Giảm {{hotel.discount}}%</span>
                         <div class="hotel-search-price-info">
                             <div style="color: grey; text-decoration: line-through; margin-bottom: 5px;">
-                                1.500.000 VNĐ
+                                {{hotel.roomPriceForNight}} VNĐ
                             </div>
                             <div style="color: orange; font-size: 18px; font-weight: bold; margin-bottom: 5px;">
-                                1.000.000 VNĐ
+                                {{hotel.hotelPriceAfterDiscount}} VNĐ
                             </div>
                             <div style="color: blue;">
                                 Giá cuối cùng

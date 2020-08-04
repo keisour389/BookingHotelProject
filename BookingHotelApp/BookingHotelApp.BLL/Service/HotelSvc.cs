@@ -78,7 +78,8 @@ namespace BookingHotelApp.BLL.Service
             {
                 //Lọc dữ kiệu
                 resultAfterFill = base.All.Where(value => value.HotelID.Contains(keyWord) //Kiểm tra theo mã khách sạn
-                || value.HotelName.Contains(keyWord)); //Kiểm tra theo tên
+                || value.HotelName.Contains(keyWord) //Kiểm tra theo tên
+                || value.HotelCountry.Contains(keyWord)); //Kiểm tra theo địa danh
             }
             //Kết quả
             return base.SearchPagination(size, page, resultAfterFill);

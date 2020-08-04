@@ -80,5 +80,11 @@ namespace BookingHotelApp.BLL.Service
             result.Data = data;
             return result;
         }
+        public SingleResponse CustomerSearchRoomByKeyword(string keyword)
+        {
+            SingleResponse result = new SingleResponse();
+            result.Data = _rep.CustomerSearchRoomByKeyword(keyword);
+            return result;
+        }
     }
 }

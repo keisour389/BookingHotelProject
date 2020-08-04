@@ -47,5 +47,13 @@ namespace BookingHotelApp.Controllers
             var result = _svc.RemoveRoomOfHotel(hotelId, roomId);
             return Ok(result);
         }
+
+        //Procedure
+        [HttpGet("customer-search-room-by-price")]
+        public IActionResult CustomerSearchRoomByKeyword(string keyword)
+        {
+            var result = _svc.CustomerSearchRoomByKeyword(keyword);
+            return Ok(result);
+        }
     }
 }

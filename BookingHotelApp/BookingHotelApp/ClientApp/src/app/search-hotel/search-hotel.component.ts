@@ -9,24 +9,32 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./search-hotel.component.css'] //Dùng file css ở đây, không dùng ở thẻ <head>
 })
 export class SearchHotelComponent {
-  //Các biến phân trang
-  //Mặc định
-  size: number = 20;
-  page: number = 1;
-  keyWord: String = "";
+  //Biến nhận dữ liệu
+  bookingInfo: any = {
+    destination: "",
+    checkinDate: "",
+    checkoutDate: "",
+    peopleAmount: 0,
+    nightsAmount: 0
+  }
   //Biến lưu danh sách hotel
   //Các biến giống tên với file JSON
-  hotels: any={
-    data: [],
-    page: 0,
-    size: 0,
-    totalPages: 0,
-    totalRecords: 0,
-  }
+  hotelSearchResult: [];
+  // hotelSearchResult: any={
+  //   discount: 0,
+  //   hotelAddress: "",
+  //   hotelCountry: "",
+  //   hotelId: "",
+  //   hotelImage: "",
+  //   hotelName: "",
+  //   quality: "",
+  //   rank: "",
+  //   roomPriceForNight: 0
+  // }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
     , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
-    var res = this.route.snapshot.paramMap.get('result'); //Lấy dữ liệu truyền qua
+    this.bookingInfo.destination = this.route.snapshot.paramMap.get('search'); //Lấy dữ liệu truyền qua
     this.searchHotel(); //Gọi API để tìm hotel
   }
 
@@ -35,15 +43,27 @@ export class SearchHotelComponent {
     this.titleService.setTitle("Tìm phòng");
   }
   searchHotel() {
-    this.http.get<any>('https://localhost:44359/api/Hotel/search-hotel-pagination/' +
-      this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/customer-search-room-by-price/' +
+      '?keyWord=' + this.bookingInfo.destination).subscribe(
         result => {
           var res: any = result;
-          this.hotels = res; //Hotels sẽ có đủ dữ liệu
-          console.log(this.hotels);
+          this.hotelSearchResult = res.data; //Result sẽ có đủ dữ liệu
+          console.log(res);
         },
         error => {
           alert("Server error!!")
         });
+  }
+  //Các hàm khác
+  addCommas(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
   }
 }
