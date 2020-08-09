@@ -21,6 +21,22 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public int RoomAmount { get; set; }
 
+        [Column(TypeName = "int")]
+        [Required]
+        public int BedAmount { get; set; }
+
+        [Column(TypeName = "int")]
+        [Required]
+        public int PeopleAmount { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
+        [Required]
+        public String PolicyApply { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
+        [Required]
+        public String PolicyNotApply { get; set; }
+
         [Column(TypeName = "money")]
         [Required]
         public double RoomPriceForNight { get; set; }

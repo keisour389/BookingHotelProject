@@ -47,8 +47,10 @@
 
 /*room-of-hotel*/
 .room-of-hotel{
+    width: 100%; /*Luôn phải set width tổng*/
     margin-top: 20px;
     background-color: #dedcdc;
+    display: inline-block;
     padding: 5px;
     border-radius: 5px;
 }
@@ -63,15 +65,15 @@
     box-shadow: black;
 }
 .room-info{
-    width: 73%;
     float: right;
+    width: 73%;
     background-color: white;
     padding: 5px;
     border-radius: 5px;
     box-shadow: black;
 }
 .room-of-hotel-image{
-    max-width: 100%;
+    width: 100%;
     height: 200px;
 }
 /*room-policy*/

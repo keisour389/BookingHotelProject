@@ -34,6 +34,13 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("search-room-of-hotel-by-id")]
+        public IActionResult SearchRoomOfHotelByID(string hotelId)
+        {
+            var result = _svc.SearchRoomOfHotelByID(hotelId);
+            return Ok(result);
+        }
+
         [HttpPut("update-room-of-hotel")]
         public IActionResult UpdateRoomOfHotel([FromBody]RoomOfHotelReq req)
         {

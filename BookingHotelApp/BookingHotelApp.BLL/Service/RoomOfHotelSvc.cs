@@ -21,6 +21,10 @@ namespace BookingHotelApp.BLL.Service
             roh.HotelID = req.HotelID;
             roh.RoomID = req.RoomID;
             roh.RoomAmount = req.RoomAmount;
+            roh.BedAmount = req.BedAmount;
+            roh.PeopleAmount = req.PeopleAmount;
+            roh.PolicyApply = req.PolicyApply;
+            roh.PolicyNotApply = req.PolicyNotApply;
             roh.RoomPriceForNight = req.RoomPriceForNight;
             roh.Discount = req.Discount;
             roh.Image = req.Image;
@@ -41,6 +45,10 @@ namespace BookingHotelApp.BLL.Service
             roh.HotelID = req.HotelID;
             roh.RoomID = req.RoomID;
             roh.RoomAmount = req.RoomAmount;
+            roh.BedAmount = req.BedAmount;
+            roh.PeopleAmount = req.PeopleAmount;
+            roh.PolicyApply = req.PolicyApply;
+            roh.PolicyNotApply = req.PolicyNotApply;
             roh.RoomPriceForNight = req.RoomPriceForNight;
             roh.Discount = req.Discount;
             roh.Image = req.Image;
@@ -68,6 +76,13 @@ namespace BookingHotelApp.BLL.Service
             return base.SearchPagination(size, page, resultAfterFill);
         }
 
+        public SingleResponse SearchRoomOfHotelByID(string hotelId)
+        {
+            SingleResponse result = new SingleResponse();
+            var search = base.All.Where(value => value.HotelID == hotelId).ToList();
+            result.Data = search;
+            return result;
+        }
         public SingleResponse RemoveRoomOfHotel(string hotelId, string roomId)
         {
             var result = new SingleResponse();

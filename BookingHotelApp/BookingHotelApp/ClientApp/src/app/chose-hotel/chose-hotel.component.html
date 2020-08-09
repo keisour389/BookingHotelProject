@@ -147,11 +147,11 @@
     </div>
     <!--Room-of-hotel-->
     <div class="room-of-hotel-list">
-        <div class="room-of-hotel">
-            <h5>Standard Twin</h5>
+        <div *ngFor="let data of roomOfHotelResult; let i = index" class="room-of-hotel">
+            <h5>{{data.roomID}}</h5>
             <div class="room-details">
                 <!-- Image Slider -->
-                <div id="room-of-hotel-image-slider" class="carousel slide" data-ride="carousel" style="height: 100%;">
+                <div id="room-of-hotel-image-slider" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%;">
                     <ol class="carousel-indicators">
                         <li data-target="#room-of-hotel-image-slider" data-slide-to="0" class="active"></li>
                         <li data-target="#room-of-hotel-image-slider" data-slide-to="1"></li>
@@ -195,7 +195,7 @@
             <!--Room Info-->
             <div class="room-info">
                 <div class="room-standard">
-                    <h5>Standard Twin Room (basement Floor)</h5>
+                    <h5>{{data.roomID}} Room</h5>
                     <div class="customer-and-bed-amount">
                         <span class="bed-amount">
                             <svg stroke-width="0" width="16" height="16" viewBox="0 0 16 16" fill="#434343"
@@ -208,7 +208,7 @@
                                     </path>
                                 </g>
                             </svg>
-                            <span class="text-with-svg">1 Giường (X2)</span>
+                            <span class="text-with-svg">{{data.bedAmount}} Giường</span>
                         </span>
                         <span class="bed-amount" style="margin-left: 50px;">
                             <svg stroke-width="0" width="16" height="16" viewBox="0 0 16 16" fill="#434343"
@@ -226,7 +226,7 @@
                                     <circle cx="6" cy="4" r="3" stroke="#434343" stroke-width="2"></circle>
                                 </g>
                             </svg>
-                            <span class="text-with-svg">2 Khách</span>
+                            <span class="text-with-svg">{{data.peopleAmount}} Khách</span>
                         </span>
                     </div>
                 </div>
@@ -237,29 +237,23 @@
                         <div class="col-4">
                             <h6>Chính sách áp dụng</h6>
                             <div class="policy-apply">
-                                Miễn phí bữa sáng
-                            </div>
-                            <div class="policy-apply">
-                                WiFi miễn phí
+                                {{data.policyApply}}
                             </div>
                         </div>
                         <div class="col-4">
                             <h6>Chính sách không áp dụng</h6>
                             <div class="policy-not-apply">
-                                Không hoàn tiền
-                            </div>
-                            <div class="policy-not-apply">
-                                Không áp dụng đổi lịch
-                            </div>             
+                                {{data.policyNotApply}}
+                            </div>         
                         </div>
                         <div class="col-4" style="text-align: right;">
-                            <span style="color: green;">Giảm 0%</span>
+                            <span style="color: green;">Giảm {{data.discount}}%</span>
                             <div class="hotel-search-price-info">
                                 <div style="color: grey; text-decoration: line-through; margin-bottom: 5px;">
-                                    100000 VNĐ
+                                    {{data.roomPriceForNight}} VNĐ
                                 </div>
-                                <div style="color: orange; font-size: 18px; font-weight: bold; margin-bottom: 5px;">
-                                    100000 VNĐ
+                                <div  style="color: orange; font-size: 18px; font-weight: bold; margin-bottom: 5px;">
+                                    {{priceAfterDiscountList[i]}} VNĐ
                                 </div>
                                 <div style="color: grey; margin-bottom: 5px;">
                                     /Phòng/Đêm
@@ -274,6 +268,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </body>
 
