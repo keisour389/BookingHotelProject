@@ -56,7 +56,6 @@ export class ChoseHotelComponent {
                 // this.priceAfterDiscount.push(parseFloat(res.data[index].roomPriceForNight * (1 - res.data[index].discount));
                 this.priceAfterDiscountList.push(parseFloat(res.data[index].roomPriceForNight) * (1 - parseFloat(res.data[index].discount))).toString();
               }
-              console.log(this.priceAfterDiscount);
               console.log(res);
             },
             error => {
