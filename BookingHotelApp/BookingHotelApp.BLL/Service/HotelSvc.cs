@@ -24,10 +24,11 @@ namespace BookingHotelApp.BLL.Service
             hotel.HotelCreatedDate = req.HotelCreatedDate;
             hotel.HotelPhoneNumber = req.HotelPhoneNumber;
             hotel.HotelEmail = req.HotelEmail;
-            hotel.HotelAddress = req.HotelAddress;
-            hotel.HotelCountry = req.HotelCountry;
-            hotel.RestaurantType = req.RestaurantType;
-            hotel.RestaurantDescription = req.RestaurantDescription;
+            hotel.Street = req.Street;
+            hotel.Ward = req.Ward;
+            hotel.District = req.District;
+            hotel.Province = req.Province;
+            hotel.Country = req.Country;
             hotel.Image = req.Image;
             hotel.HotelDescription = req.HotelDescription;
             hotel.HotelStatus = req.HotelStatus;
@@ -46,23 +47,23 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Hotel hotel = new Hotel();
             //Gán
-            hotel.HotelID = req.HotelID;
-            hotel.HotelName = req.HotelName;
-            hotel.Quality = req.Quality;
-            hotel.HotelCreatedDate = req.HotelCreatedDate;
-            hotel.HotelPhoneNumber = req.HotelPhoneNumber;
-            hotel.HotelEmail = req.HotelEmail;
-            hotel.HotelAddress = req.HotelAddress;
-            hotel.HotelCountry = req.HotelCountry;
-            hotel.RestaurantType = req.RestaurantType;
-            hotel.RestaurantDescription = req.RestaurantDescription;
-            hotel.Image = req.Image;
-            hotel.HotelDescription = req.HotelDescription;
-            hotel.HotelStatus = req.HotelStatus;
-            hotel.Rank = req.Rank;
-            hotel.HotelPaymentMethods = req.HotelPaymentMethods;
-            hotel.PartnerID = req.PartnerID;
-            hotel.HotelNote = req.HotelNote;
+            //hotel.HotelID = req.HotelID;
+            //hotel.HotelName = req.HotelName;
+            //hotel.Quality = req.Quality;
+            //hotel.HotelCreatedDate = req.HotelCreatedDate;
+            //hotel.HotelPhoneNumber = req.HotelPhoneNumber;
+            //hotel.HotelEmail = req.HotelEmail;
+            //hotel.HotelAddress = req.HotelAddress;
+            //hotel.HotelCountry = req.HotelCountry;
+            //hotel.RestaurantType = req.RestaurantType;
+            //hotel.RestaurantDescription = req.RestaurantDescription;
+            //hotel.Image = req.Image;
+            //hotel.HotelDescription = req.HotelDescription;
+            //hotel.HotelStatus = req.HotelStatus;
+            //hotel.Rank = req.Rank;
+            //hotel.HotelPaymentMethods = req.HotelPaymentMethods;
+            //hotel.PartnerID = req.PartnerID;
+            //hotel.HotelNote = req.HotelNote;
             //Trả về
             result = base.Update(hotel); //base gọi lớp cha
             result.Data = hotel;
@@ -79,7 +80,7 @@ namespace BookingHotelApp.BLL.Service
                 //Lọc dữ kiệu
                 resultAfterFill = base.All.Where(value => value.HotelID.Contains(keyWord) //Kiểm tra theo mã khách sạn
                 || value.HotelName.Contains(keyWord) //Kiểm tra theo tên
-                || value.HotelCountry.Contains(keyWord)); //Kiểm tra theo địa danh
+                || value.Country.Contains(keyWord)); //Kiểm tra theo địa danh
             }
             //Kết quả
             return base.SearchPagination(size, page, resultAfterFill);

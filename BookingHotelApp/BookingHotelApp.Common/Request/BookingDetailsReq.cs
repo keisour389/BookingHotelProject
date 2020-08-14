@@ -10,6 +10,7 @@ namespace BookingHotelApp.Common.Request
         public String HotelID { get; set; }
         public String RoomID { get; set; }
         public int NumberOfNights { get; set; }
+        public int TotalPrice { get; set; }
         public int SpecialRequirements { get; set; }
     }
 }

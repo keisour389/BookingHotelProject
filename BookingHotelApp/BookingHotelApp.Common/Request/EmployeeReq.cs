@@ -13,14 +13,15 @@ namespace BookingHotelApp.Common.Request
         public String EmpPhoneNumber { get; set; }
         public String EmpEmail { get; set; }
         public String EmpGender { get; set; }
-        public String EmpAddress { get; set; }
+        public String Street { get; set; }
+        public String Ward { get; set; }
+        public String District { get; set; }
+        public String Province { get; set; }
+        public String Country { get; set; }
         public String EmpIdentityCard { get; set; }
         public String Position { get; set; }
         public String Seniority { get; set; }
-        public int Salary { get; set; }
-        public String EmpBankCardType { get; set; }
-        public String EmpBankCardID { get; set; }
-        public DateTime EmpBankCardDate { get; set; }
+        public float CoefficientsSalary { get; set; }
         public String EmpNote { get; set; }
     }
 }

@@ -35,17 +35,23 @@ namespace BookingHotelApp.DAL.Model
 
         [Column(TypeName = "nvarchar(max)")]
         [Required]
-        public String HotelAddress { get; set; }
+        public String Street { get; set; }
 
         [Column(TypeName = "nvarchar(30)")]
         [Required]
-        public String HotelCountry { get; set; }
+        public String Ward { get; set; }
 
         [Column(TypeName = "nvarchar(30)")]
-        public String RestaurantType { get; set; }
+        [Required]
+        public String District { get; set; }
 
-        [Column(TypeName = "nvarchar(max)")]
-        public String RestaurantDescription { get; set; }
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String Province { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String Country { get; set; }
 
         [Column(TypeName = "nvarchar(max)")] //Lấy đường dẫn lưu vào
         public String Image { get; set; }
@@ -72,6 +78,8 @@ namespace BookingHotelApp.DAL.Model
 
         [Column(TypeName = "nvarchar(max)")]
         public String HotelNote { get; set; }
+
+        public ICollection<Restaurant> Restaurant { get; set; } //Được sử dụng bởi bảng nhà hàng
 
         public ICollection<RoomOfHotel> RoomOfHotel { get; set; } //Được sử dụng bởi bảng phòng của khách sạn
 

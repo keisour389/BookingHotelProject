@@ -26,6 +26,10 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public int NumberOfNights { get; set; }
 
+        [Column(TypeName = "float")]
+        [Required]
+        public int TotalPrice { get; set; }
+
         [Column(TypeName = "nvarchar(max)")]
         public int SpecialRequirements { get; set; }
     }

@@ -22,6 +22,7 @@ namespace BookingHotelApp.BLL.Service
             bookingDetails.HotelID = req.HotelID;
             bookingDetails.RoomID = req.RoomID;
             bookingDetails.NumberOfNights = req.NumberOfNights;
+            bookingDetails.TotalPrice = req.TotalPrice;
             bookingDetails.SpecialRequirements = req.SpecialRequirements;
             //Trả về
             result = base.Create(bookingDetails); //base gọi lớp cha

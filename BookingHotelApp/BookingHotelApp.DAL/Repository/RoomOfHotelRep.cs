@@ -23,7 +23,7 @@ namespace BookingHotelApp.DAL.Repository
             //Đối tượng để lưu kết quả
             List<object> resultList = new List<object>();
             //Xuất ra danh sách khách sạn phù hợp với từ khóa
-            List<Hotel> hotelList = Context.Hotel.Where(value => value.HotelCountry.Contains(keyword) || value.HotelName.Contains(keyword)).ToList();
+            List<Hotel> hotelList = Context.Hotel.Where(value => value.Country.Contains(keyword) || value.HotelName.Contains(keyword)).ToList();
 
             //Gán giá phòng của từng khách sạn
             foreach (Hotel hotel in hotelList)
@@ -37,8 +37,8 @@ namespace BookingHotelApp.DAL.Repository
                     hotelImage = hotel.Image,
                     hotelName = hotel.HotelName,
                     quality = hotel.Quality,
-                    hotelAddress = hotel.HotelAddress,
-                    hotelCountry = hotel.HotelCountry,
+                    //hotelAddress = hotel.HotelAddress,
+                    //hotelCountry = hotel.HotelCountry,
                     rank = hotel.Rank,
                     roomPriceForNight = rOH.RoomPriceForNight,
                     discount = rOH.Discount,

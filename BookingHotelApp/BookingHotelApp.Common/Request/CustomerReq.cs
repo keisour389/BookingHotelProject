@@ -13,12 +13,7 @@ namespace BookingHotelApp.Common.Request
         public String CusPhoneNumber { get; set; }
         public String CusEmail { get; set; }
         public String CusGender { get; set; }
-        public String CusAddress { get; set; }
         public String CusType { get; set; }
-        public String CusIdentityCard { get; set; }
-        public String CusBankCardType { get; set; }
-        public String CusBankCardID { get; set; }
-        public DateTime CusBankCardDate { get; set; }
         public String CusNote { get; set; }
     }
 }

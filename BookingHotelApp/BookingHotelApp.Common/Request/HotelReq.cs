@@ -12,10 +12,11 @@ namespace BookingHotelApp.Common.Request
         public DateTime HotelCreatedDate { get; set; }
         public String HotelPhoneNumber { get; set; }
         public String HotelEmail { get; set; }
-        public String HotelAddress { get; set; }
-        public String HotelCountry { get; set; }
-        public String RestaurantType { get; set; }
-        public String RestaurantDescription { get; set; }
+        public String Street { get; set; }
+        public String Ward { get; set; }
+        public String District { get; set; }
+        public String Province { get; set; }
+        public String Country { get; set; }
         public String Image { get; set; }
         public String HotelDescription { get; set; }
         public String HotelStatus { get; set; }

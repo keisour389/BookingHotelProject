@@ -26,6 +26,7 @@ namespace BookingHotelApp.DAL
         public DbSet<Hotel> Hotel { get; set; }
         public DbSet<RoomOfHotel> RoomOfHotel { get; set; }
         public DbSet<BookingDetails> BookingDetails { get; set; }
+        public DbSet<Restaurant> Restaurant { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Chỉnh đường dẫn CSDL ở đây

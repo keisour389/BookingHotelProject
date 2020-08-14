@@ -25,12 +25,7 @@ namespace BookingHotelApp.BLL.Service
             cus.CusPhoneNumber = req.CusPhoneNumber;
             cus.CusEmail = req.CusEmail;
             cus.CusGender = req.CusGender;
-            cus.CusAddress = req.CusAddress;
             cus.CusType = req.CusType;
-            cus.CusIdentityCard = req.CusIdentityCard;
-            cus.CusBankCardType = req.CusBankCardType;
-            cus.CusBankCardID = req.CusBankCardID;
-            cus.CusBankCardDate = req.CusBankCardDate;
             cus.CusNote = req.CusNote;
             //Tạo
             result = base.Create(cus);
@@ -43,20 +38,20 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Customers cus = new Customers();
             //Gán
-            cus.CustomerID = req.CustomerID;
-            cus.LastName = req.LastName;
-            cus.FirstName = req.FirstName;
-            cus.CusBirthDay = req.CusBirthDay;
-            cus.CusPhoneNumber = req.CusPhoneNumber;
-            cus.CusEmail = req.CusEmail;
-            cus.CusGender = req.CusGender;
-            cus.CusAddress = req.CusAddress;
-            cus.CusType = req.CusType;
-            cus.CusIdentityCard = req.CusIdentityCard;
-            cus.CusBankCardType = req.CusBankCardType;
-            cus.CusBankCardID = req.CusBankCardID;
-            cus.CusBankCardDate = req.CusBankCardDate;
-            cus.CusNote = req.CusNote;
+            //cus.CustomerID = req.CustomerID;
+            //cus.LastName = req.LastName;
+            //cus.FirstName = req.FirstName;
+            //cus.CusBirthDay = req.CusBirthDay;
+            //cus.CusPhoneNumber = req.CusPhoneNumber;
+            //cus.CusEmail = req.CusEmail;
+            //cus.CusGender = req.CusGender;
+            //cus.CusAddress = req.CusAddress;
+            //cus.CusType = req.CusType;
+            //cus.CusIdentityCard = req.CusIdentityCard;
+            //cus.CusBankCardType = req.CusBankCardType;
+            //cus.CusBankCardID = req.CusBankCardID;
+            //cus.CusBankCardDate = req.CusBankCardDate;
+            //cus.CusNote = req.CusNote;
             //Sửa
             result = base.Update(cus);
             result.Data = cus;

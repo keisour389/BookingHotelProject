@@ -40,7 +40,24 @@ namespace BookingHotelApp.DAL.Model
         public String EmpGender { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
-        public String EmpAddress { get; set; }
+        [Required]
+        public String Street { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String Ward { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String District { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String Province { get; set; }
+
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String Country { get; set; }
 
         [Column(TypeName = "nvarchar(20)")]
         public String EmpIdentityCard { get; set; }
@@ -53,19 +70,9 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String Seniority { get; set; }
 
-        [Column(TypeName = "money")]
+        [Column(TypeName = "float")]
         [Required]
-        public int Salary { get; set; }
-
-        [Column(TypeName = "nvarchar(20)")]
-        public String EmpBankCardType { get; set; }
-
-
-        [Column(TypeName = "nvarchar(20)")]
-        public String EmpBankCardID { get; set; }
-
-        [Column(TypeName = "datetime")]
-        public DateTime EmpBankCardDate { get; set; }
+        public float CoefficientsSalary { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
         public String EmpNote { get; set; }

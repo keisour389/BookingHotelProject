@@ -39,28 +39,9 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String CusGender { get; set; }
 
-        [Column(TypeName = "nvarchar(max)")]
-        public String CusAddress { get; set; }
-
-
         [Column(TypeName = "nvarchar(20)")]
         [Required]
         public String CusType { get; set; }
-
-
-        [Column(TypeName = "nvarchar(20)")]
-        public String CusIdentityCard{ get; set; }
-
-
-        [Column(TypeName = "nvarchar(20)")]
-        public String CusBankCardType { get; set; }
-
-
-        [Column(TypeName = "nvarchar(20)")]
-        public String CusBankCardID{ get; set; }
-
-        [Column(TypeName = "datetime")]
-        public DateTime CusBankCardDate { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
         public String CusNote { get; set; }
