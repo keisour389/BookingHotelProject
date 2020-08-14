@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SearchHotelComponent } from './search-hotel/search-hotel.component';
 import { ChoseHotelComponent } from './chose-hotel/chose-hotel.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ChoseHotelComponent } from './chose-hotel/chose-hotel.component';
     FetchDataComponent,
     HomePageComponent,
     SearchHotelComponent,
-    ChoseHotelComponent
+    ChoseHotelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +36,8 @@ import { ChoseHotelComponent } from './chose-hotel/chose-hotel.component';
       // { path: 'fetch-data', component: FetchDataComponent },
       { path: '', component: HomePageComponent, pathMatch: 'full' },
       { path: 'search-hotel', component: SearchHotelComponent },
-      { path: 'chose-hotel', component: ChoseHotelComponent }
+      { path: 'chose-hotel', component: ChoseHotelComponent },
+      { path: 'login', component: LoginComponent }
     ])
   ],
   providers: [],

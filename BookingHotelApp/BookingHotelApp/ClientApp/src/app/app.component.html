@@ -1,6 +1,9 @@
-<body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
+<body *ngIf="showMenu">
+  <div class="not-full">
+    <app-nav-menu></app-nav-menu>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </body>
+<app-login></app-login>

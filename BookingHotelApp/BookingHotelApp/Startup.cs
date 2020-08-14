@@ -75,11 +75,20 @@ namespace BookingHotelApp
             services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            //Add session
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(3600); //Timeout
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Use sesion created above
+            app.UseSession();
+
             #region -- Swagger --
             app.UseSwagger();
             app.UseSwaggerUI(c =>

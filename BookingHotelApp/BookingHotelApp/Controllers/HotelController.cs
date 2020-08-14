@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using BookingHotelApp.BLL.Service;
 using BookingHotelApp.Common.Request;
@@ -31,8 +32,22 @@ namespace BookingHotelApp.Controllers
         [HttpGet("search-hotel-pagination/{size},{page}")]
         public IActionResult SearchHotelPagination(int size, int page, string keyWord)
         {
+            //HttpContext.Session.SetString("TestSession", size.ToString());
+            String hadLogin = HttpContext.Session.GetString("TestSession"); //Nếu không có session này thì sẽ trả về null
+            
             var result = _svc.SearchHotelPagination(size, page, keyWord);
-            return Ok(result);
+            if(!String.IsNullOrEmpty(hadLogin))
+            {
+                return Ok(result);
+            }
+            else
+            {
+                var response = new
+                {
+                    Login = false
+                };
+                return Ok(response);
+            }
         }
 
         [HttpPut("update-hotel")]
