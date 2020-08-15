@@ -43,12 +43,27 @@ export class SearchHotelComponent {
     this.titleService.setTitle("Tìm phòng");
   }
   searchHotel() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/customer-search-room-by-price/' +
+    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/customer-search-room-by-keyword/' +
       '?keyWord=' + this.bookingInfo.destination).subscribe(
         result => {
           var res: any = result;
-          this.hotelSearchResult = res.data; //Result sẽ có đủ dữ liệu
-          console.log(res);
+          if (res.success) {
+            this.hotelSearchResult = res.data; //Result sẽ có đủ dữ liệu
+            console.log(res);
+          }
+          else{
+            console.log("failed");
+            // if(!res.login){
+            //   this.router.navigate(['/login']).then(e => {
+            //     if(e){
+            //       console.log("Navigation is successful!");
+            //     }
+            //     else{
+            //       console.log("Navigation has failed!");
+            //     }
+            //   });
+            // }
+          }
         },
         error => {
           alert("Server error!!")

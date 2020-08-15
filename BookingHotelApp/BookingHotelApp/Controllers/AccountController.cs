@@ -19,20 +19,39 @@ namespace BookingHotelApp.Controllers
         {
             _svc = new AccountSvc();
         }
+        [HttpGet("had-login")]
+        public IActionResult HadLogin()
+        {
+            //Session sẽ có khi đăng nhập
+            //Nếu không có session này thì sẽ trả về null
+            String hadLogin = HttpContext.Session.GetString("LoginSession"); 
+            if (!String.IsNullOrEmpty(hadLogin))
+            {
+                var response = new
+                {
+                    Success = true,
+                    Username = hadLogin
+                };
+                return Ok(response);
+            }
+            else
+            {
+                var response = new
+                {
+                    Success = false,
+                    Username = ""
+                };
+                return Ok(response);
+            }
+        }
+
 
         [HttpPost("create-account")]
-        //Xác thực việc gửi API, phòng ngừa việc gửi API giả mạo
-        //Ngăn việc lấy đường link API từ web này mà gửi từ web khác
-        [ValidateAntiForgeryToken] 
-        public IActionResult CreateAccount([Bind("UserName,Password,AccountType,AccountCreatedDate,AccountStatus")]
-            AccountReq req)
+        public IActionResult CreateAccount([FromBody] AccountReq req)
         {
-            if(ModelState.IsValid)
-            {
-                var result = _svc.CreateAccount(req);
-                return Ok(result);
-            }
-            return Ok("failed");
+            var result = _svc.CreateAccount(req);
+            return Ok(result);
+
         }
 
         [HttpGet("search-account-pagination/{size},{page}")]
@@ -53,6 +72,19 @@ namespace BookingHotelApp.Controllers
         public IActionResult RemoveAccount(string userName)
         {
             var result = _svc.RemoveAccount(userName);
+            return Ok(result);
+        }
+
+        [HttpPost("validate-user")]
+        public IActionResult ValidateUser([FromBody]UserReq req)
+        {
+             
+            var result = _svc.ValidateUser(req);
+            //Khi đã đăng nhập thành công thì sẽ tạo 1 session lưu tên người dùng
+            if (result.Success)
+            {
+                HttpContext.Session.SetString("LoginSession", req.Username);
+            }
             return Ok(result);
         }
     }

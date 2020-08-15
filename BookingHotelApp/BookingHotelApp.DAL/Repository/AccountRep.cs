@@ -21,5 +21,6 @@ namespace BookingHotelApp.DAL.Repository
             var dataRemove = Context.Account.FirstOrDefault(data => data.UserName == userName); //Tìm ra dữ liệu cần xóa
             return base.Remove(dataRemove); //Gọi hàm xóa từ đối tượng cha
         }
+        
     }
 }

@@ -1,9 +1,15 @@
-<body *ngIf="showMenu">
-  <div class="not-full">
+<body>
+  <div class="not-full" *ngIf="showMenu == true">
     <app-nav-menu></app-nav-menu>
     <div class="container">
       <router-outlet></router-outlet>
     </div>
   </div>
+  <div class="full" *ngIf="!showMenu">
+    <app-login></app-login>
+  </div>
+  <!-- <div class="full" *ngIf="logged == false">
+    <app-login></app-login>
+  </div> -->
 </body>
-<app-login></app-login>
+

@@ -69,5 +69,14 @@ namespace BookingHotelApp.BLL.Service
             result.Data = userName;
             return result;
         }
+
+        public SingleResponse ValidateUser(UserReq req)
+        {
+            var result = new SingleResponse();
+            var search = base.All.Where(value => value.UserName == req.Username && value.Password == req.Password)
+                .FirstOrDefault();
+            result.Data = search;
+            return result;
+        }
     }
 }

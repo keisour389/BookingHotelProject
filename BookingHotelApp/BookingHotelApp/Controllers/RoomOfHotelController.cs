@@ -56,10 +56,24 @@ namespace BookingHotelApp.Controllers
         }
 
         //Procedure
-        [HttpGet("customer-search-room-by-price")]
+        [HttpGet("customer-search-room-by-keyword")]
         public IActionResult CustomerSearchRoomByKeyword(string keyword)
         {
+            //String hadLogin = HttpContext.Session.GetString("LoginSession"); //Nếu không có session này thì sẽ trả về null
             var result = _svc.CustomerSearchRoomByKeyword(keyword);
+            //if (!String.IsNullOrEmpty(hadLogin))
+            //{
+            //    return Ok(result);
+            //}
+            //else
+            //{
+            //    var response = new
+            //    {
+            //        Success = false,
+            //        Login = false
+            //    };
+            //    return Ok(response);
+            //}
             return Ok(result);
         }
     }
