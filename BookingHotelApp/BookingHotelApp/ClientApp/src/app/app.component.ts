@@ -12,6 +12,7 @@ export class AppComponent {
   showLogin: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
   showRegister: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
   showFillInInformation: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
+  showCheckBookingAgain: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
   showTemplate: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
 
   logged: Boolean
@@ -21,6 +22,7 @@ export class AppComponent {
             // this.showTemplate = event.url !== "/";
             // this.showTemplate = event.url !== "search-hotel";
             // this.showTemplate = event.url !== "chose-hotel";
+            this.showCheckBookingAgain = event.url !== "/check-booking-again";
             this.showFillInInformation = event.url !== "/fill-in-information";
             this.showLogin = event.url !== "/login";
             this.showRegister = event.url !== "/register";

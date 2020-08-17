@@ -1,0 +1,28 @@
+body{
+    --font-size-details: 15px;
+    --margin-bottom-details: 10px;
+    --border-color: #dedede;
+    --border-radius: 5px;
+    --form--padding: 20px;
+    background-color: #e6eaed;
+}
+/*form*/
+.check-booking-again, .noice, .price{
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: white;
+    padding: var(--form--padding);
+}
+/*form*/
+/*check-booking-again*/
+.title-text-details{
+    font-size: var(--font-size-details);
+    font-weight: 700;
+    color: black;
+    margin-bottom: var(--margin-bottom-details);
+}
+.content-text-details{
+    font-size: var(--font-size-details);
+    margin-bottom: var(--margin-bottom-details);
+}
+/*check-booking-again*/

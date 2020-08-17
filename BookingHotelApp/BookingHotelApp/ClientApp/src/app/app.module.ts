@@ -17,6 +17,8 @@ import { ChoseHotelComponent } from './chose-hotel/chose-hotel.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FillInInformationComponent } from './fill-in-information/fill-in-information.component';
+import { CheckBookingAgainComponent } from './check-booking-again/check-booking-again.component';
+import { BookingProcessComponent } from './booking-process/booking-process.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { FillInInformationComponent } from './fill-in-information/fill-in-inform
     ChoseHotelComponent,
     LoginComponent,
     RegisterComponent,
-    FillInInformationComponent
+    FillInInformationComponent,
+    CheckBookingAgainComponent,
+    BookingProcessComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,7 +50,8 @@ import { FillInInformationComponent } from './fill-in-information/fill-in-inform
       { path: 'chose-hotel', component: ChoseHotelComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'fill-in-information', component: FillInInformationComponent }
+      { path: 'fill-in-information', component: FillInInformationComponent },
+      { path: 'check-booking-again', component: CheckBookingAgainComponent }
     ])
   ],
   providers: [AuthService, AuthGuard], //Khai báo auth ở đây để protection router
