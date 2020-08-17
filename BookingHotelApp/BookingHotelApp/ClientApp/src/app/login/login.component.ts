@@ -25,7 +25,7 @@ export class LoginComponent {
     }
 
     public validateUser(){
-        this.http.post('https://localhost:44359/api/Account/validate-user', this.data)
+        this.http.post('https://localhost:44359/api/CusAccount/validate-user', this.data)
         .subscribe(result =>{
             var res: any = result;
             if(res.success){

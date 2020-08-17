@@ -1,5 +1,5 @@
 <body>
-  <div class="not-full" *ngIf="showLogin && showRegister">
+  <div class="not-full" *ngIf="showLogin && showRegister && showFillInInformation">
     <app-nav-menu></app-nav-menu>
     <div class="container">
       <router-outlet></router-outlet>
@@ -10,6 +10,9 @@
   </div>
   <div class="register" *ngIf="!showRegister">
     <app-register></app-register>
+  </div>
+  <div class="fill-in-information" *ngIf="!showFillInInformation">
+    <app-fill-in-information></app-fill-in-information>
   </div>
   <!-- <div class="full" *ngIf="logged == false">
     <app-login></app-login>

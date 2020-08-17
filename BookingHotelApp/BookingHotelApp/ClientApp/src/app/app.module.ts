@@ -16,6 +16,7 @@ import { SearchHotelComponent } from './search-hotel/search-hotel.component';
 import { ChoseHotelComponent } from './chose-hotel/chose-hotel.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FillInInformationComponent } from './fill-in-information/fill-in-information.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
     SearchHotelComponent,
     ChoseHotelComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FillInInformationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,7 +45,8 @@ import { RegisterComponent } from './register/register.component';
       { path: 'search-hotel', component: SearchHotelComponent, canActivate: [AuthGuard]}, //Set Auth cho router tương ứng
       { path: 'chose-hotel', component: ChoseHotelComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'fill-in-information', component: FillInInformationComponent }
     ])
   ],
   providers: [AuthService, AuthGuard], //Khai báo auth ở đây để protection router

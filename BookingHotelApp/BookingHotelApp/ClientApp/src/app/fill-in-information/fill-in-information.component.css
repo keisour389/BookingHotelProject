@@ -1,0 +1,57 @@
+body{
+    --border-color: #dedede;
+    --border-radius: 5px;
+    --form--padding: 20px;
+    background-color: #e6eaed;
+}
+/*nav*/
+.booking-process-list{
+    margin-left: 10px;
+}
+/*nav*/
+/*information-form*/
+.information-form{
+    margin-right: 20px;
+    padding: 5px;
+}
+.customer-information{
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: white;
+    padding: var(--form--padding);
+}
+.confirm-booking{
+    margin-top: 20px;
+}
+.price-details{
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--form--padding);
+    background-color: white;
+}
+.text-example{
+    line-height: 1.5;
+    font-weight: 300;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #bbbaba;
+}
+/*information-form*/
+
+/*hotel-information*/
+.hotel-room-details{
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--form--padding);
+    background-color: white;
+}
+.hotel-benefit{
+    font-size: 13px;
+    text-align: center;
+    color: #00a74e;
+}
+.booking-hotel-info{
+    font-size: 14px;
+}
+/*hotel-information*/
