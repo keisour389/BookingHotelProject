@@ -11,20 +11,20 @@ namespace BookingHotelApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class EmpAccountController : ControllerBase
     {
         //Khởi tạo đối tượng service
-        private readonly AccountSvc _svc;
-        public AccountController()
+        private readonly EmpAccountSvc _svc;
+        public EmpAccountController()
         {
-            _svc = new AccountSvc();
+            _svc = new EmpAccountSvc();
         }
         [HttpGet("had-login")]
         public IActionResult HadLogin()
         {
             //Session sẽ có khi đăng nhập
             //Nếu không có session này thì sẽ trả về null
-            String hadLogin = HttpContext.Session.GetString("LoginSession"); 
+            String hadLogin = HttpContext.Session.GetString("EmpLoginSession");
             if (!String.IsNullOrEmpty(hadLogin))
             {
                 var response = new
@@ -62,7 +62,7 @@ namespace BookingHotelApp.Controllers
         }
 
         [HttpPut("update-account")]
-        public IActionResult UpdateAccount([FromBody]AccountReq req)
+        public IActionResult UpdateAccount([FromBody] AccountReq req)
         {
             var result = _svc.UpdateAccount(req);
             return Ok(result);
@@ -76,14 +76,14 @@ namespace BookingHotelApp.Controllers
         }
 
         [HttpPost("validate-user")]
-        public IActionResult ValidateUser([FromBody]UserReq req)
+        public IActionResult ValidateUser([FromBody] UserReq req)
         {
-             
+
             var result = _svc.ValidateUser(req);
             //Khi đã đăng nhập thành công thì sẽ tạo 1 session lưu tên người dùng
             if (result.Success)
             {
-                HttpContext.Session.SetString("LoginSession", req.Username);
+                HttpContext.Session.SetString("EmpLoginSession", req.Username);
             }
             return Ok(result);
         }

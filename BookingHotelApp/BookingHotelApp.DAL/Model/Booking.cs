@@ -46,7 +46,7 @@ namespace BookingHotelApp.DAL.Model
         public Customers Customers { get; set; }
 
         [ForeignKey("Employees")] //Khóa ngoại là bảng Employees
-        [Column("EmployeeID")] //Tên cột
+        [Column("PhoneNumber")] //Tên cột
         public String EmployeeID { get; set; }
         public Employees Employees { get; set; }
 

@@ -23,6 +23,6 @@ export class AuthService {
   }
   getUserDetails() {
     //Gọi API Post Login để lấy về thông tin user
-    return this.http.get<any>('https://localhost:44359/api/Account/had-login')
+    return this.http.get<any>('https://localhost:44359/api/CusAccount/had-login')
   }
 }

@@ -1,4 +1,5 @@
-﻿using BookingHotelApp.Common.BLL;
+﻿using BookingHotelApp.Common;
+using BookingHotelApp.Common.BLL;
 using BookingHotelApp.Common.Request;
 using BookingHotelApp.DAL.Model;
 using BookingHotelApp.DAL.Repository;
@@ -10,16 +11,16 @@ using System.Text;
 
 namespace BookingHotelApp.BLL.Service
 {
-    public class AccountSvc : GenericService<AccountRep, Account>
+    public class CusAccountSvc : GenericService<CusAccountRep, CusAccount>
     {
         public SingleResponse CreateAccount(AccountReq req)
         {
             //Khởi tạo
             var result = new SingleResponse();
-            Account account = new Account();
+            CusAccount account = new CusAccount();
             //Gán
-            account.UserName = req.UserName;
-            account.Password = req.Password;
+            account.PhoneNumber = req.PhoneNumber;
+            account.Password = PasswordHasher.HashPassword(req.Password);
             account.AccountType = req.AccountType;
             account.AccountCreatedDate = req.AccountCreatedDate;
             account.AccountStatus = req.AccountStatus;
@@ -33,9 +34,9 @@ namespace BookingHotelApp.BLL.Service
         {
             //Khởi tạo
             var result = new SingleResponse();
-            Account account = new Account();
+            CusAccount account = new CusAccount();
             //Gán
-            account.UserName = req.UserName;
+            account.PhoneNumber = req.PhoneNumber;
             account.Password = req.Password;
             account.AccountType = req.AccountType;
             account.AccountCreatedDate = req.AccountCreatedDate;
@@ -55,7 +56,7 @@ namespace BookingHotelApp.BLL.Service
             if (!string.IsNullOrEmpty(keyWord))
             {
                 //Lọc dữ kiệu
-                resultAfterFill = base.All.Where(value => value.UserName.Contains(keyWord) //Kiểm tra theo người dùng
+                resultAfterFill = base.All.Where(value => value.PhoneNumber.Contains(keyWord) //Kiểm tra theo người dùng
                 || value.AccountStatus.Contains(keyWord)); //Kiểm tra tình trạng tài khoản
             }
             //Kết quả
@@ -73,10 +74,13 @@ namespace BookingHotelApp.BLL.Service
         public SingleResponse ValidateUser(UserReq req)
         {
             var result = new SingleResponse();
-            var search = base.All.Where(value => value.UserName == req.Username && value.Password == req.Password)
+            var search = base.All.Where(value => value.PhoneNumber == req.Username
+                && value.Password == PasswordHasher.HashPassword(req.Password))
                 .FirstOrDefault();
             result.Data = search;
             return result;
         }
+
+        
     }
 }

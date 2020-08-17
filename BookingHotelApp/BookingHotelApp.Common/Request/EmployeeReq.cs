@@ -6,11 +6,10 @@ namespace BookingHotelApp.Common.Request
 {
     public class EmployeeReq
     {
-        public String EmployeeID { get; set; }
+        public String PhoneNumber { get; set; }
         public String LastName { get; set; }
         public String FirstName { get; set; }
         public DateTime EmpBirthDay { get; set; }
-        public String EmpPhoneNumber { get; set; }
         public String EmpEmail { get; set; }
         public String EmpGender { get; set; }
         public String Street { get; set; }

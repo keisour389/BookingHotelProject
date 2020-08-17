@@ -6,7 +6,7 @@ namespace BookingHotelApp.Common.Request
 {
     public class AccountReq
     {
-        public String UserName { get; set; }
+        public String PhoneNumber { get; set; }
         public String Password { get; set; }
         public String AccountType { get; set; }
         public DateTime AccountCreatedDate { get; set; }

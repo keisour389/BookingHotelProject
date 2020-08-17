@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingHotelApp.DAL.Migrations
 {
     [DbContext(typeof(BookingHotelContext))]
-    [Migration("20200707040618_BookingHotelDBUpdateVer4.3")]
-    partial class BookingHotelDBUpdateVer43
+    [Migration("20200816043652_BookingHotelDBUpdateVer1.0")]
+    partial class BookingHotelDBUpdateVer10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,34 +20,6 @@ namespace BookingHotelApp.DAL.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BookingHotelApp.DAL.Model.Account", b =>
-                {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("AccountCreatedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("AccountStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("AccountType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("UserName");
-
-                    b.ToTable("Account");
-                });
 
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Booking", b =>
                 {
@@ -72,15 +44,15 @@ namespace BookingHotelApp.DAL.Migrations
 
                     b.Property<string>("CustomerID")
                         .HasColumnName("CustomerID")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CustomerPaymentMethods")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("EmployeeID")
-                        .HasColumnName("EmployeeID")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnName("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("NumberOfPeople")
                         .HasColumnType("int");
@@ -118,6 +90,9 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
                     b.HasKey("BookingID", "HotelID", "RoomID");
 
                     b.HasIndex("HotelID");
@@ -127,23 +102,39 @@ namespace BookingHotelApp.DAL.Migrations
                     b.ToTable("BookingDetails");
                 });
 
-            modelBuilder.Entity("BookingHotelApp.DAL.Model.Customers", b =>
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.CusAccount", b =>
                 {
-                    b.Property<string>("CustomerID")
-                        .HasColumnName("CustomerID")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("CusAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CusBankCardDate")
+                    b.Property<DateTime>("AccountCreatedDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("CusBankCardID")
+                    b.Property<string>("AccountStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("AccountType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("CusBankCardType")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("PhoneNumber");
+
+                    b.ToTable("CusAccount");
+                });
+
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.Customers", b =>
+                {
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnName("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime>("CusBirthDay")
                         .HasColumnType("datetime");
@@ -156,15 +147,8 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("CusIdentityCard")
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<string>("CusNote")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CusPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CusType")
                         .IsRequired()
@@ -178,28 +162,55 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("CustomerID");
+                    b.HasKey("PhoneNumber");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("BookingHotelApp.DAL.Model.Employees", b =>
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.EmpAccount", b =>
                 {
-                    b.Property<string>("EmployeeID")
-                        .HasColumnName("EmployeeID")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("EmpAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EmpBankCardDate")
+                    b.Property<DateTime>("AccountCreatedDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("EmpBankCardID")
+                    b.Property<string>("AccountStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("AccountType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("EmpBankCardType")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("PhoneNumber");
+
+                    b.ToTable("EmpAccount");
+                });
+
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.Employees", b =>
+                {
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnName("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<double>("CoefficientsSalary")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("EmpBirthDay")
                         .HasColumnType("datetime");
@@ -218,10 +229,6 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("EmpNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EmpPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(40)");
@@ -234,14 +241,23 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("money");
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Seniority")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("EmployeeID");
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ward")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("PhoneNumber");
 
                     b.ToTable("Employees");
                 });
@@ -251,11 +267,11 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("HotelID")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("HotelAddress")
+                    b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("HotelCountry")
+                    b.Property<string>("District")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
@@ -296,16 +312,22 @@ namespace BookingHotelApp.DAL.Migrations
                         .HasColumnName("PartnerID")
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<int>("Quality")
                         .HasColumnType("int");
 
                     b.Property<double>("Rank")
                         .HasColumnType("float");
 
-                    b.Property<string>("RestaurantDescription")
+                    b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RestaurantType")
+                    b.Property<string>("Ward")
+                        .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
                     b.HasKey("HotelID");
@@ -354,6 +376,38 @@ namespace BookingHotelApp.DAL.Migrations
                     b.ToTable("Partners");
                 });
 
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.Restaurant", b =>
+                {
+                    b.Property<string>("RestaurantID")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("HotetID")
+                        .IsRequired()
+                        .HasColumnName("HotelID")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestaurantDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RestaurantName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("RestaurantType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("RestaurantID");
+
+                    b.HasIndex("HotetID");
+
+                    b.ToTable("Restaurant");
+                });
+
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Room", b =>
                 {
                     b.Property<string>("RoomID")
@@ -383,10 +437,24 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("RoomID")
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<int>("BedAmount")
+                        .HasColumnType("int");
+
                     b.Property<double>("Discount")
                         .HasColumnType("float");
 
                     b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PeopleAmount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PolicyApply")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PolicyNotApply")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomAmount")
@@ -442,18 +510,18 @@ namespace BookingHotelApp.DAL.Migrations
 
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Customers", b =>
                 {
-                    b.HasOne("BookingHotelApp.DAL.Model.Account", "Account")
+                    b.HasOne("BookingHotelApp.DAL.Model.CusAccount", "CusAccount")
                         .WithMany("Customers")
-                        .HasForeignKey("CustomerID")
+                        .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Employees", b =>
                 {
-                    b.HasOne("BookingHotelApp.DAL.Model.Account", "Account")
+                    b.HasOne("BookingHotelApp.DAL.Model.EmpAccount", "EmpAccount")
                         .WithMany("Employees")
-                        .HasForeignKey("EmployeeID")
+                        .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -463,6 +531,15 @@ namespace BookingHotelApp.DAL.Migrations
                     b.HasOne("BookingHotelApp.DAL.Model.Partners", "Partners")
                         .WithMany("Hotel")
                         .HasForeignKey("PartnerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.Restaurant", b =>
+                {
+                    b.HasOne("BookingHotelApp.DAL.Model.Hotel", "Hotel")
+                        .WithMany("Restaurant")
+                        .HasForeignKey("HotetID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

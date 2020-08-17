@@ -9,14 +9,19 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'app';
 
-  showMenu: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
+  showLogin: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
+  showRegister: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
+  showTemplate: Boolean //Biến kiểm tra trang html có xài template không và ngược lại
 
   logged: Boolean
   constructor(router:Router, private auth: AuthService) {
     router.events.forEach((event) => {
         if(event instanceof NavigationStart) {
-            this.showMenu = event.url !== "/login";
-            console.log("show menu " + this.showMenu);
+            // this.showTemplate = event.url !== "/";
+            // this.showTemplate = event.url !== "search-hotel";
+            // this.showTemplate = event.url !== "chose-hotel";
+            this.showLogin = event.url !== "/login";
+            this.showRegister = event.url !== "/register";
         }
       });
       this.logged = this.auth.isLoggedIn;

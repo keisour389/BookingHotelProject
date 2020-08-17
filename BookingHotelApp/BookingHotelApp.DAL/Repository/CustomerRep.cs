@@ -16,7 +16,7 @@ namespace BookingHotelApp.DAL.Repository
         }
         public SingleResponse Remove(string customerId)
         {
-            var dataRemove = Context.Customers.FirstOrDefault(data => data.CustomerID == customerId);
+            var dataRemove = Context.Customers.FirstOrDefault(data => data.PhoneNumber == customerId);
             return base.Remove(dataRemove); //Gọi hàm remove từ đối tượng cha
         }
     }

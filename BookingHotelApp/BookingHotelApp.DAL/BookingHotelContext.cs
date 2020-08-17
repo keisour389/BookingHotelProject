@@ -17,7 +17,8 @@ namespace BookingHotelApp.DAL
         {
         }
 
-        public DbSet<Account> Account { get; set; }
+        public DbSet<CusAccount> CusAccount { get; set; }
+        public DbSet<EmpAccount> EmpAccount { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Employees> Employees { get; set; }
         public DbSet<Room> Room { get; set; }

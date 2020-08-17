@@ -36,7 +36,7 @@ namespace BookingHotelApp.Common.DAL
             {
                 try
                 {
-                    _context.Set<T>().AddRange(table); //Create của generic repository
+                    _context.Set<T>().Add(table); //Create của generic repository
                     _context.SaveChanges();
                     tran.Commit();
                 }

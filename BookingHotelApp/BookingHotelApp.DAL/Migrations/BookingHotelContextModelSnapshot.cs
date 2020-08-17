@@ -19,34 +19,6 @@ namespace BookingHotelApp.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BookingHotelApp.DAL.Model.Account", b =>
-                {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("AccountCreatedDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("AccountStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("AccountType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("UserName");
-
-                    b.ToTable("Account");
-                });
-
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Booking", b =>
                 {
                     b.Property<int>("BookingID")
@@ -70,15 +42,15 @@ namespace BookingHotelApp.DAL.Migrations
 
                     b.Property<string>("CustomerID")
                         .HasColumnName("CustomerID")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("CustomerPaymentMethods")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("EmployeeID")
-                        .HasColumnName("EmployeeID")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnName("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("NumberOfPeople")
                         .HasColumnType("int");
@@ -128,11 +100,39 @@ namespace BookingHotelApp.DAL.Migrations
                     b.ToTable("BookingDetails");
                 });
 
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.CusAccount", b =>
+                {
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("AccountCreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AccountStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("AccountType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PhoneNumber");
+
+                    b.ToTable("CusAccount");
+                });
+
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Customers", b =>
                 {
-                    b.Property<string>("CustomerID")
-                        .HasColumnName("CustomerID")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnName("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime>("CusBirthDay")
                         .HasColumnType("datetime");
@@ -148,10 +148,6 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("CusNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CusPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)");
-
                     b.Property<string>("CusType")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
@@ -164,16 +160,44 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("CustomerID");
+                    b.HasKey("PhoneNumber");
 
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("BookingHotelApp.DAL.Model.EmpAccount", b =>
+                {
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("AccountCreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("AccountStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("AccountType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PhoneNumber");
+
+                    b.ToTable("EmpAccount");
+                });
+
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Employees", b =>
                 {
-                    b.Property<string>("EmployeeID")
-                        .HasColumnName("EmployeeID")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnName("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<double>("CoefficientsSalary")
                         .HasColumnType("float");
@@ -203,10 +227,6 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("EmpNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EmpPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(40)");
@@ -235,7 +255,7 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("EmployeeID");
+                    b.HasKey("PhoneNumber");
 
                     b.ToTable("Employees");
                 });
@@ -488,18 +508,18 @@ namespace BookingHotelApp.DAL.Migrations
 
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Customers", b =>
                 {
-                    b.HasOne("BookingHotelApp.DAL.Model.Account", "Account")
+                    b.HasOne("BookingHotelApp.DAL.Model.CusAccount", "CusAccount")
                         .WithMany("Customers")
-                        .HasForeignKey("CustomerID")
+                        .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("BookingHotelApp.DAL.Model.Employees", b =>
                 {
-                    b.HasOne("BookingHotelApp.DAL.Model.Account", "Account")
+                    b.HasOne("BookingHotelApp.DAL.Model.EmpAccount", "EmpAccount")
                         .WithMany("Employees")
-                        .HasForeignKey("EmployeeID")
+                        .HasForeignKey("PhoneNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

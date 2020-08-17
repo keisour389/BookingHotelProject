@@ -47,5 +47,12 @@ namespace BookingHotelApp.Controllers
             var result = _svc.RemoveCustomer(customerId);
             return Ok(result);
         }
+
+        [HttpGet("check-account-exist/{username}")]
+        public IActionResult CheckAccountExist(string username)
+        {
+            var result = _svc.CheckAccountExist(username);
+            return Ok(result);
+        }
     }
 }

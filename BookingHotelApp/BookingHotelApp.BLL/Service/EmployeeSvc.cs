@@ -18,11 +18,10 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Employees emp = new Employees();
             //Gán
-            emp.EmployeeID = req.EmployeeID;
+            emp.PhoneNumber = req.PhoneNumber;
             emp.LastName = req.LastName;
             emp.FirstName = req.FirstName;
             emp.EmpBirthDay = req.EmpBirthDay;
-            emp.EmpPhoneNumber = req.EmpPhoneNumber;
             emp.EmpEmail = req.EmpEmail;
             emp.EmpGender = req.EmpGender;
             emp.Street = req.Street;
@@ -46,22 +45,22 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Employees emp = new Employees();
             //Gán
-            //emp.EmployeeID = req.EmployeeID;
-            //emp.LastName = req.LastName;
-            //emp.FirstName = req.FirstName;
-            //emp.EmpBirthDay = req.EmpBirthDay;
-            //emp.EmpPhoneNumber = req.EmpPhoneNumber;
-            //emp.EmpEmail = req.EmpEmail;
-            //emp.EmpGender = req.EmpGender;
-            //emp.EmpAddress = req.EmpAddress;
-            //emp.EmpIdentityCard = req.EmpIdentityCard;
-            //emp.Position = req.Position;
-            //emp.Seniority = req.Seniority;
-            //emp.Salary = req.Salary;
-            //emp.EmpBankCardType = req.EmpBankCardType;
-            //emp.EmpBankCardID = req.EmpBankCardID;
-            //emp.EmpBankCardDate = req.EmpBankCardDate;
-            //emp.EmpNote = req.EmpNote;
+            emp.PhoneNumber = req.PhoneNumber;
+            emp.LastName = req.LastName;
+            emp.FirstName = req.FirstName;
+            emp.EmpBirthDay = req.EmpBirthDay;
+            emp.EmpEmail = req.EmpEmail;
+            emp.EmpGender = req.EmpGender;
+            emp.Street = req.Street;
+            emp.Ward = req.Ward;
+            emp.District = req.District;
+            emp.Province = req.Province;
+            emp.Country = req.Country;
+            emp.EmpIdentityCard = req.EmpIdentityCard;
+            emp.Position = req.Position;
+            emp.Seniority = req.Seniority;
+            emp.CoefficientsSalary = req.CoefficientsSalary;
+            emp.EmpNote = req.EmpNote;
             //Sửa
             result = base.Update(emp);
             result.Data = emp;
@@ -76,7 +75,7 @@ namespace BookingHotelApp.BLL.Service
             if (!string.IsNullOrEmpty(keyWord))
             {
                 //Lọc dữ kiệu
-                resultAfterFill = base.All.Where(value => value.EmployeeID.Contains(keyWord) //Kiểm tra theo mã nhân viên
+                resultAfterFill = base.All.Where(value => value.PhoneNumber.Contains(keyWord) //Kiểm tra theo mã nhân viên
                 || (value.LastName.Contains(keyWord) || value.FirstName.Contains(keyWord))); //Kiểm tra theo họ hoặc theo tên
             }
             //Kết quả

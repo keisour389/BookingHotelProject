@@ -9,11 +9,11 @@ namespace BookingHotelApp.DAL.Model
     public class Customers
     {
         [Key]
-        [ForeignKey("Account")] //Khóa ngoại là bảng Account
-        [Column("CustomerID")] //Tên cột
+        [ForeignKey("CusAccount")] //Khóa ngoại là bảng Account
+        [Column("PhoneNumber")] //Tên cột
         [Required]
-        public String CustomerID { get; set; }
-        public Account Account { get; set; }
+        public String PhoneNumber { get; set; }
+        public CusAccount CusAccount { get; set; }
 
         [Column(TypeName = "nvarchar(20)")]
         [Required]
@@ -26,10 +26,6 @@ namespace BookingHotelApp.DAL.Model
         [Column(TypeName = "datetime")]
         [Required]
         public DateTime CusBirthDay { get; set; }
-
-        [Column(TypeName = "nvarchar(15)")]
-        [Required]
-        public String CusPhoneNumber { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         [Required]

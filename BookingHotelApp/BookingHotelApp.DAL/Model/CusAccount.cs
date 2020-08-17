@@ -6,14 +6,15 @@ using System.Text;
 
 namespace BookingHotelApp.DAL.Model
 {
-    public class Account
+    public class CusAccount
     {
         [Key]
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "nvarchar(15)")]
         [Required]
-        public String UserName { get; set; }
+        public String PhoneNumber { get; set; }
 
-        [Column(TypeName = "nvarchar(30)")]
+        //Lưu max vì mật khẩu phải băm ra
+        [Column(TypeName = "nvarchar(max)")]
         [Required]
         public String Password { get; set; }
 
@@ -34,6 +35,5 @@ namespace BookingHotelApp.DAL.Model
 
         public ICollection<Customers> Customers { get; set; } //Được sử dụng bởi bảng khách hàng
 
-        public ICollection<Employees> Employees { get; set; } //Được sử dụng bởi bảng nhân viên
     }
 }

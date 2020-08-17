@@ -1,12 +1,15 @@
 <body>
-  <div class="not-full" *ngIf="showMenu == true">
+  <div class="not-full" *ngIf="showLogin && showRegister">
     <app-nav-menu></app-nav-menu>
     <div class="container">
       <router-outlet></router-outlet>
     </div>
   </div>
-  <div class="full" *ngIf="!showMenu">
+  <div class="login" *ngIf="!showLogin">
     <app-login></app-login>
+  </div>
+  <div class="register" *ngIf="!showRegister">
+    <app-register></app-register>
   </div>
   <!-- <div class="full" *ngIf="logged == false">
     <app-login></app-login>

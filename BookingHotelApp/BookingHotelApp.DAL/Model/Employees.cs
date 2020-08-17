@@ -9,11 +9,11 @@ namespace BookingHotelApp.DAL.Model
     public class Employees
     {
         [Key]
-        [ForeignKey("Account")] //Khóa ngoại là bảng Account
-        [Column("EmployeeID")] //Tên cột
+        [ForeignKey("EmpAccount")] //Khóa ngoại là bảng Account
+        [Column("PhoneNumber")] //Tên cột
         [Required]
-        public String EmployeeID { get; set; }
-        public Account Account { get; set; }
+        public String PhoneNumber { get; set; }
+        public EmpAccount EmpAccount { get; set; }
 
         [Column(TypeName = "nvarchar(20)")]
         [Required]
@@ -26,10 +26,6 @@ namespace BookingHotelApp.DAL.Model
         [Column(TypeName = "datetime")]
         [Required]
         public DateTime EmpBirthDay { get; set; }
-
-        [Column(TypeName = "nvarchar(15)")]
-        [Required]
-        public String EmpPhoneNumber { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         [Required]

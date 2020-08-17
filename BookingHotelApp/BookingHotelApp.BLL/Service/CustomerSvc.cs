@@ -18,11 +18,10 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Customers cus = new Customers();
             //Gán
-            cus.CustomerID = req.CustomerID;
+            cus.PhoneNumber = req.PhoneNumber;
             cus.LastName = req.LastName;
             cus.FirstName = req.FirstName;
             cus.CusBirthDay = req.CusBirthDay;
-            cus.CusPhoneNumber = req.CusPhoneNumber;
             cus.CusEmail = req.CusEmail;
             cus.CusGender = req.CusGender;
             cus.CusType = req.CusType;
@@ -38,20 +37,14 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Customers cus = new Customers();
             //Gán
-            //cus.CustomerID = req.CustomerID;
-            //cus.LastName = req.LastName;
-            //cus.FirstName = req.FirstName;
-            //cus.CusBirthDay = req.CusBirthDay;
-            //cus.CusPhoneNumber = req.CusPhoneNumber;
-            //cus.CusEmail = req.CusEmail;
-            //cus.CusGender = req.CusGender;
-            //cus.CusAddress = req.CusAddress;
-            //cus.CusType = req.CusType;
-            //cus.CusIdentityCard = req.CusIdentityCard;
-            //cus.CusBankCardType = req.CusBankCardType;
-            //cus.CusBankCardID = req.CusBankCardID;
-            //cus.CusBankCardDate = req.CusBankCardDate;
-            //cus.CusNote = req.CusNote;
+            cus.PhoneNumber = req.PhoneNumber;
+            cus.LastName = req.LastName;
+            cus.FirstName = req.FirstName;
+            cus.CusBirthDay = req.CusBirthDay;
+            cus.CusEmail = req.CusEmail;
+            cus.CusGender = req.CusGender;
+            cus.CusType = req.CusType;
+            cus.CusNote = req.CusNote;
             //Sửa
             result = base.Update(cus);
             result.Data = cus;
@@ -66,7 +59,7 @@ namespace BookingHotelApp.BLL.Service
             if (!string.IsNullOrEmpty(keyWord))
             {
                 //Lọc dữ kiệu
-                resultAfterFill = base.All.Where(value => value.CustomerID.Contains(keyWord) //Kiểm tra theo mã khách hàng
+                resultAfterFill = base.All.Where(value => value.PhoneNumber.Contains(keyWord) //Kiểm tra theo mã khách hàng
                 || (value.LastName.Contains(keyWord) || value.FirstName.Contains(keyWord))); //Kiểm tra theo họ hoặc theo tên
             }
             //Kết quả
@@ -78,6 +71,25 @@ namespace BookingHotelApp.BLL.Service
             result = _rep.Remove(customerId); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
             result.Data = customerId;
             return result;
+        }
+
+        public object CheckAccountExist(string username)
+        {
+            var search = base.All.Where(value => value.PhoneNumber == username).FirstOrDefault(); //Kiểm tra tồn tại
+            if (search != null)
+            {
+                return new
+                {
+                    Exist = true
+                };
+            }
+            else
+            {
+                return new
+                {
+                    Exist = false
+                };
+            }
         }
     }
 }
