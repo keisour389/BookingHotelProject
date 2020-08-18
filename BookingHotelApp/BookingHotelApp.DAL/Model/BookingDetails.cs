@@ -18,10 +18,6 @@ namespace BookingHotelApp.DAL.Model
         public String RoomOfHotelID { get; set; }
         public RoomOfHotel RoomOfHotel { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
-        [Required]
-        public String CustomerName { get; set; }
-
         [Column(TypeName = "int")]
         [Required]
         public int NightAmount { get; set; }
@@ -31,6 +27,6 @@ namespace BookingHotelApp.DAL.Model
         public int Price { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
-        public int SpecialRequirements { get; set; }
+        public String SpecialRequirements { get; set; }
     }
 }

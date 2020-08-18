@@ -89,7 +89,7 @@
             <div class="hotel-price" style="display: inline-block;">
                 <div style="font-size: 14px;">Giá phòng mỗi đêm từ</div>
                 <div class="show-price" style="color: orange; font-size: 25px; font-weight: bold;">1.030.700 VNĐ</div>
-                <button type="button" class="btn btn-warning">Đặt phòng</button>
+                <button type="button" class="btn btn-warning" (click)="openConformBookingModal()">Đặt phòng</button>
             </div>
         </div>
         <!--Hotel convenient-->
@@ -273,3 +273,27 @@
 </body>
 
 </html>
+
+<!--Conform Booking Modal-->
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-break">Bạn chắc chắn các thông tin đã chính xác rồi chứ ?
+                    Bạn không thể sửa loại phòng và số đêm nhưng bạn vẫn có thể hủy
+                    (Tùy vào chính sách của khách sạn).
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Đặt phòng</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>

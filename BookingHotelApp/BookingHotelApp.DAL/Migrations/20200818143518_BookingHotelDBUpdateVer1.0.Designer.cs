@@ -4,14 +4,16 @@ using BookingHotelApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookingHotelApp.DAL.Migrations
 {
     [DbContext(typeof(BookingHotelContext))]
-    partial class BookingHotelContextModelSnapshot : ModelSnapshot
+    [Migration("20200818143518_BookingHotelDBUpdateVer1.0")]
+    partial class BookingHotelDBUpdateVer10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,20 +38,20 @@ namespace BookingHotelApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("BookingType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<DateTime>("CheckInDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("CheckOutDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("date");
 
                     b.Property<string>("CustomerID")
                         .IsRequired()
                         .HasColumnName("CustomerID")
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("CustomerPaymentMethods")
                         .IsRequired()
@@ -58,6 +60,12 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("EmployeeID")
                         .HasColumnName("EmployeeID")
                         .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("NumberOfPeople")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Required")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("money");
@@ -79,6 +87,10 @@ namespace BookingHotelApp.DAL.Migrations
                     b.Property<string>("RoomOfHotelID")
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("NightAmount")
                         .HasColumnType("int");
 
@@ -86,6 +98,7 @@ namespace BookingHotelApp.DAL.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("SpecialRequirements")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookingID", "RoomOfHotelID");

@@ -4,14 +4,16 @@ using BookingHotelApp.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookingHotelApp.DAL.Migrations
 {
     [DbContext(typeof(BookingHotelContext))]
-    partial class BookingHotelContextModelSnapshot : ModelSnapshot
+    [Migration("20200818151837_BookingHotelDBUpdateVer1.5")]
+    partial class BookingHotelDBUpdateVer15
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

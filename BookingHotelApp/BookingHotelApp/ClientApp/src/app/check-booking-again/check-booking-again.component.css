@@ -25,4 +25,26 @@ body{
     font-size: var(--font-size-details);
     margin-bottom: var(--margin-bottom-details);
 }
+/*price-details*/
+.text-price-details{
+    font-size: 18px;
+    font-weight: 600;
+}
+/*price-details*/
 /*check-booking-again*/
+
+
+/*payment-method*/
+.payment-method{
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: white;
+    padding: var(--form--padding);
+    margin-bottom: var(--margin-bottom-details);
+}
+.lable-payment{
+    font-size: var(--font-size-details);
+    font-weight: 700;
+    color: black;
+}
+/*payment-method*/

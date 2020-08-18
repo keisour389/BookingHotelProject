@@ -19,14 +19,12 @@ namespace BookingHotelApp.BLL.Service
             Booking booking = new Booking();
             //Gán
             //Không gán mã, vì mã là số tự động tăng
-            booking.BookingType = req.BookingType;
             booking.BookingDate = req.BookingDate;
             booking.BookingStatus = req.BookingStatus;
-            booking.NumberOfPeople = req.NumberOfPeople;
+            booking.CustomerName = req.CustomerName;
             booking.CustomerPaymentMethods = req.CustomerPaymentMethods;
             booking.CheckInDate = req.CheckInDate;
             booking.CheckOutDate = req.CheckOutDate;
-            booking.Required = req.Required;
             booking.TotalPrice = req.TotalPrice;
             booking.CustomerID = req.CustomerID;
             booking.EmployeeID = req.EmployeeID;
@@ -43,14 +41,13 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Booking booking = new Booking();
             //Gán
-            booking.BookingType = req.BookingType;
+            booking.BookingID = req.BookingID;
             booking.BookingDate = req.BookingDate;
             booking.BookingStatus = req.BookingStatus;
-            booking.NumberOfPeople = req.NumberOfPeople;
+            booking.CustomerName = req.CustomerName;
             booking.CustomerPaymentMethods = req.CustomerPaymentMethods;
             booking.CheckInDate = req.CheckInDate;
             booking.CheckOutDate = req.CheckOutDate;
-            booking.Required = req.Required;
             booking.TotalPrice = req.TotalPrice;
             booking.CustomerID = req.CustomerID;
             booking.EmployeeID = req.EmployeeID;
@@ -70,7 +67,7 @@ namespace BookingHotelApp.BLL.Service
             if (!string.IsNullOrEmpty(keyWord))
             {
                 //Lọc dữ kiệu
-                resultAfterFill = base.All.Where(value => value.BookingType.Contains(keyWord) //Kiểm tra theo loại đặt
+                resultAfterFill = base.All.Where(value => value.CustomerID.Contains(keyWord) //Kiểm tra theo mã khách hàng
                 || value.BookingStatus.Contains(keyWord)); //Kiểm tra theo trạng thái đặt
             }
             //Kết quả

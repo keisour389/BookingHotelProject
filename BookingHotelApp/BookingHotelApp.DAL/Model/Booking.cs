@@ -13,10 +13,6 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public int BookingID { get; set; }
 
-        [Column(TypeName = "nvarchar(30)")]
-        [Required]
-        public String BookingType { get; set; }
-
         [Column(TypeName = "datetime")]
         [Required]
         public DateTime BookingDate { get; set; }
@@ -25,36 +21,34 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String BookingStatus { get; set; }
 
-        [Column(TypeName = "int")]
+        [Column(TypeName = "nvarchar(50)")]
         [Required]
-        public int NumberOfPeople { get; set; }
+        public String CustomerName { get; set; }
 
         [Column(TypeName = "nvarchar(30)")]
         [Required]
         public String CustomerPaymentMethods { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         [Required]
         public DateTime CheckInDate { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         [Required]
         public DateTime CheckOutDate { get; set; }
-
-        [Column(TypeName = "nvarchar(100)")]
-        public String Required { get; set; }
 
         [Column(TypeName = "money")]
         [Required]
         public double TotalPrice { get; set; }
 
+        [Required]
         [ForeignKey("Customers")] //Khóa ngoại là bảng Customers
         [Column("CustomerID")] //Tên cột
         public String CustomerID { get; set; }
         public Customers Customers { get; set; }
 
         [ForeignKey("Employees")] //Khóa ngoại là bảng Employees
-        [Column("PhoneNumber")] //Tên cột
+        [Column("EmployeeID")] //Tên cột
         public String EmployeeID { get; set; }
         public Employees Employees { get; set; }
 

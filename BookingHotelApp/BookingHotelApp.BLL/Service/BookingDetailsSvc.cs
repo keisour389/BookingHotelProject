@@ -20,7 +20,6 @@ namespace BookingHotelApp.BLL.Service
             //Gán
             bookingDetails.BookingID = req.BookingID;
             bookingDetails.RoomOfHotelID = req.RoomOfHotelID;
-            bookingDetails.CustomerName = req.CustomerName;
             bookingDetails.NightAmount = req.NightAmount;
             bookingDetails.Price = req.Price;
             bookingDetails.SpecialRequirements = req.SpecialRequirements;
@@ -38,7 +37,6 @@ namespace BookingHotelApp.BLL.Service
             //Gán
             bookingDetails.BookingID = req.BookingID;
             bookingDetails.RoomOfHotelID = req.RoomOfHotelID;
-            bookingDetails.CustomerName = req.CustomerName;
             bookingDetails.NightAmount = req.NightAmount;
             bookingDetails.Price = req.Price;
             bookingDetails.SpecialRequirements = req.SpecialRequirements;

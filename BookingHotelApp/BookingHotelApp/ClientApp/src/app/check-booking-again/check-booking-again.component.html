@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <title></title>
 </head>
 
@@ -20,7 +23,7 @@
                         style="width: 200px; height: 200px;" />
                 </div>
                 <div class="col-9">
-                    <h5>Terracotta Hotel & Resort Dalat</h5>
+                    <h2 class="text-center">{{roomOfHotel.hotelName}}</h2>
                     <hr />
                     <div class="row">
                         <div class="col-4">
@@ -28,10 +31,10 @@
                                 Ngày nhận phòng
                             </div>
                             <div class="content-text-details">
-                                T3, 18 Th08 2020
+                                {{checkInDate}}
                             </div>
                             <div class="content-text-details">
-                                14:00
+                                {{roomOfHotel.checkInTime}}
                             </div>
                         </div>
                         <div class="col-4">
@@ -39,10 +42,10 @@
                                 Ngày trả phòng
                             </div>
                             <div class="content-text-details">
-                                T4, 19 Th08 2020
+                                {{checkOutDate}}
                             </div>
                             <div class="content-text-details">
-                                12:00
+                                {{roomOfHotel.checkOutTime}}
                             </div>
                         </div>
                         <div class="col-4">
@@ -50,19 +53,38 @@
                                 Số đêm nghỉ
                             </div>
                             <div class="content-text-details">
-                                1 đêm
+                                {{nightAmount}} đêm
                             </div>
                         </div>
                     </div>
-                    <div class="customer-name">
-                        <div class="title-text-details">
-                            Tên khách
+                    <hr/>
+                    <div class="row">
+                        <div class="customer-name col-4">
+                            <div class="title-text-details">
+                                Tên khách
+                            </div>
+                            <div class="content-text-details">
+                                {{customer.lastName}} {{customer.firstName}}
+                            </div>
                         </div>
-                        <div class="content-text-details">
-                            Nguyễn Văn A
+                        <div class="customer-email col-4">
+                            <div class="title-text-details">
+                                Email
+                            </div>
+                            <div class="content-text-details">
+                                {{customer.cusEmail}}
+                            </div>
                         </div>
-                    </div>
-                    <hr />
+                        <div class="customer-phone-number col-4">
+                            <div class="title-text-details">
+                                Số điện thoại
+                            </div>
+                            <div class="content-text-details">
+                                {{customer.phoneNumber}}
+                            </div>
+                        </div>
+                    </div> 
+                    <hr/>
                     <div class="booking-room-details">
                         <div class="title-text-details">
                             Chi tiết phòng
@@ -87,19 +109,19 @@
                             </div>
                             <div class="col-9">
                                 <div class="content-text-details">
-                                    Standard Twin Room (Basement Floor)
+                                   {{roomOfHotel.roomName}}
                                 </div>
                                 <div class="content-text-details">
-                                    2 giường đơn
+                                    {{roomOfHotel.bedAmount}} giường
                                 </div>
                                 <div class="content-text-details">
                                     1 phòng
                                 </div>
                                 <div class="content-text-details">
-                                    2 khách
+                                    {{roomOfHotel.peopleAmount}} khách
                                 </div>
                                 <div class="content-text-details">
-                                    -
+                                    {{specialRequirements}}
                                 </div>
                             </div>
                         </div>
@@ -123,33 +145,45 @@
             <div class="price-details">
                 <div class="row">
                     <div class="col-12">
-                        <h5 style="font-weight: bold; margin-bottom: 20px;">
-                            <div class="text-center">Terracotta Hotel & Resort Dalat</div>
-                        </h5>
+                        <h2 class="text-center">
+                            {{roomOfHotel.roomName}}
+                        </h2>
                     </div>
                 </div>
-
+                <hr />
                 <div class="row">
                     <div class="col-6">
                         <h5>
-                            <p class="text-left">(1x) Standard Twin Room (Basement Floor) (1 đêm)</p>
+                            <p class="text-left text-price-details">{{roomOfHotel.hotelName}}</p>
                         </h5>
                     </div>
                     <div class="col-6">
                         <h5>
-                            <p class="text-right">1.001.732 VND</p>
+                            <p class="text-right text-price-details">{{roomOfHotel.roomPriceForNight}} VND</p>
                         </h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <h5>
-                            <p class="text-left">Phí khách sạn</p>
+                            <p class="text-left text-price-details">Giảm giá</p>
                         </h5>
                     </div>
                     <div class="col-6">
                         <h5>
-                            <p class="text-right">155.268 VND</p>
+                            <p class="text-right text-price-details">{{roomOfHotel.discount}} %</p>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h5>
+                            <p class="text-left text-price-details">Số tiền được giảm</p>
+                        </h5>
+                    </div>
+                    <div class="col-6">
+                        <h5>
+                            <p class="text-right text-price-details">{{discountPrice}} VND</p>
                         </h5>
                     </div>
                 </div>
@@ -158,19 +192,68 @@
                 <div class="row">
                     <div class="col-6">
                         <h4>
-                            <p class="text-left">Tổng giá tiền</p>
+                            <p class="text-left text-price-details" style="font-size: 20px;">Tổng giá tiền</p>
                         </h4>
                     </div>
                     <div class="col-6">
                         <h4>
-                            <p class="text-right">1.157.000 VND</p>
+                            <p class="text-right text-price-details" style="font-size: 20px;">{{priceAfterDiscount}} VND</p>
                         </h4>
                     </div>
                 </div>
             </div>
         </div>
+        <!--Payment method-->
+        <div class="payment-method" style="margin-top: 20px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Chi tiết thanh toán
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label class="lable-payment">Họ tên</label>
+                            <input type="text" class="form-control" placeholder="Nhập vào họ tên không dấu" />
+                        </div>
+                        <div class="form-group">
+                            <label class="lable-payment">
+                                Mã thẻ</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Nhập vào mã thẻ"
+                                    required autofocus />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="lable-payment">Tháng hết hạn</label>
+                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="lable-payment">Năm hết hạn</label>
+                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="lable-payment">CV Code</label>
+                                    <input type="password" class="form-control" id="cvCode"
+                                        placeholder="Ba chữ số ở đằng sau thẻ" required />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!--Confirm-->
-        <div class="confirm-booking" style="margin-top: 20px;">
+        <div class="confirm-booking">
             <div class="row">
                 <div class="col-9">
                     <p class="text-break">Bạn sẽ tiếp tục với quy trình tiếp theo nếu bạn nhấn nút tiếp.
@@ -178,7 +261,32 @@
                     </p>
                 </div>
                 <div class="col-3 text-right">
-                    <button type="button" class="btn btn-warning">Tiếp tục thanh toán</button>
+                    <button type="button" class="btn btn-warning" (click)="openConformBookingModal()">
+                        Đặt phòng
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--Conform Booking Modal-->
+        <div class="modal" id="comform-booking-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xác nhận đặt phòng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-break">Bạn chắc chắn các thông tin đã chính xác rồi chứ ?
+                            Bạn không thể sửa loại phòng và số đêm nhưng bạn vẫn có thể hủy
+                            (Tùy vào chính sách của khách sạn).
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="createCustomerBooking()">Tiếp tục đặt phòng</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
                 </div>
             </div>
         </div>
