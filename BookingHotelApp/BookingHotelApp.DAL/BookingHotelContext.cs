@@ -21,7 +21,6 @@ namespace BookingHotelApp.DAL
         public DbSet<EmpAccount> EmpAccount { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Employees> Employees { get; set; }
-        public DbSet<Room> Room { get; set; }
         public DbSet<Partners> Partners { get; set; }
         public DbSet<Booking> Booking { get; set; }
         public DbSet<Hotel> Hotel { get; set; }
@@ -38,41 +37,21 @@ namespace BookingHotelApp.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Fluent-API
-            //Tạo bảng quan hệ n-n giữa hotel và room
-            modelBuilder.Entity<RoomOfHotel>().HasKey(pk => new { pk.HotelID, pk.RoomID }); // Khóa chính
 
-            //Hotel
-            modelBuilder.Entity<RoomOfHotel>()
-                .HasOne<Hotel>(h => h.Hotel)
-                .WithMany(roh => roh.RoomOfHotel)
-                .HasForeignKey(fk => fk.HotelID);
-
-            //Room
-            modelBuilder.Entity<RoomOfHotel>()
-                .HasOne<Room>(r => r.Room)
-                .WithMany(roh => roh.RoomOfHotel)
-                .HasForeignKey(fk => fk.RoomID);
-
-            //Tạo bảng quan hệ n-n-n giữa booking, hotel và room
-            modelBuilder.Entity<BookingDetails>().HasKey(pk => new { pk.BookingID, pk.HotelID, pk.RoomID }); // Khóa chính
+            //Tạo bảng quan hệ n-n giữa booking, room of hotel
+            modelBuilder.Entity<BookingDetails>().HasKey(pk => new { pk.BookingID, pk.RoomOfHotelID }); // Khóa chính
 
             //Booking
             modelBuilder.Entity<BookingDetails>()
-                .HasOne<Booking>(b => b.Booking)
-                .WithMany(roh => roh.BookingDetails)
+                .HasOne<Booking>(bD => bD.Booking)
+                .WithMany(b => b.BookingDetails)
                 .HasForeignKey(fk => fk.BookingID);
 
             //Hotel
             modelBuilder.Entity<BookingDetails>()
-                .HasOne<Hotel>(h => h.Hotel)
+                .HasOne<RoomOfHotel>(bD => bD.RoomOfHotel)
                 .WithMany(roh => roh.BookingDetails)
-                .HasForeignKey(fk => fk.HotelID);
-
-            //Room
-            modelBuilder.Entity<BookingDetails>()
-                .HasOne<Room>(r => r.Room)
-                .WithMany(roh => roh.BookingDetails)
-                .HasForeignKey(fk => fk.RoomID);
+                .HasForeignKey(fk => fk.RoomOfHotelID);
         }
     }
 }

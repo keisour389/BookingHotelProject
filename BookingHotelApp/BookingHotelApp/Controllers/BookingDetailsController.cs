@@ -42,9 +42,9 @@ namespace BookingHotelApp.Controllers
         }
 
         [HttpDelete("remove-booking-details/{bookingId}/{hotelId},{roomId}")]
-        public IActionResult RemoveBookingDetails(int bookingId, string hotelId, string roomId)
+        public IActionResult RemoveBookingDetails(int bookingId, string hotelId)
         {
-            var result = _svc.RemoveBookingDetails(bookingId, hotelId, roomId);
+            var result = _svc.RemoveBookingDetails(bookingId, hotelId);
             return Ok(result);
         }
     }

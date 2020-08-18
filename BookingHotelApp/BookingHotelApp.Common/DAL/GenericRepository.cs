@@ -125,7 +125,6 @@ namespace BookingHotelApp.Common.DAL
             }
             return result;
         }
-
         #endregion
     }
 }

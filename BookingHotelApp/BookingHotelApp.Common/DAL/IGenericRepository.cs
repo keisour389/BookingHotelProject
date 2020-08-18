@@ -25,6 +25,7 @@ namespace BookingHotelApp.Common.DAL
         public SingleResponse Remove(T table);
 
         public SingleResponse RemoveRange(List<T> listTable);
+
         #endregion
 
         #region Properties

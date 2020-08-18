@@ -12,10 +12,10 @@ namespace BookingHotelApp.DAL.Repository
         {
             Context = new BookingHotelContext();
         }
-        public SingleResponse Remove(string hotelId, string roomId)
+        public SingleResponse Remove(string roomOfHotelId)
         {
             //Xét cả mã phòng và mã khách sạn
-            var dataRemove = Context.RoomOfHotel.FirstOrDefault(data => data.HotelID == roomId && data.RoomID == roomId);
+            var dataRemove = Context.RoomOfHotel.FirstOrDefault(data => data.RoomOfHotelID == roomOfHotelId);
             return base.Remove(dataRemove); //Gọi hàm remove từ đối tượng cha
         }
         public object CustomerSearchRoomByKeyword(string keyword)
@@ -49,6 +49,31 @@ namespace BookingHotelApp.DAL.Repository
                 resultList.Add(result);
             }
             return resultList;
+        }
+        //Do cần hiển thị hình và tên khách sạn khi điền thông tin nên phải kết thêm với bảng hotel
+        public SingleResponse RoomAndHotelInfoInBookingProcess(string roomOfHotelId)
+        {
+            var result = new SingleResponse();
+            var search = Context.RoomOfHotel
+                .Join(Context.Hotel, rOH => rOH.HotelID, h => h.HotelID, (rOH, h) => new
+                {
+                    rOH.RoomOfHotelID,
+                    rOH.RoomName,
+                    rOH.BedAmount,
+                    rOH.RoomAmount,
+                    rOH.PeopleAmount,
+                    rOH.PolicyApply,
+                    rOH.PolicyNotApply,
+                    rOH.CheckInTime,
+                    rOH.CheckOutTime,
+                    rOH.RoomPriceForNight,
+                    rOH.Discount,
+                    h.HotelName,
+                    h.Image
+                }).Where(value => value.RoomOfHotelID == roomOfHotelId).FirstOrDefault();
+            result.Data = search;
+            return result;
+
         }
     }
 }

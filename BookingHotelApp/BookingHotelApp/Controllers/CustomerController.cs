@@ -54,5 +54,12 @@ namespace BookingHotelApp.Controllers
             var result = _svc.CheckAccountExist(username);
             return Ok(result);
         }
+
+        [HttpGet]
+        public IActionResult GetCustomerByPhoneNumber(string customerId)
+        {
+            var result = _svc.GetCustomerByPhoneNumber(customerId);
+            return Ok(result);
+        }
     }
 }

@@ -18,24 +18,24 @@
                     </h4>
                     <div class="form-group">
                         <h5>Tên người liên hệ</h5>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" [(ngModel)]="fullNameToContact" [ngModelOptions]="{standalone: true}"/>
                         <div class="text-break text-example">Nhập tên như trên CMND / Hộ chiếu</div>
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
                             <h5>Số di động:</h5>
-                            <input type="text" class="form-control" />
+                            <input type="text" class="form-control" [(ngModel)]="customer.phoneNumber" [ngModelOptions]="{standalone: true}"/>
                             <div class="text-break text-example">Ví dụ: 0901234567</div>
                         </div>
                         <div class="col-6">
                             <h5>Email:</h5>
-                            <input type="email" class="form-control" />
+                            <input type="email" class="form-control" [(ngModel)]="customer.cusEmail" [ngModelOptions]="{standalone: true}"/>
                             <div class="text-break text-example">Ví dụ: email@example.com</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <h5>Tên khách</h5>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" [(ngModel)]="fullNameOfCus" [ngModelOptions]="{standalone: true}"/>
                         <div class="text-break text-example">Nhập tên như trên CMND / Hộ chiếu</div>
                     </div>
                     <div class="form-group">
@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h5 style="font-weight: bold;">
-                                    <div class="text-center">Terracotta Hotel & Resort Dalat</div>
+                                    <div class="text-center">{{roomOfHotel.roomOfHotel}}</div>
                                 </h5>
                             </div>
                         </div>
@@ -65,24 +65,36 @@
                         <div class="row">
                             <div class="col-6">
                                 <h5>
-                                    <p class="text-left">(1x) Standard Twin Room (Basement Floor) (1 đêm)</p>
+                                    <p class="text-left">{{roomOfHotel.roomName}}</p>
                                 </h5>
                             </div>
                             <div class="col-6">
                                 <h5>
-                                    <p class="text-right">1.001.732 VND</p>
+                                    <p class="text-right">{{roomOfHotel.roomPriceForNight}} VND</p>
                                 </h5>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <h5>
-                                    <p class="text-left">Phí khách sạn</p>
+                                    <p class="text-left">Giảm giá</p>
                                 </h5>
                             </div>
                             <div class="col-6">
                                 <h5>
-                                    <p class="text-right">155.268 VND</p>
+                                    <p class="text-right">{{roomOfHotel.discount}} %</p>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>
+                                    <p class="text-left">Số tiền được giảm</p>
+                                </h5>
+                            </div>
+                            <div class="col-6">
+                                <h5>
+                                    <p class="text-right">{{discountPrice}} VND</p>
                                 </h5>
                             </div>
                         </div>
@@ -96,7 +108,7 @@
                             </div>
                             <div class="col-6">
                                 <h4>
-                                    <p class="text-right">1.157.000 VND</p>
+                                    <p class="text-right">{{priceAfterDiscount}} VND</p>
                                 </h4>
                             </div>
                         </div>
@@ -126,12 +138,22 @@
                                 style="width: 70px; height: 70px; border-radius: 5px;" />
                         </div>
                         <div class="col-9">
-                            <div class="text-break">Terracotta Hotel & Resort Dalat</div>
+                            <div class="text-break">{{roomOfHotel.hotelName}}</div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px;">
-                        <div class="col-6 hotel-benefit">Miễn phí bữa sáng</div>
-                        <div class="col-6 hotel-benefit">Wifi miễn phí</div>
+                        <div class="col-6 policy-apply">
+                            <div class="policy-tilte" style="font-weight: 500; font-size: 14px">Áp dụng</div>
+                            <div class="show-policy-apply" *ngFor="let data of policyApplyList">
+                                {{data}}
+                            </div>
+                        </div>
+                        <div class="col-6 policy-not-apply">
+                            <div class="policy-tilte"  style="font-weight: 500; font-size: 14px">Không áp dụng</div>
+                            <div class="show-policy-not-apply" *ngFor="let data of policyNotApplyList">
+                                {{data}}
+                            </div>
+                        </div>
                     </div>
                     <hr />
                     <!--Số đêm-->
@@ -140,7 +162,7 @@
                             <p class="text-left booking-hotel-info">Số đêm nghỉ</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">1 đêm</p>
+                            <p class="text-right booking-hotel-info">{{nightAmount}} đêm</p>
                         </div>
                     </div>
                     <!--Ngày giờ nhận-->
@@ -149,20 +171,20 @@
                             <p class="text-left booking-hotel-info">Ngày nhận phòng:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">T3, 18 Th08 2020</p>
+                            <p class="text-right booking-hotel-info">{{checkInDate}}</p>
                         </div>
                     </div>
-                    <p class="text-right booking-hotel-info">14:00</p>
+                    <p class="text-right booking-hotel-info">{{roomOfHotel.checkInTime}}</p>
                     <!--Ngày giờ trả-->
                     <div class="row">
                         <div class="col-6">
                             <p class="text-left booking-hotel-info">Ngày trả phòng:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">T4, 19 Th08 2020</p>
+                            <p class="text-right booking-hotel-info">{{checkOutDate}}</p>
                         </div>
                     </div>
-                    <p class="text-right booking-hotel-info">12:00</p>
+                    <p class="text-right booking-hotel-info">{{roomOfHotel.checkOutTime}}</p>
                     <hr />
                     <!--Loại phòng-->
                     <div class="row">
@@ -170,7 +192,7 @@
                             <p class="text-left booking-hotel-info">Hạng phòng:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">Standard Twin Room</p>
+                            <p class="text-right booking-hotel-info">{{roomOfHotel.roomName}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -178,15 +200,7 @@
                             <p class="text-left booking-hotel-info">Kiểu giường:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">1 giường</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <p class="text-left booking-hotel-info">Số lượng phòng:</p>
-                        </div>
-                        <div class="col-6">
-                            <p class="text-right booking-hotel-info">1 phòng</p>
+                            <p class="text-right booking-hotel-info">{{roomOfHotel.bedAmount}} giường</p>
                         </div>
                     </div>
                     <div class="row">
@@ -194,7 +208,7 @@
                             <p class="text-left booking-hotel-info">Khách/phòng</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">2 khách</p>
+                            <p class="text-right booking-hotel-info">{{roomOfHotel.peopleAmount}} khách</p>
                         </div>
                     </div>
                 </div>

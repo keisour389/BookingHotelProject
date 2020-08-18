@@ -83,6 +83,5 @@ namespace BookingHotelApp.DAL.Model
 
         public ICollection<RoomOfHotel> RoomOfHotel { get; set; } //Được sử dụng bởi bảng phòng của khách sạn
 
-        public ICollection<BookingDetails> BookingDetails { get; set; } //Được sử dụng bởi bảng chi tiết đặt phòng
     }
 }

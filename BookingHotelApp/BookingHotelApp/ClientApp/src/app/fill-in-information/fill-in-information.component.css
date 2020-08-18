@@ -41,10 +41,15 @@ body{
     padding: var(--form--padding);
     background-color: white;
 }
-.hotel-benefit{
+.policy-apply{
     font-size: 13px;
     text-align: center;
     color: #00a74e;
+}
+.policy-not-apply{
+    font-size: 13px;
+    text-align: center;
+    color: grey;
 }
 .booking-hotel-info{
     font-size: 14px;

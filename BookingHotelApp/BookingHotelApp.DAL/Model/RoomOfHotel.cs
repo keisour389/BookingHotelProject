@@ -8,14 +8,14 @@ namespace BookingHotelApp.DAL.Model
 {
     public class RoomOfHotel
     {
-        //Bảng này sử dụng n-n. Tạo fluent API bên context
+        [Key]
         [Required]
-        public String HotelID { get; set; }
-        public Hotel Hotel { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
+        public String RoomOfHotelID { get; set; }
 
         [Required]
-        public String RoomID { get; set; }
-        public Room Room { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public String RoomName { get; set; }
 
         [Column(TypeName = "int")]
         [Required]
@@ -37,6 +37,14 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String PolicyNotApply { get; set; }
 
+        [Column(TypeName = "nvarchar(5)")]
+        [Required]
+        public String CheckInTime { get; set; }
+
+        [Column(TypeName = "nvarchar(5)")]
+        [Required]
+        public String CheckOutTime { get; set; }
+
         [Column(TypeName = "money")]
         [Required]
         public double RoomPriceForNight { get; set; }
@@ -54,6 +62,14 @@ namespace BookingHotelApp.DAL.Model
 
         [Column(TypeName = "nvarchar(max)")]
         public String RoomOfHotelNote { get; set; }
+
+        [Column("HotelID")]
+        [ForeignKey("Hotel")]
+        [Required]
+        public String HotelID { get; set; }
+        public Hotel Hotel { get; set; }
+
+        public ICollection<BookingDetails> BookingDetails { get; set; } //Được sử dụng bởi bảng chi tiết đặt phòng
 
     }
 }

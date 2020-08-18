@@ -34,10 +34,16 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("search-room-of-hotel-by-id")]
-        public IActionResult SearchRoomOfHotelByID(string hotelId)
+        [HttpGet("search-room-of-hotel-by-hotel-id")]
+        public IActionResult SearchRoomOfHotelByHotelID(string hotelId)
         {
-            var result = _svc.SearchRoomOfHotelByID(hotelId);
+            var result = _svc.SearchRoomOfHotelByHotelID(hotelId);
+            return Ok(result);
+        }
+        [HttpGet("search-room-by-id")]
+        public IActionResult RoomAndHotelInfoInBookingProcess(string roomOfHotelId)
+        {
+            var result = _svc.RoomAndHotelInfoInBookingProcess(roomOfHotelId);
             return Ok(result);
         }
 
@@ -48,10 +54,10 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("remove-room-of-hotel/{hotelId},{roomId}")]
-        public IActionResult RemoveRoomOfHotel(string hotelId, string roomId)
+        [HttpDelete("remove-room-of-hotel/{roomOfHotelId}")]
+        public IActionResult RemoveRoomOfHotel(string roomOfHotelId)
         {
-            var result = _svc.RemoveRoomOfHotel(hotelId, roomId);
+            var result = _svc.RemoveRoomOfHotel(roomOfHotelId);
             return Ok(result);
         }
 

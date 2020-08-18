@@ -80,7 +80,5 @@ namespace BookingHotelApp.BLL.Service
             result.Data = search;
             return result;
         }
-
-        
     }
 }

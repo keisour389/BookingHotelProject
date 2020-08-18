@@ -12,8 +12,10 @@ namespace BookingHotelApp.Common.Request
         public String BookingStatus { get; set; }
         public int NumberOfPeople { get; set; }
         public String CustomerPaymentMethods { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
         public String Required { get; set; }
-        public double Total { get; set; }
+        public double TotalPrice { get; set; }
         public String CustomerID { get; set; }
         public String EmployeeID { get; set; }
         public String BookingNote { get; set; }

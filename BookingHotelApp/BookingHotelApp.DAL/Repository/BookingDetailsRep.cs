@@ -14,11 +14,11 @@ namespace BookingHotelApp.DAL.Repository
         {
             Context = new BookingHotelContext();
         }
-        public SingleResponse Remove(int bookingId, string hotelId, string roomId)
+        public SingleResponse Remove(int bookingId, string roomOfHotelId)
         {
             //Xét theo mã đặt, mã khách sạn, mã phòng
             var dataRemove = Context.BookingDetails.FirstOrDefault(data => data.BookingID == bookingId
-                && data.HotelID == hotelId && data.RoomID == roomId);
+                && data.RoomOfHotelID == roomOfHotelId);
             return base.Remove(dataRemove); //Gọi hàm remove từ đối tượng cha
         }
     }

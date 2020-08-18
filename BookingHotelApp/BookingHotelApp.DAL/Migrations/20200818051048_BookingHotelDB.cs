@@ -12,7 +12,7 @@ namespace BookingHotelApp.DAL.Migrations
                 columns: table => new
                 {
                     PhoneNumber = table.Column<string>(type: "nvarchar(15)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountType = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     AccountCreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     AccountStatus = table.Column<string>(type: "nvarchar(30)", nullable: false),
@@ -28,7 +28,7 @@ namespace BookingHotelApp.DAL.Migrations
                 columns: table => new
                 {
                     PhoneNumber = table.Column<string>(type: "nvarchar(15)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountType = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     AccountCreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     AccountStatus = table.Column<string>(type: "nvarchar(30)", nullable: false),
@@ -59,24 +59,10 @@ namespace BookingHotelApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Room",
-                columns: table => new
-                {
-                    RoomID = table.Column<string>(type: "nvarchar(20)", nullable: false),
-                    RoomName = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    RoomType = table.Column<string>(type: "nvarchar(30)", nullable: false),
-                    RoomNote = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Room", x => x.RoomID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
-                    Username = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(40)", nullable: false),
                     CusBirthDay = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -87,10 +73,10 @@ namespace BookingHotelApp.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Username);
+                    table.PrimaryKey("PK_Customers", x => x.PhoneNumber);
                     table.ForeignKey(
-                        name: "FK_Customers_CusAccount_Username",
-                        column: x => x.Username,
+                        name: "FK_Customers_CusAccount_PhoneNumber",
+                        column: x => x.PhoneNumber,
                         principalTable: "CusAccount",
                         principalColumn: "PhoneNumber",
                         onDelete: ReferentialAction.Cascade);
@@ -100,7 +86,7 @@ namespace BookingHotelApp.DAL.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Username = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(40)", nullable: false),
                     EmpBirthDay = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -119,10 +105,10 @@ namespace BookingHotelApp.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Username);
+                    table.PrimaryKey("PK_Employees", x => x.PhoneNumber);
                     table.ForeignKey(
-                        name: "FK_Employees_EmpAccount_Username",
-                        column: x => x.Username,
+                        name: "FK_Employees_EmpAccount_PhoneNumber",
+                        column: x => x.PhoneNumber,
                         principalTable: "EmpAccount",
                         principalColumn: "PhoneNumber",
                         onDelete: ReferentialAction.Cascade);
@@ -173,8 +159,10 @@ namespace BookingHotelApp.DAL.Migrations
                     BookingStatus = table.Column<string>(type: "nvarchar(30)", nullable: false),
                     NumberOfPeople = table.Column<int>(type: "int", nullable: false),
                     CustomerPaymentMethods = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    CheckInDate = table.Column<DateTime>(type: "date", nullable: false),
+                    CheckOutDate = table.Column<DateTime>(type: "date", nullable: false),
                     Required = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Total = table.Column<decimal>(type: "money", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "money", nullable: false),
                     CustomerID = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     BookingNote = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -186,13 +174,13 @@ namespace BookingHotelApp.DAL.Migrations
                         name: "FK_Booking_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "Username",
+                        principalColumn: "PhoneNumber",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Booking_Employees_PhoneNumber",
                         column: x => x.PhoneNumber,
                         principalTable: "Employees",
-                        principalColumn: "Username",
+                        principalColumn: "PhoneNumber",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -222,33 +210,30 @@ namespace BookingHotelApp.DAL.Migrations
                 name: "RoomOfHotel",
                 columns: table => new
                 {
-                    HotelID = table.Column<string>(nullable: false),
-                    RoomID = table.Column<string>(nullable: false),
+                    RoomOfHotelID = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    RoomName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     RoomAmount = table.Column<int>(type: "int", nullable: false),
                     BedAmount = table.Column<int>(type: "int", nullable: false),
                     PeopleAmount = table.Column<int>(type: "int", nullable: false),
                     PolicyApply = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PolicyNotApply = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CheckInTime = table.Column<string>(type: "nvarchar(5)", nullable: false),
+                    CheckOutTime = table.Column<string>(type: "nvarchar(5)", nullable: false),
                     RoomPriceForNight = table.Column<decimal>(type: "money", nullable: false),
                     Discount = table.Column<double>(type: "float", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoomsCreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    RoomOfHotelNote = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RoomOfHotelNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HotelID = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomOfHotel", x => new { x.HotelID, x.RoomID });
+                    table.PrimaryKey("PK_RoomOfHotel", x => x.RoomOfHotelID);
                     table.ForeignKey(
                         name: "FK_RoomOfHotel_Hotel_HotelID",
                         column: x => x.HotelID,
                         principalTable: "Hotel",
                         principalColumn: "HotelID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RoomOfHotel_Room_RoomID",
-                        column: x => x.RoomID,
-                        principalTable: "Room",
-                        principalColumn: "RoomID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -257,15 +242,15 @@ namespace BookingHotelApp.DAL.Migrations
                 columns: table => new
                 {
                     BookingID = table.Column<int>(nullable: false),
-                    HotelID = table.Column<string>(nullable: false),
-                    RoomID = table.Column<string>(nullable: false),
-                    NumberOfNights = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    RoomOfHotelID = table.Column<string>(nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    NightAmount = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     SpecialRequirements = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookingDetails", x => new { x.BookingID, x.HotelID, x.RoomID });
+                    table.PrimaryKey("PK_BookingDetails", x => new { x.BookingID, x.RoomOfHotelID });
                     table.ForeignKey(
                         name: "FK_BookingDetails_Booking_BookingID",
                         column: x => x.BookingID,
@@ -273,16 +258,10 @@ namespace BookingHotelApp.DAL.Migrations
                         principalColumn: "BookingID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookingDetails_Hotel_HotelID",
-                        column: x => x.HotelID,
-                        principalTable: "Hotel",
-                        principalColumn: "HotelID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BookingDetails_Room_RoomID",
-                        column: x => x.RoomID,
-                        principalTable: "Room",
-                        principalColumn: "RoomID",
+                        name: "FK_BookingDetails_RoomOfHotel_RoomOfHotelID",
+                        column: x => x.RoomOfHotelID,
+                        principalTable: "RoomOfHotel",
+                        principalColumn: "RoomOfHotelID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -297,14 +276,9 @@ namespace BookingHotelApp.DAL.Migrations
                 column: "PhoneNumber");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookingDetails_HotelID",
+                name: "IX_BookingDetails_RoomOfHotelID",
                 table: "BookingDetails",
-                column: "HotelID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BookingDetails_RoomID",
-                table: "BookingDetails",
-                column: "RoomID");
+                column: "RoomOfHotelID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hotel_PartnerID",
@@ -317,9 +291,9 @@ namespace BookingHotelApp.DAL.Migrations
                 column: "HotelID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoomOfHotel_RoomID",
+                name: "IX_RoomOfHotel_HotelID",
                 table: "RoomOfHotel",
-                column: "RoomID");
+                column: "HotelID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -331,16 +305,10 @@ namespace BookingHotelApp.DAL.Migrations
                 name: "Restaurant");
 
             migrationBuilder.DropTable(
-                name: "RoomOfHotel");
-
-            migrationBuilder.DropTable(
                 name: "Booking");
 
             migrationBuilder.DropTable(
-                name: "Hotel");
-
-            migrationBuilder.DropTable(
-                name: "Room");
+                name: "RoomOfHotel");
 
             migrationBuilder.DropTable(
                 name: "Customers");
@@ -349,13 +317,16 @@ namespace BookingHotelApp.DAL.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Partners");
+                name: "Hotel");
 
             migrationBuilder.DropTable(
                 name: "CusAccount");
 
             migrationBuilder.DropTable(
                 name: "EmpAccount");
+
+            migrationBuilder.DropTable(
+                name: "Partners");
         }
     }
 }

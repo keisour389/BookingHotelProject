@@ -19,10 +19,10 @@ namespace BookingHotelApp.BLL.Service
             BookingDetails bookingDetails = new BookingDetails();
             //Gán
             bookingDetails.BookingID = req.BookingID;
-            bookingDetails.HotelID = req.HotelID;
-            bookingDetails.RoomID = req.RoomID;
-            bookingDetails.NumberOfNights = req.NumberOfNights;
-            bookingDetails.TotalPrice = req.TotalPrice;
+            bookingDetails.RoomOfHotelID = req.RoomOfHotelID;
+            bookingDetails.CustomerName = req.CustomerName;
+            bookingDetails.NightAmount = req.NightAmount;
+            bookingDetails.Price = req.Price;
             bookingDetails.SpecialRequirements = req.SpecialRequirements;
             //Trả về
             result = base.Create(bookingDetails); //base gọi lớp cha
@@ -37,9 +37,10 @@ namespace BookingHotelApp.BLL.Service
             BookingDetails bookingDetails = new BookingDetails();
             //Gán
             bookingDetails.BookingID = req.BookingID;
-            bookingDetails.HotelID = req.HotelID;
-            bookingDetails.RoomID = req.RoomID;
-            bookingDetails.NumberOfNights = req.NumberOfNights;
+            bookingDetails.RoomOfHotelID = req.RoomOfHotelID;
+            bookingDetails.CustomerName = req.CustomerName;
+            bookingDetails.NightAmount = req.NightAmount;
+            bookingDetails.Price = req.Price;
             bookingDetails.SpecialRequirements = req.SpecialRequirements;
             //Trả về
             result = base.Update(bookingDetails); //base gọi lớp cha
@@ -57,21 +58,20 @@ namespace BookingHotelApp.BLL.Service
             {
                 //Lọc dữ kiệu
                 resultAfterFill = base.All.Where(value => value.BookingID == bookingId //Kiểm tra theo mã đặt
-                || value.HotelID.Contains(keyWord)); //Kiểm tra theo mã khách sạn
+                || value.RoomOfHotelID.Contains(keyWord)); //Kiểm tra theo mã phòng của khách sạn
             }
             //Kết quả
             return base.SearchPagination(size, page, resultAfterFill);
         }
 
-        public SingleResponse RemoveBookingDetails(int bookingId, string hotelId, string roomId)
+        public SingleResponse RemoveBookingDetails(int bookingId, string hotelId)
         {
             var result = new SingleResponse();
-            result = _rep.Remove(bookingId, hotelId, roomId); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
+            result = _rep.Remove(bookingId, hotelId); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
             var data = new
             {
                 BookingId = bookingId,
-                HotelId = hotelId,
-                RoomId = roomId,
+                HotelId = hotelId
             };
             result.Data = data;
             return result;

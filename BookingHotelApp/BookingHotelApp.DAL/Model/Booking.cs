@@ -33,12 +33,20 @@ namespace BookingHotelApp.DAL.Model
         [Required]
         public String CustomerPaymentMethods { get; set; }
 
+        [Column(TypeName = "date")]
+        [Required]
+        public DateTime CheckInDate { get; set; }
+
+        [Column(TypeName = "date")]
+        [Required]
+        public DateTime CheckOutDate { get; set; }
+
         [Column(TypeName = "nvarchar(100)")]
         public String Required { get; set; }
 
         [Column(TypeName = "money")]
         [Required]
-        public double Total { get; set; }
+        public double TotalPrice { get; set; }
 
         [ForeignKey("Customers")] //Khóa ngoại là bảng Customers
         [Column("CustomerID")] //Tên cột

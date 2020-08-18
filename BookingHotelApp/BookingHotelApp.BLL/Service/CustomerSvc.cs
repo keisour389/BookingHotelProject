@@ -91,5 +91,13 @@ namespace BookingHotelApp.BLL.Service
                 };
             }
         }
+
+        public SingleResponse GetCustomerByPhoneNumber(string phoneNumber)
+        {
+            var result = new SingleResponse();
+            var search = All.Where(value => value.PhoneNumber == phoneNumber).FirstOrDefault();
+            result.Data = search;
+            return result;
+        }
     }
 }

@@ -15,20 +15,20 @@ namespace BookingHotelApp.DAL.Model
         public Booking Booking { get; set; }
 
         [Required]
-        public String HotelID { get; set; }
-        public Hotel Hotel { get; set; }
+        public String RoomOfHotelID { get; set; }
+        public RoomOfHotel RoomOfHotel { get; set; }
 
+        [Column(TypeName = "nvarchar(50)")]
         [Required]
-        public String RoomID { get; set; }
-        public Room Room { get; set; }
+        public String CustomerName { get; set; }
 
         [Column(TypeName = "int")]
         [Required]
-        public int NumberOfNights { get; set; }
+        public int NightAmount { get; set; }
 
         [Column(TypeName = "float")]
         [Required]
-        public int TotalPrice { get; set; }
+        public int Price { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
         public int SpecialRequirements { get; set; }

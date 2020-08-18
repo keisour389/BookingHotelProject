@@ -24,8 +24,10 @@ namespace BookingHotelApp.BLL.Service
             booking.BookingStatus = req.BookingStatus;
             booking.NumberOfPeople = req.NumberOfPeople;
             booking.CustomerPaymentMethods = req.CustomerPaymentMethods;
+            booking.CheckInDate = req.CheckInDate;
+            booking.CheckOutDate = req.CheckOutDate;
             booking.Required = req.Required;
-            booking.Total = req.Total;
+            booking.TotalPrice = req.TotalPrice;
             booking.CustomerID = req.CustomerID;
             booking.EmployeeID = req.EmployeeID;
             booking.BookingNote = req.BookingNote;
@@ -41,14 +43,15 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             Booking booking = new Booking();
             //Gán
-            booking.BookingID = req.BookingID;
             booking.BookingType = req.BookingType;
             booking.BookingDate = req.BookingDate;
             booking.BookingStatus = req.BookingStatus;
             booking.NumberOfPeople = req.NumberOfPeople;
             booking.CustomerPaymentMethods = req.CustomerPaymentMethods;
+            booking.CheckInDate = req.CheckInDate;
+            booking.CheckOutDate = req.CheckOutDate;
             booking.Required = req.Required;
-            booking.Total = req.Total;
+            booking.TotalPrice = req.TotalPrice;
             booking.CustomerID = req.CustomerID;
             booking.EmployeeID = req.EmployeeID;
             booking.BookingNote = req.BookingNote;

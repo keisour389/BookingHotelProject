@@ -18,18 +18,21 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             RoomOfHotel roh = new RoomOfHotel();
             //Gán
-            roh.HotelID = req.HotelID;
-            roh.RoomID = req.RoomID;
+            roh.RoomOfHotelID = req.RoomOfHotelID;
+            roh.RoomName = req.RoomName;
             roh.RoomAmount = req.RoomAmount;
             roh.BedAmount = req.BedAmount;
             roh.PeopleAmount = req.PeopleAmount;
             roh.PolicyApply = req.PolicyApply;
             roh.PolicyNotApply = req.PolicyNotApply;
+            roh.CheckInTime = req.CheckInTime;
+            roh.CheckOutTime = req.CheckOutTime;
             roh.RoomPriceForNight = req.RoomPriceForNight;
             roh.Discount = req.Discount;
             roh.Image = req.Image;
             roh.RoomsCreatedDate = req.RoomsCreatedDate;
             roh.RoomOfHotelNote = req.RoomOfHotelNote;
+            roh.HotelID = req.HotelID;
             //Trả về
             result = base.Create(roh); //base gọi lớp cha
             result.Data = roh;
@@ -42,8 +45,8 @@ namespace BookingHotelApp.BLL.Service
             var result = new SingleResponse();
             RoomOfHotel roh = new RoomOfHotel();
             //Gán
-            roh.HotelID = req.HotelID;
-            roh.RoomID = req.RoomID;
+            roh.RoomOfHotelID = req.RoomOfHotelID;
+            roh.RoomName = req.RoomName;
             roh.RoomAmount = req.RoomAmount;
             roh.BedAmount = req.BedAmount;
             roh.PeopleAmount = req.PeopleAmount;
@@ -54,6 +57,7 @@ namespace BookingHotelApp.BLL.Service
             roh.Image = req.Image;
             roh.RoomsCreatedDate = req.RoomsCreatedDate;
             roh.RoomOfHotelNote = req.RoomOfHotelNote;
+            roh.HotelID = req.HotelID;
             //Trả về
             result = base.Update(roh); //base gọi lớp cha
             result.Data = roh;
@@ -70,27 +74,38 @@ namespace BookingHotelApp.BLL.Service
             {
                 //Lọc dữ kiệu
                 resultAfterFill = base.All.Where(value => value.HotelID.Contains(keyWord) //Kiểm tra theo mã khách sạn
-                || value.RoomID.Contains(keyWord)); //Kiểm tra theo mã phòng
+                || value.RoomName.Contains(keyWord)); //Kiểm tra theo tên phòng
             }
             //Kết quả
             return base.SearchPagination(size, page, resultAfterFill);
         }
 
-        public SingleResponse SearchRoomOfHotelByID(string hotelId)
+        public SingleResponse SearchRoomOfHotelByHotelID(string hotelId)
         {
             SingleResponse result = new SingleResponse();
             var search = base.All.Where(value => value.HotelID == hotelId).ToList();
             result.Data = search;
             return result;
         }
-        public SingleResponse RemoveRoomOfHotel(string hotelId, string roomId)
+        //public SingleResponse SearchRoomOfHotelByID(string roomOfHotelId)
+        //{
+        //    SingleResponse result = new SingleResponse();
+        //    var search = base.All.Where(value => value.RoomOfHotelID == roomOfHotelId).FirstOrDefault();
+        //    result.Data = search;
+        //    return result;
+        //}
+        public SingleResponse RoomAndHotelInfoInBookingProcess(string roomOfHotelId)
+        {
+            var result = _rep.RoomAndHotelInfoInBookingProcess(roomOfHotelId);
+            return result;
+        }
+        public SingleResponse RemoveRoomOfHotel(string roomOfHotelId)
         {
             var result = new SingleResponse();
-            result = _rep.Remove(hotelId, roomId); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
+            result = _rep.Remove(roomOfHotelId); //Gọi lớp repository bởi vì mỗi điều kiện xóa khác nhau. Nên phải gọi cụ thể 1 repository
             var data = new
             {
-                HotelId = hotelId,
-                RoomId = roomId
+                RoomOfHotelId = roomOfHotelId
             };
             result.Data = data;
             return result;
