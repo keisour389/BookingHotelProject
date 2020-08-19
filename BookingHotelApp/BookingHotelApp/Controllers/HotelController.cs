@@ -29,6 +29,13 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("search-hotel-by-hotel-id")]
+        public IActionResult SearchHotelByHotelID(string hotelId)
+        {
+            var result = _svc.SearchHotelByHotelID(hotelId);
+            return Ok(result);
+        }
+
         [HttpGet("search-hotel-pagination/{size},{page}")]
         public IActionResult SearchHotelPagination(int size, int page, string keyWord)
         {

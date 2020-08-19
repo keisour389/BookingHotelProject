@@ -41,10 +41,10 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <input class="form-control" type="date" [(ngModel)]="today"/>
+                    <input class="form-control" type="date" [(ngModel)]="bookingInfo.checkInDate"/>
                 </div>
                 <div class="col-4">
-                    <select id="nights-amount">
+                    <select id="nights-amount" [(ngModel)]="bookingInfo.nightsAmount">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -52,40 +52,7 @@
                       </select>
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="date" [(ngModel)]="tomorrow"/>
-                </div>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-4">
-                    <h6 class="text-in-booking">Số khách</h6>
-                </div>
-                <div class="col-4">
-                    <h6 class="text-in-booking">Số phòng</h6>
-                </div>
-                <div class="col-4">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4">
-                    <select id="customers-amount">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                      </select>
-                </div>
-                <div class="col-4">
-                    <select id="rooms-amount">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                      </select>
-                </div>
-                <div class="col-4">
-
+                    <input class="form-control" type="date" [(ngModel)]="bookingInfo.checkOutDate"/>
                 </div>
             </div>
         </div>

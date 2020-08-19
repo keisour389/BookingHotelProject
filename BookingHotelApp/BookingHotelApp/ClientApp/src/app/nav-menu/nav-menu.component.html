@@ -18,19 +18,16 @@
             <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
               <a class="nav-link text-dark" [routerLink]="['/']">Trang chủ</a>
             <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/search-hotel']">Tìm phòng</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/chose-hotel']">Khách sạn đã tìm</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/login']">Đăng nhập/Đăng kí</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
               <a class="nav-link text-dark" [routerLink]="['/fill-in-information']">Điền thông tin</a>
             </li>
             <li class="nav-item" [routerLinkActive]="['link-active']">
               <a class="nav-link text-dark" [routerLink]="['/check-booking-again']">Kiểm tra lại phòng</a>
+            </li>
+            <li *ngIf ="!loggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-dark" [routerLink]="['/login']">Đăng nhập/Đăng kí</a>
+            </li>
+            <li *ngIf ="loggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-dark" [routerLink]="['/login']">Đăng xuất</a>
             </li>
           </ul>
         </div>

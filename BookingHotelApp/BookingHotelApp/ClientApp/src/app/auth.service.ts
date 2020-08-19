@@ -8,18 +8,29 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedInStatus = false
+  private loggedInStatus: boolean = false;
+  private paramStatus: boolean = false;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { }
 
   setLoggedIn(value: boolean){
     this.loggedInStatus = value;
-    console.log("set " + value);
+    console.log("set " + this.loggedInStatus);
   }
 
   get isLoggedIn(){
     console.log("get " + this.loggedInStatus);
     return this.loggedInStatus;
+  }
+
+  setParams(value: boolean){
+    this.paramStatus = value;
+    console.log("set par " + this.paramStatus);
+  }
+
+  isHadParams(){
+    console.log("get par " + this.paramStatus);
+    return this.paramStatus;
   }
   getUserDetails() {
     //Gọi API Post Login để lấy về thông tin user

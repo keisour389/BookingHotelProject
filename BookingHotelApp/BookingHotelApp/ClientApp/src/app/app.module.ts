@@ -51,7 +51,7 @@ import { BookingProcessComponent } from './booking-process/booking-process.compo
       { path: 'chose-hotel', component: ChoseHotelComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'fill-in-information', component: FillInInformationComponent },
+      { path: 'fill-in-information', component: FillInInformationComponent, canActivate: [AuthGuard]},
       { path: 'check-booking-again', component: CheckBookingAgainComponent }
     ])
   ],

@@ -191,7 +191,7 @@
                 </div>
             </div>
             <div class="hotel-search-list">
-                <div *ngFor="let hotel of hotelSearchResult" class="hotel-search">
+                <div *ngFor="let hotel of hotelSearchResult; index as i" class="hotel-search" (click)="choiceHotel(hotelSearchResult[i].hotelId)">
                     <img class="hotel-search-image" src="{{hotel.hotelImage}}\main_image.jpg" />
                     <div class="hotel-search-info">
                         <h5 class="hotel-search-name">{{hotel.hotelName}}</h5>

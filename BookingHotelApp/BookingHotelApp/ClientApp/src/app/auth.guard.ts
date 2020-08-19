@@ -3,7 +3,7 @@ import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRou
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { async, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Injectable({
@@ -11,7 +11,8 @@ import { async, TestBed } from '@angular/core/testing';
 })
 
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private auth: AuthService, private router: Router, private cookieService: CookieService) {
+  constructor(private auth: AuthService, private router: Router, private cookieService: CookieService
+    ,private route?: ActivatedRoute) {
    
   }
   async hadLogin() {
@@ -27,19 +28,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     });
     console.log("check login in auth guard " + checkLogin);
     return checkLogin;
-    // if(checkLogin){
-    //   return checkLogin;
-    // }
-    // else{
-    //   return this.router.navigate(['/login', {queryParams: {returnURL: this.router.url}}]);
-    // }
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //return true;
     //return this.auth.isLoggedIn; //Return false chặn không cho đăng nhập
-    
     //Kiểm tra đăng nhập
     var result = this.hadLogin().then(data => {
       console.log(data);
@@ -47,12 +41,18 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       if(!data){
         return this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});;
       }
-      else{
+      else{ 
         return true; //Nếu là trạng thái true vì đã đăng nhập
       }
     });
     //Trả ra giao diện tương ứng
-    return result;
+    if(this.auth.isHadParams()){
+      return result; //Nếu có param thì trả ra là đăng nhập và trang hiện tại
+    }
+    else{
+      return this.router.navigate(['/']); //Trả về trang chủ
+    }
+    
     
     // if (!this.test) { 
     //   return this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});;

@@ -1,6 +1,7 @@
 ﻿using BookingHotelApp.Common.DAL;
 using BookingHotelApp.DAL.Model;
 using LTCSDL.Common.Rsp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +24,7 @@ namespace BookingHotelApp.DAL.Repository
             //Đối tượng để lưu kết quả
             List<object> resultList = new List<object>();
             //Xuất ra danh sách khách sạn phù hợp với từ khóa
-            List<Hotel> hotelList = Context.Hotel.Where(value => value.Country.Contains(keyword) || value.HotelName.Contains(keyword)).ToList();
+            List<Hotel> hotelList = Context.Hotel.Where(value => value.Province.Contains(keyword) || value.HotelName.Contains(keyword)).ToList();
 
             //Gán giá phòng của từng khách sạn
             foreach (Hotel hotel in hotelList)
@@ -43,7 +44,8 @@ namespace BookingHotelApp.DAL.Repository
                     roomPriceForNight = rOH.RoomPriceForNight,
                     discount = rOH.Discount,
                     //Biến tự sinh
-                    hotelPriceAfterDiscount = rOH.RoomPriceForNight * (1 - rOH.Discount)
+                    hotelPriceAfterDiscount = Math.Round(rOH.RoomPriceForNight * (1 - rOH.Discount),
+                        MidpointRounding.AwayFromZero)
                 };
                 //Lưu vào danh sách kết quả
                 resultList.Add(result);

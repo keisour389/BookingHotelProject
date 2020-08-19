@@ -7,12 +7,12 @@
 
 <body>
     <div class="hotel-main-info">
-        <h1>Terracotta Hotel & Resort Dalat</h1>
+        <h1>{{hotel.hotelName}}</h1>
         <span
             style="color: white; background-color: aqua; border-radius: 6px; padding: 2px; vertical-align: middle;">Khách
             sạn</span>
         <span class="hotel-stars" style="margin-left: 10px;">
-            <span *ngFor="let number of [0,0]">
+            <span *ngFor="let in of counter(hotel.quality)">
                 <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
                     stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -34,8 +34,8 @@
                     <ellipse fill="#fff" cx="4.35885934" cy="4.665061" rx="1.78932809" ry="1.91499996"></ellipse>
                 </g>
             </svg>
-            <span class="hotel-street-address">Phân khu chức năng 7.9, KDL hồ Tuyền Lâm, Phường 3, Phường 3, Đà Lạt,
-                Tỉnh Lâm Đồng, Việt Nam, 670000</span>
+            <span class="hotel-street-address">{{hotel.street}}, {{hotel.ward}}, {{hotel.district}}, {{hotel.province}} ,
+                {{hotel.country}}</span>
         </div>
         <hr />
         <!-- Image Slider -->
@@ -83,7 +83,7 @@
             <div class="hotel-info">
                 <h4 class="app-name">Go2Fun</h4>
                 <div class="hotel-ranking" style="font-size: 20px; color: blue;">
-                    8,8 - Ấn tượng
+                    {{hotel.rank}} - Ấn tượng
                 </div>
             </div>
             <div class="hotel-price" style="display: inline-block;">
@@ -148,7 +148,7 @@
     <!--Room-of-hotel-->
     <div class="room-of-hotel-list">
         <div *ngFor="let data of roomOfHotelResult; let i = index" class="room-of-hotel">
-            <h5>{{data.roomID}}</h5>
+            <h5>{{data.roomName}}</h5>
             <div class="room-details">
                 <!-- Image Slider -->
                 <div id="room-of-hotel-image-slider" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%;">
@@ -195,7 +195,7 @@
             <!--Room Info-->
             <div class="room-info">
                 <div class="room-standard">
-                    <h5>{{data.roomID}} Room</h5>
+                    <h5>{{data.roomName}} Room</h5>
                     <div class="customer-and-bed-amount">
                         <span class="bed-amount">
                             <svg stroke-width="0" width="16" height="16" viewBox="0 0 16 16" fill="#434343"

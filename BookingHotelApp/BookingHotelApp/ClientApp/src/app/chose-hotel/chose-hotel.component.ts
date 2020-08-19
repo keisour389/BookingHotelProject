@@ -11,40 +11,74 @@ declare var $: any;
   styleUrls: ['./chose-hotel.component.css'] //Dùng file css ở đây, không dùng ở thẻ <head>
 })
 export class ChoseHotelComponent {
-  //Biến gửi
-  private hotelId: String = "ATTICA";
+  //Biến nhận và gửi dữ liệu qua URL
+  bookingInfo: any = {
+    destination: "",
+    checkInDate: "",
+    checkOutDate: "",
+    nightsAmount: 0,
+    hotelId: "",
+  }
   //Biến nhận
   private roomOfHotelResult: [];
-  // private roomOfHotel: any = {
-  //     roomID: ""
-  //     hotelID: "",
-  //     image: "",
-  //     peopleAmount: 0,
-  //     roomAmount: 0,
-  //     bedAmount: 0,
-  //     policyApply: "",
-  //     policyNotApply: "",
-  //     discount: 0,
-  //     roomOfHotelNote: "",
-  //     roomPriceForNight: 0,
-  //     roomsCreatedDate: "",
-  // }
+  private hotel: any = {
+    hotelID: null,
+    hotelName: null,
+    quality: null,
+    hotelCreatedDate: null,
+    hotelPhoneNumber: null,
+    hotelEmail: null,
+    street: null,
+    ward: null,
+    district: null,
+    province: null,
+    country: null,
+    image: null,
+    hotelDescription: null,
+    hotelStatus: null,
+    rank: null,
+    hotelPaymentMethods: null,
+    partnerID: null,
+    hotelNote: null,
+  }
   //Biến xử lí
   priceAfterDiscountList = new Array(); //Dùng array không dùng list thuần
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
     , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
-    this.searchRoomOfHotel();
     //this.autoMoveImage(); //Đưa hàm tự động chuyển ảnh lên constructor
+    //Nếu gửi theo params thì phải get như thế này
+    this.route.queryParams.subscribe(params => {
+      this.bookingInfo.destination = params["destination"];
+      this.bookingInfo.checkInDate = params["from"];
+      this.bookingInfo.checkOutDate = params["to"];
+      this.bookingInfo.nightsAmount = params["night"];
+      this.bookingInfo.hotelId = params["hotelid"];
+      //Gọi API để tìm room of hotel sau khi get được dữ liệu
+      this.searchRoomOfHotel();
+      this.searchHotelByHotelId();
+    });
   }
   //Title phải set ở đây, không được set trong thẻ <title>
   public setTitle() {
     this.titleService.setTitle("Khách sạn");
   }
   //API
+  searchHotelByHotelId() {
+    this.http.get<any>('https://localhost:44359/api/Hotel/search-hotel-by-hotel-id' +
+      '?hotelId=' + this.bookingInfo.hotelId).subscribe(
+        result => {
+          var res: any = result;
+          this.hotel = res.data; //Result sẽ có đủ dữ liệu
+          console.log(res);
+        },
+        error => {
+          alert("Server error!!")
+        });
+  }
   searchRoomOfHotel() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-of-hotel-by-id' +
-      '?hotelId=' + this.hotelId).subscribe(
+    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-of-hotel-by-hotel-id' +
+      '?hotelId=' + this.bookingInfo.hotelId).subscribe(
         result => {
           var res: any = result;
           this.roomOfHotelResult = res.data; //Result sẽ có đủ dữ liệu
@@ -59,6 +93,7 @@ export class ChoseHotelComponent {
         error => {
           alert("Server error!!")
         });
+
   }
   //Các hàm image slide show
   autoMoveImage() {
@@ -67,6 +102,9 @@ export class ChoseHotelComponent {
     //   })
   }
   //Các hàm khác
+  counter(i: number) {
+    return new Array(i);
+  }
   //Modal Bootstrap
   openConformBookingModal() {
     console.log("modal");
