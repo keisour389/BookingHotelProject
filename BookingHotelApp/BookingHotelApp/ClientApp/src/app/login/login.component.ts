@@ -11,8 +11,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 export class LoginComponent {
     private data: any ={
-        username: "",
-        password: "",
+        username: "0902725706",
+        password: "123456789",
     }
     public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
         , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
@@ -28,9 +28,10 @@ export class LoginComponent {
         this.http.post('https://localhost:44359/api/CusAccount/validate-user', this.data)
         .subscribe(result =>{
             var res: any = result;
-            if(res.success){
+            if(res.data != null){
                 alert("Bạn đã đăng nhập thành công.");
-                this.router.navigate(['/']); //Quay về trang chủ
+                //this.router.navigate(['/']); //Quay về trang chủ
+                window.location.href = "/";
             }
             else{
                 alert("Tài khoản hoặc mật khẩu bị sai.");

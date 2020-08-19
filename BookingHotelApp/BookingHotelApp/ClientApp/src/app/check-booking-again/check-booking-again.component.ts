@@ -23,7 +23,7 @@ export class CheckBookingAgainComponent {
   policyNotApplyList: any;
   //Biến nhận từ URL
   customerId = "0902725706";
-  roomOfHotelId = "string";
+  roomOfHotelId = "TR";
   nightAmount = 1;
   checkInDate = "2020-08-18";
   checkOutDate = "2020-08-19";
@@ -157,7 +157,7 @@ export class CheckBookingAgainComponent {
               var res: any = result;
               if (res.success) {
                 console.log(res);
-                alert("Chúc mừng bạ đã đặt phòng thành công");
+                alert("Chúc mừng bạn đã đặt phòng thành công");
               }
               else {
                 console.log("Booking details client error!!");

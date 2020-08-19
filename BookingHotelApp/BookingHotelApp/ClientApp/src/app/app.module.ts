@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CanActivate, RouterModule } from '@angular/router';
 import {AuthGuard} from './auth.guard'
 import { AuthService } from './auth.service';
+import {CookieService} from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -54,7 +55,7 @@ import { BookingProcessComponent } from './booking-process/booking-process.compo
       { path: 'check-booking-again', component: CheckBookingAgainComponent }
     ])
   ],
-  providers: [AuthService, AuthGuard], //Khai báo auth ở đây để protection router
+  providers: [AuthService, AuthGuard, CookieService], //Khai báo auth ở đây để protection router
   bootstrap: [AppComponent]
 })
 export class AppModule { }

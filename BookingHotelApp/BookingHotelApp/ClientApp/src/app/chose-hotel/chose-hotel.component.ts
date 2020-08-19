@@ -34,7 +34,6 @@ export class ChoseHotelComponent {
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
     , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
-
     this.searchRoomOfHotel();
     //this.autoMoveImage(); //Đưa hàm tự động chuyển ảnh lên constructor
   }

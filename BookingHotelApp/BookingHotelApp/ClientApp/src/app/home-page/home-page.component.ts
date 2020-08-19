@@ -78,18 +78,19 @@ export class HomePageComponent implements AfterViewInit {
     //     });
     //window.location.href="./search-hotel";//Chuyển trang
 
-    this.auth.getUserDetails().subscribe(
-        data => {
-          console.log("data " + data.success);
-          if(data.success){
-            this.auth.setLoggedIn(true);
-            this.router.navigate(['/search-hotel', { search: this.bookingInfo.destination }]);
-          }
-          else{
-            this.router.navigate(['/login'], {queryParams: {returnUrl: this.router.url}});
-          }
+    this.router.navigate(['/search-hotel', { search: this.bookingInfo.destination }]);
+    // this.auth.getUserDetails().subscribe(
+    //     data => {
+    //       console.log("data " + data.success);
+    //       if(data.success){
+    //         this.auth.setLoggedIn(true);
+    //         this.router.navigate(['/search-hotel', { search: this.bookingInfo.destination }]);
+    //       }
+    //       else{
+    //         this.router.navigate(['/login'], {queryParams: {returnUrl: this.router.url}});
+    //       }
           
-        });
+    //     });
   }
   //Các hàm xử lí khác
   filterDateToInput(){        
