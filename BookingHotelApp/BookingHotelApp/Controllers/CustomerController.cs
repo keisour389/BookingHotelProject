@@ -61,5 +61,12 @@ namespace BookingHotelApp.Controllers
             var result = _svc.GetCustomerByPhoneNumber(customerId);
             return Ok(result);
         }
+
+        [HttpGet("customer-booking-history")]
+        public IActionResult GetBookingRoomByCustomrerID(string customerId)
+        {
+            var result = _svc.GetBookingRoomByCustomrerID(customerId);
+            return Ok(result);
+        }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-fill-in-information',
@@ -15,12 +15,20 @@ export class FillInInformationComponent {
   policyApplyList: any;
   policyNotApplyList: any;
   //Các biến sẽ nhận được từ URL truyền qua
-  customerId = "string";
-  roomOfHotelId = "string";
-  nightAmount = 1;
-  checkInDate = "18/08/2020";
-  checkOutDate = "19/08/2020";
-
+  bookingInfo: any = {
+    customerId: "",
+    destination: "",
+    checkInDate: "",
+    checkOutDate: "",
+    nightsAmount: 0,
+    hotelId: "",
+    roomOfHotelId: ""
+  }
+  // customerId = "string";
+  // roomOfHotelId = "string";
+  // nightAmount = 1;
+  // checkInDate = "18/08/2020";
+  // checkOutDate = "19/08/2020";
   fullNameToContact = null;
   fullNameOfCus = null;
   //Biến nhận dữ liệu từ JSON
@@ -50,8 +58,19 @@ export class FillInInformationComponent {
     image: null
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
-    , private titleService: Title, private router: Router) {
+    , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
+    //Nếu gửi theo params thì phải get như thế này
+    this.route.queryParams.subscribe(params => {
+      this.bookingInfo.destination = params["destination"];
+      this.bookingInfo.checkInDate = params["from"];
+      this.bookingInfo.checkOutDate = params["to"];
+      this.bookingInfo.nightsAmount = params["night"];
+      this.bookingInfo.hotelId = params["hotelid"];
+      this.bookingInfo.roomOfHotelId = params["roomid"];
+      this.bookingInfo.customerId = params["customerid"];
+      //Gọi API để tìm room of hotel sau khi get được dữ liệu
+    });
     this.getCustomerInfoById();
     this.getRoomOfHotelById();
   }
@@ -61,7 +80,7 @@ export class FillInInformationComponent {
   }
 
   public getCustomerInfoById() {
-    this.http.get<any>('https://localhost:44359/api/Customer?customerId=' + this.customerId)
+    this.http.get<any>('https://localhost:44359/api/Customer?customerId=' + this.bookingInfo.customerId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
@@ -82,7 +101,8 @@ export class FillInInformationComponent {
         });
   }
   public getRoomOfHotelById() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-by-id?roomOfHotelId=' + this.roomOfHotelId)
+    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-by-id?roomOfHotelId='
+     + this.bookingInfo.roomOfHotelId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
@@ -103,6 +123,20 @@ export class FillInInformationComponent {
         error => {
           alert("Server error!!");
         });
+  }
+  public comformInfo(){
+    this.router.navigate(['/check-booking-again'],
+      {
+        queryParams: {
+            customerid: this.bookingInfo.customerId,
+            destination: this.bookingInfo.destination,
+            from: this.bookingInfo.checkInDate,
+            to: this.bookingInfo.checkOutDate,
+            night: this.bookingInfo.nightsAmount,
+            hotelid: this.bookingInfo.hotelId,
+            roomid: this.bookingInfo.roomOfHotelId
+        }
+      });
   }
   //Các hàm khác
   private splitStringToArray(stringToSplit: String){

@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-6">
                                 <h5>
-                                    <p class="text-right">{{roomOfHotel.discount}} %</p>
+                                    <p class="text-right">{{roomOfHotel.discount * 100}} %</p>
                                 </h5>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                             </p>
                         </div>
                         <div class="col-3 text-right">
-                            <button type="button" class="btn btn-warning">Tiếp tục</button>
+                            <button type="button" class="btn btn-warning" (click)="comformInfo()">Tiếp tục</button>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                             <p class="text-left booking-hotel-info">Số đêm nghỉ</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">{{nightAmount}} đêm</p>
+                            <p class="text-right booking-hotel-info">{{bookingInfo.nightsAmount}} đêm</p>
                         </div>
                     </div>
                     <!--Ngày giờ nhận-->
@@ -171,7 +171,7 @@
                             <p class="text-left booking-hotel-info">Ngày nhận phòng:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">{{checkInDate}}</p>
+                            <p class="text-right booking-hotel-info">{{bookingInfo.checkInDate | date: 'dd-MM-yyyy'}}</p>
                         </div>
                     </div>
                     <p class="text-right booking-hotel-info">{{roomOfHotel.checkInTime}}</p>
@@ -181,7 +181,7 @@
                             <p class="text-left booking-hotel-info">Ngày trả phòng:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-right booking-hotel-info">{{checkOutDate}}</p>
+                            <p class="text-right booking-hotel-info">{{bookingInfo.checkOutDate | date: 'dd-MM-yyyy'}}</p>
                         </div>
                     </div>
                     <p class="text-right booking-hotel-info">{{roomOfHotel.checkOutTime}}</p>

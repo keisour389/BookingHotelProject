@@ -99,5 +99,11 @@ namespace BookingHotelApp.BLL.Service
             result.Data = search;
             return result;
         }
+
+        public SingleResponse GetBookingRoomByCustomrerID(string phoneNumber)
+        {
+            var result = _rep.GetBookingRoomByCustomrerID(phoneNumber);
+            return result;
+        }
     }
 }

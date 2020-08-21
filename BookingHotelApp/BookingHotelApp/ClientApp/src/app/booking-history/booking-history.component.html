@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <div class="booking-history-list">
+        <div *ngFor="let data of bookingDetailsList" class="booking-history-room">
+            <div class="history-title">
+                <div class="text-title">Mã đặt phòng: {{data.bookingID}}</div>
+                <div class="text-title">Khách sạn / Homestay: Khách sạn</div>
+                <div class="text-title">Ngày đặt phòng: {{data.bookingDate | date:'dd-MM-yyyy'}}</div>
+            </div>
+            <hr/>
+            <div class="history-content row">
+                <div class="col-2 text-center">
+                    <img src="https://cf.bstatic.com/images/hotel/max1024x768/217/217229743.jpg"
+                        style="width: 120px; height: 170px;">
+                </div>
+                <div class="col-10">
+                    <h4 class="text-center">{{data.roomName}}</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="text-content">
+                                Nhận phòng: {{data.checkInDate | date:'dd-MM-yyyy'}} {{data.checkInTime}}
+                            </div>
+                            <br />
+                            <div class="text-content">
+                                Tên khách: {{data.customerName}}
+                            </div>
+                            <br />
+                            <div class="text-content">
+                                Số khách: {{data.peopleAmount}}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-content">
+                                <div class="text-content">
+                                    Trả phòng: {{data.checkOutDate | date:'dd-MM-yyyy'}} {{data.checkOutTime}}
+                                </div>
+                                <br />
+                                <div class="text-content">
+                                    Số điện thoại: {{customerDetails.phoneNumber}}
+                                </div>
+                                <br />
+                                <div class="text-content">
+                                    Số giường: {{data.bedAmount}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="text-content">
+                                <div class="text-content">
+                                    <div class="text-content">
+                                        Trạng thái đặt phòng: {{data.bookingStatus}}
+                                    </div>
+                                    <br />
+                                    <div class="text-content">
+                                        Email: {{customerDetails.cusEmail}}
+                                    </div>
+                                    <br />
+                                    <div class="text-content">
+                                        Số đêm: {{data.nightAmount}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="special-requirements">
+                        <div class="text-content text-break">
+
+                                Yêu cầu đặt biệt: {{data.specialRequirements}}
+                        </div>
+                    </div>
+                    <!--Payment-->
+                    <hr />
+                    <div class="payment-details text-right">
+                            <div class="text-content">
+                                Thanh toán: {{data.customerPaymentMethods}}
+                            </div>
+                            <br/>
+                            <button type="button" class="btn btn-success">Hủy phòng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

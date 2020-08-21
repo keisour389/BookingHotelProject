@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { FillInInformationComponent } from './fill-in-information/fill-in-information.component';
 import { CheckBookingAgainComponent } from './check-booking-again/check-booking-again.component';
 import { BookingProcessComponent } from './booking-process/booking-process.component';
+import { BookingHistoryComponent } from './booking-history/booking-history.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { BookingProcessComponent } from './booking-process/booking-process.compo
     RegisterComponent,
     FillInInformationComponent,
     CheckBookingAgainComponent,
-    BookingProcessComponent
+    BookingProcessComponent,
+    BookingHistoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,12 +49,13 @@ import { BookingProcessComponent } from './booking-process/booking-process.compo
       // { path: 'counter', component: CounterComponent },
       // { path: 'fetch-data', component: FetchDataComponent },
       { path: '', component: HomePageComponent, pathMatch: 'full' },
-      { path: 'search-hotel', component: SearchHotelComponent, canActivate: [AuthGuard]}, //Set Auth cho router tương ứng
+      { path: 'search-hotel', component: SearchHotelComponent},
       { path: 'chose-hotel', component: ChoseHotelComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'fill-in-information', component: FillInInformationComponent, canActivate: [AuthGuard]},
-      { path: 'check-booking-again', component: CheckBookingAgainComponent }
+      { path: 'fill-in-information', component: FillInInformationComponent, canActivate: [AuthGuard]}, //Set Auth cho router tương ứng
+      { path: 'check-booking-again', component: CheckBookingAgainComponent },
+      { path: 'booking-history', component: BookingHistoryComponent }
     ])
   ],
   providers: [AuthService, AuthGuard, CookieService], //Khai báo auth ở đây để protection router

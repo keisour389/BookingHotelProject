@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from "@angular/router";
+import { AuthService } from '../auth.service';
+import { AuthGuard } from '../auth.guard';
 
 declare var $: any;
 
@@ -44,7 +46,8 @@ export class ChoseHotelComponent {
   //Biến xử lí
   priceAfterDiscountList = new Array(); //Dùng array không dùng list thuần
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
-    , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
+    , private titleService: Title, private router: Router
+    , private auth: AuthService, private guard: AuthGuard, private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
     //this.autoMoveImage(); //Đưa hàm tự động chuyển ảnh lên constructor
     //Nếu gửi theo params thì phải get như thế này
@@ -57,6 +60,7 @@ export class ChoseHotelComponent {
       //Gọi API để tìm room of hotel sau khi get được dữ liệu
       this.searchRoomOfHotel();
       this.searchHotelByHotelId();
+
     });
   }
   //Title phải set ở đây, không được set trong thẻ <title>
@@ -95,6 +99,21 @@ export class ChoseHotelComponent {
         });
 
   }
+  choiceThisHotel(roomOfHotelId: String) {
+    this.router.navigate(['/fill-in-information'],
+      {
+        queryParams: {
+            customerid: this.guard.getUserName, //Lấy username sau khi đã xác thực đăng nhập
+            destination: this.bookingInfo.destination,
+            from: this.bookingInfo.checkInDate,
+            to: this.bookingInfo.checkOutDate,
+            night: this.bookingInfo.nightsAmount,
+            hotelid: this.bookingInfo.hotelId,
+            roomid: roomOfHotelId
+        }
+      });
+    this.auth.setParams(true); //Xác nhận là có params
+  }
   //Các hàm image slide show
   autoMoveImage() {
     // $('.carousel').carousel({
@@ -104,10 +123,5 @@ export class ChoseHotelComponent {
   //Các hàm khác
   counter(i: number) {
     return new Array(i);
-  }
-  //Modal Bootstrap
-  openConformBookingModal() {
-    console.log("modal");
-    $('#myModal').modal('show');
   }
 }

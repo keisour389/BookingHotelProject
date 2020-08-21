@@ -15,12 +15,19 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     ,private route?: ActivatedRoute) {
    
   }
+  username: String = null;
+
+  get getUserName(){
+    console.log("username guard " + this.username);
+    return this.username;
+  }
   async hadLogin() {
     var checkLogin: boolean;
     await this.auth.getUserDetails().toPromise().then(
       data => {
         if (data.success) {
           checkLogin = true;
+          this.username = data.username;
         }
         else {
           checkLogin = false;
