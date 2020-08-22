@@ -13,6 +13,7 @@ declare var $: any;
   styleUrls: ['./chose-hotel.component.css'] //Dùng file css ở đây, không dùng ở thẻ <head>
 })
 export class ChoseHotelComponent {
+  private defaultURL: String = "https://localhost:44359/api";
   //Biến nhận và gửi dữ liệu qua URL
   bookingInfo: any = {
     destination: "",
@@ -69,7 +70,7 @@ export class ChoseHotelComponent {
   }
   //API
   searchHotelByHotelId() {
-    this.http.get<any>('https://localhost:44359/api/Hotel/search-hotel-by-hotel-id' +
+    this.http.get<any>(this.defaultURL + '/Hotel/search-hotel-by-hotel-id' +
       '?hotelId=' + this.bookingInfo.hotelId).subscribe(
         result => {
           var res: any = result;
@@ -81,7 +82,7 @@ export class ChoseHotelComponent {
         });
   }
   searchRoomOfHotel() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-of-hotel-by-hotel-id' +
+    this.http.get<any>(this.defaultURL + '/RoomOfHotel/search-room-of-hotel-by-hotel-id' +
       '?hotelId=' + this.bookingInfo.hotelId).subscribe(
         result => {
           var res: any = result;
@@ -112,7 +113,6 @@ export class ChoseHotelComponent {
             roomid: roomOfHotelId
         }
       });
-    this.auth.setParams(true); //Xác nhận là có params
   }
   //Các hàm image slide show
   autoMoveImage() {

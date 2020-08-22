@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from "@angular/router";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-fill-in-information',
@@ -9,6 +10,8 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./fill-in-information.component.css']
 })
 export class FillInInformationComponent {
+  private defaultURL: String = "https://localhost:44359/api";
+
   //Các biến tính toán
   discountPrice = 0;
   priceAfterDiscount = 0;
@@ -29,8 +32,8 @@ export class FillInInformationComponent {
   // nightAmount = 1;
   // checkInDate = "18/08/2020";
   // checkOutDate = "19/08/2020";
-  fullNameToContact = null;
-  fullNameOfCus = null;
+  fullNameToContact = "";
+  fullNameOfCus = "";
   //Biến nhận dữ liệu từ JSON
   customer: any = {
     phoneNumber: null,
@@ -58,9 +61,20 @@ export class FillInInformationComponent {
     image: null
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
-    , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
+    , private titleService: Title, private router: Router, private auth: AuthService,
+    private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
     //Nếu gửi theo params thì phải get như thế này
+    this.auth.getUserDetails().toPromise().then(
+      data => {
+        if (data.success) {
+          this.bookingInfo.customerId = data.username; //Có customerId mới get được
+          this.getCustomerInfoById();
+        }
+        else {
+          console.error("Get customer session error in fill form");
+        }
+      });
     this.route.queryParams.subscribe(params => {
       this.bookingInfo.destination = params["destination"];
       this.bookingInfo.checkInDate = params["from"];
@@ -68,10 +82,8 @@ export class FillInInformationComponent {
       this.bookingInfo.nightsAmount = params["night"];
       this.bookingInfo.hotelId = params["hotelid"];
       this.bookingInfo.roomOfHotelId = params["roomid"];
-      this.bookingInfo.customerId = params["customerid"];
       //Gọi API để tìm room of hotel sau khi get được dữ liệu
     });
-    this.getCustomerInfoById();
     this.getRoomOfHotelById();
   }
   //Title phải set ở đây, không được set trong thẻ <title>
@@ -80,7 +92,7 @@ export class FillInInformationComponent {
   }
 
   public getCustomerInfoById() {
-    this.http.get<any>('https://localhost:44359/api/Customer?customerId=' + this.bookingInfo.customerId)
+    this.http.get<any>(this.defaultURL + '/Customer?customerId=' + this.bookingInfo.customerId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
@@ -88,8 +100,15 @@ export class FillInInformationComponent {
           console.log(this.customer);
           //Ghép thành họ tên đầy đủ
           //Ban đầu sẽ mặc định tên khách và tên người liên hệ là giống nhau
-          this.fullNameToContact = this.customer.lastName + " " + this.customer.firstName;
-          this.fullNameOfCus = this.customer.lastName + " " + this.customer.firstName;
+          try {
+            this.fullNameToContact = this.customer.lastName + " " + this.customer.firstName;
+            this.fullNameOfCus = this.customer.lastName + " " + this.customer.firstName;
+          }
+          catch{
+            this.fullNameToContact = "";
+            this.fullNameOfCus = "";
+            console.error("Can't not get fullname of cus and contact in fill");
+          }
         }
         else {
           console.log("Client error!!");
@@ -101,19 +120,35 @@ export class FillInInformationComponent {
         });
   }
   public getRoomOfHotelById() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-by-id?roomOfHotelId='
-     + this.bookingInfo.roomOfHotelId)
+    this.http.get<any>(this.defaultURL + '/RoomOfHotel/search-room-by-id?roomOfHotelId='
+      + this.bookingInfo.roomOfHotelId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
           this.roomOfHotel = res.data; //Gán dữ liệu để hiển thị
           console.log(this.roomOfHotel);
           //Tính số tiền được giảm và giá khi giảm
-          this.discountPrice = this.roomOfHotel.discount * this.roomOfHotel.roomPriceForNight;
-          this.priceAfterDiscount = this.roomOfHotel.roomPriceForNight - this.discountPrice;
+          try {
+            this.discountPrice = this.roomOfHotel.discount * this.roomOfHotel.roomPriceForNight;
+            this.priceAfterDiscount = this.roomOfHotel.roomPriceForNight - this.discountPrice;
+          }
+          catch{
+            this.discountPrice = 0;
+            this.priceAfterDiscount = 0;
+            console.error("Can't not get price after discount in fill");
+          }
           //Split policy ra
-          this.policyApplyList = this.splitStringToArray(this.roomOfHotel.policyApply);
-          this.policyNotApplyList = this.splitStringToArray(this.roomOfHotel.policyNotApply);
+          //Đã kiểm tra lỗi trong hàm
+          try {
+            this.policyApplyList = this.splitStringToArray(this.roomOfHotel.policyApply);
+            this.policyNotApplyList = this.splitStringToArray(this.roomOfHotel.policyNotApply);
+          }
+          catch{
+            this.policyApplyList = "";
+            this.policyNotApplyList = "";
+            console.error("Can't not get policy in fill");
+          }
+
         }
         else {
           console.log("Client error!!");
@@ -124,23 +159,23 @@ export class FillInInformationComponent {
           alert("Server error!!");
         });
   }
-  public comformInfo(){
+  public comformInfo() {
     this.router.navigate(['/check-booking-again'],
       {
         queryParams: {
-            customerid: this.bookingInfo.customerId,
-            destination: this.bookingInfo.destination,
-            from: this.bookingInfo.checkInDate,
-            to: this.bookingInfo.checkOutDate,
-            night: this.bookingInfo.nightsAmount,
-            hotelid: this.bookingInfo.hotelId,
-            roomid: this.bookingInfo.roomOfHotelId
+          customerid: this.bookingInfo.customerId,
+          destination: this.bookingInfo.destination,
+          from: this.bookingInfo.checkInDate,
+          to: this.bookingInfo.checkOutDate,
+          night: this.bookingInfo.nightsAmount,
+          hotelid: this.bookingInfo.hotelId,
+          roomid: this.bookingInfo.roomOfHotelId
         }
       });
   }
   //Các hàm khác
-  private splitStringToArray(stringToSplit: String){
-    try{
+  private splitStringToArray(stringToSplit: String) {
+    try {
       var result = stringToSplit.split(','); //Cách theo dấu phẩy
       console.log(result);
       return result;

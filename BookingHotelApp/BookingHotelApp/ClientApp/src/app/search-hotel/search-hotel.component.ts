@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./search-hotel.component.css'] //Dùng file css ở đây, không dùng ở thẻ <head>
 })
 export class SearchHotelComponent {
+  private defaultURL: String = "https://localhost:44359/api";
+
   //Biến nhận và gửi dữ liệu qua URL
   bookingInfo: any = {
     destination: "",
@@ -54,7 +56,7 @@ export class SearchHotelComponent {
     this.titleService.setTitle("Tìm phòng");
   }
   searchHotel() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/customer-search-room-by-keyword/' +
+    this.http.get<any>(this.defaultURL + '/RoomOfHotel/customer-search-room-by-keyword/' +
       '?keyWord=' + this.bookingInfo.destination).subscribe(
         result => {
           var res: any = result;

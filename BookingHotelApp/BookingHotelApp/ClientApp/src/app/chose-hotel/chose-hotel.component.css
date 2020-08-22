@@ -1,3 +1,6 @@
+body{
+    background-color: #edece8;
+}
 /*hotel-main-info*/
 /*hotel-address*/
 .hotel-street-address{
@@ -28,6 +31,7 @@
 }
 /*hotel-convenient-list*/
 .hotel-convenient-list{
+    background-color: white;
     border: 1px solid black;
     margin-top: 10px;
     border-radius: 5px;
@@ -49,7 +53,7 @@
 .room-of-hotel{
     width: 100%; /*Luôn phải set width tổng*/
     margin-top: 20px;
-    background-color: #dedcdc;
+    background-color:white;
     display: inline-block;
     padding: 5px;
     border-radius: 5px;

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./booking-history.component.css']
 })
 export class BookingHistoryComponent {
+  private defaultURL: String = "https://localhost:44359/api";
 
   customerId: String = "0902725706";
 
@@ -58,7 +59,7 @@ export class BookingHistoryComponent {
     this.titleService.setTitle("Lịch sử đặt phòng");
   }
   public getCustomerBookingHistory() {
-    this.http.get<any>('https://localhost:44359/api/Customer/customer-booking-history' +
+    this.http.get<any>(this.defaultURL + '/Customer/customer-booking-history' +
       '?customerId=' + this.customerId).subscribe(
         result => {
           var res: any = result;

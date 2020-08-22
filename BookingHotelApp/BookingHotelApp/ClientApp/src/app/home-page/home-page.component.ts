@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
   providers: [DatePipe]
 })
 export class HomePageComponent implements AfterViewInit {
-
+  private defaultURL: String = "https://localhost:44359/api";
   ngAfterViewInit() {
     //(document.getElementById("myDate") as HTMLInputElement).value = this.nowDate;
   }
@@ -45,7 +45,6 @@ export class HomePageComponent implements AfterViewInit {
        to: this.bookingInfo.checkOutDate,
        night: this.bookingInfo.nightsAmount,
     }});
-    this.auth.setParams(true); //Đây trường hợp có param nên set là true để kiểm tra xác thực
   }
  
   //Các hàm xử lí khác

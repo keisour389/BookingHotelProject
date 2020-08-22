@@ -22,16 +22,6 @@ export class AuthService {
     console.log("get " + this.loggedInStatus);
     return this.loggedInStatus;
   }
-
-  setParams(value: boolean){
-    this.paramStatus = value;
-    console.log("set par " + this.paramStatus);
-  }
-
-  isHadParams(){
-    console.log("get par " + this.paramStatus);
-    return this.paramStatus;
-  }
   getUserDetails() {
     //Gọi API Post Login để lấy về thông tin user
     return this.http.get<any>('https://localhost:44359/api/CusAccount/had-login')

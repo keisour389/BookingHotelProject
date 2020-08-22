@@ -6,115 +6,122 @@
 </head>
 
 <body>
-
-    <h1>Chào mừng bạn đến với website Go2Fun</h1>
-    <div class="banner-adv"></div>
-    
+    <div class="banner-adv">
+        <!--Quảng cáo đặt ở đây-->
+    </div>
     <!--Booking-->
-    <div class="main-booking-room">
-        <div class="modal-header">
-            <h5 class="modal-title">Tìm khách sạn</h5>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-12">
-                    <h6 class="text-in-booking">Thành phố, địa điểm hoặc tên khách sạn</h6>
+    <div class="container">
+        <div class="main-booking-room">
+            <div class="modal-header">
+                <h5 class="modal-title">Tìm khách sạn</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="text-in-booking">Thành phố, địa điểm hoặc tên khách sạn</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input class="form-control" placeholder="Thành phố, khách sạn, điểm đến"
+                            [(ngModel)]="bookingInfo.destination" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <h6 class="text-in-booking">Nhận phòng</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6 class="text-in-booking">Số đêm</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6 class="text-in-booking">Trả phòng</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <input class="form-control" type="date" [(ngModel)]="bookingInfo.checkInDate" />
+                    </div>
+                    <div class="col-4">
+                        <select id="nights-amount" [(ngModel)]="bookingInfo.nightsAmount">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" type="date" [(ngModel)]="bookingInfo.checkOutDate" />
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <input class="form-control" placeholder="Thành phố, khách sạn, điểm đến"
-                    [(ngModel)]="bookingInfo.destination"/>
-                </div>  
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-4">
-                    <h6 class="text-in-booking">Nhận phòng</h6>
-                </div>
-                <div class="col-4">
-                    <h6 class="text-in-booking">Số đêm</h6>
-                </div>
-                <div class="col-4">
-                    <h6 class="text-in-booking">Trả phòng</h6>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4">
-                    <input class="form-control" type="date" [(ngModel)]="bookingInfo.checkInDate"/>
-                </div>
-                <div class="col-4">
-                    <select id="nights-amount" [(ngModel)]="bookingInfo.nightsAmount">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                      </select>
-                </div>
-                <div class="col-4">
-                    <input class="form-control" type="date" [(ngModel)]="bookingInfo.checkOutDate"/>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" (click)="searchHotel()">Xác nhận</button>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-warning" (click)="searchHotel()">Xác nhận</button>
+        <!--Benefit-->
+        <div class="customer-benefit">
+            <h5 class="customer-benefit-text">
+                Quyền lợi dành riêng cho khách hàng ở Go2Fun
+            </h5>
+            <h6 class="customer-benefit-text" style="color: grey;">
+                <div class="sign-up-customer-benefit-text">Đăng nhập</div> hoặc
+                <div class="sign-up-customer-benefit-text">đăng ký</div> để khám phá thêm nhiều ưu đãi đặc biệt
+            </h6>
+            <br />
+            <div class="customer-benefit-options">
+                <a href="#" class="customer-benefit-option">
+                    <img
+                        src="https://ik.imagekit.io/tvlk/image/imageResource/2017/09/25/1506337373515-af609f47175de76990927fa1b716955e.svg?tr=q-75">
+                    <span class="text-in-benefit-option">Luôn được thông báo giá phòng</span>
+                </a>
+                <span class="customer-benefit-option-arrow">></span>
+                <a href="#" class="customer-benefit-option">
+                    <img
+                        src="https://ik.imagekit.io/tvlk/image/imageResource/2018/12/13/1544686625813-8ab151967e81e28cc2eb3288980fe2c0.svg?tr=q-75">
+                    <span class="text-in-benefit-option">Ưu đãi tràn ngập</span>
+                </a>
+                <span class="customer-benefit-option-arrow">></span>
+                <a href="#" class="customer-benefit-option">
+                    <img
+                        src="https://ik.imagekit.io/tvlk/image/imageResource/2017/09/25/1506337376527-d35060d4ef861c829d6902ff7ac4b664.svg?tr=q-75">
+                    <span class="text-in-benefit-option">Chính sách hỗ trợ linh hoạt</span>
+                </a>
+                <span class="customer-benefit-option-arrow">></span>
+                <a href="#" class="customer-benefit-option">
+                    <img
+                        src="https://ik.imagekit.io/tvlk/image/imageResource/2017/09/25/1506337380633-78091cf18a1b1d8cc6f125991f7d9c17.svg?tr=q-75">
+                    <span class="text-in-benefit-option">Nhiều hơn nữa</span>
+                </a>
+
+            </div>
         </div>
-    </div>
-    <!--Benefit-->
-    <div class="customer-benefit">
-        <h5 class="customer-benefit-text">
-            Quyền lợi dành riêng cho khách hàng ở Go2Fun
-        </h5>
-        <h6 class="customer-benefit-text" style="color: grey;">
-            <div class="sign-up-customer-benefit-text">Đăng nhập</div> hoặc
-             <div class="sign-up-customer-benefit-text">đăng ký</div> để khám phá thêm nhiều ưu đãi đặc biệt
-        </h6>
-        <br/>
-        <div class="customer-benefit-options">
-            <a href="#" class="customer-benefit-option">
-                <img src="https://ik.imagekit.io/tvlk/image/imageResource/2017/09/25/1506337373515-af609f47175de76990927fa1b716955e.svg?tr=q-75">
-                <span>Luôn được thông báo giá phòng</span>
-            </a>
-            <span class="customer-benefit-option-arrow">></span>
-            <a href="#" class="customer-benefit-option">
-                <img src="https://ik.imagekit.io/tvlk/image/imageResource/2018/12/13/1544686625813-8ab151967e81e28cc2eb3288980fe2c0.svg?tr=q-75">
-                <span>Ưu đãi tràn ngập</span>
-            </a>
-            <span class="customer-benefit-option-arrow">></span>
-            <a href="#" class="customer-benefit-option">
-                <img src="https://ik.imagekit.io/tvlk/image/imageResource/2017/09/25/1506337376527-d35060d4ef861c829d6902ff7ac4b664.svg?tr=q-75">
-                <span>Chính sách hỗ trợ linh hoạt</span>
-            </a>
-            <span class="customer-benefit-option-arrow">></span>
-            <a href="#" class="customer-benefit-option">
-                <img src="https://ik.imagekit.io/tvlk/image/imageResource/2017/09/25/1506337380633-78091cf18a1b1d8cc6f125991f7d9c17.svg?tr=q-75">
-                <span>Nhiều hơn nữa</span>
-            </a>
-           
-        </div>
-    </div>
-    <!--Favorite Destination-->
-    <div class="favorite-destination">
-        <h4 style="text-align: center; color: #000;">Các địa điểm phổ biến</h4>
-        <div class="favorite-place">
-            <span class="favorite-place-title">Wuhan</span>
-            <img class="img-favorite-destination" src="./assets/wuhan.jpg"/> <!--Hình chỉ để ở assets-->
-        </div>
-        <div class="favorite-place">
-            <span class="favorite-place-title">Đà Lạt</span>
-            <img class="img-favorite-destination" src="./assets/dalat.jpg"/> <!--Hình chỉ để ở assets-->
-        </div>
-        <div class="favorite-place">
-            <span class="favorite-place-title">Nha Trang</span>
-            <img class="img-favorite-destination" src="./assets/nhatrang.jpg"/> <!--Hình chỉ để ở assets-->
-        </div>
-        <div class="favorite-place">
-            <span class="favorite-place-title">Đà Nẵng</span>
-            <img class="img-favorite-destination" src="./assets/danang.jpg"/> <!--Hình chỉ để ở assets-->
-        </div>
-        <div class="favorite-place">
-            <span class="favorite-place-title">Phú Quốc</span>
-            <img class="img-favorite-destination" src="./assets/phuquoc.jpg"/> <!--Hình chỉ để ở assets-->
+        <!--Favorite Destination-->
+        <div class="favorite-destination">
+            <h4 style="text-align: center; color: #000;">Các địa điểm phổ biến</h4>
+            <div class="row">
+                <div class="col-3">
+                    <span class="favorite-place-title">TP. Hồ Chí Minh</span>
+                    <img class="img-favorite-destination" src="./assets/tphcm.jpg" />
+                    <!--Hình chỉ để ở assets-->
+                </div>
+                <div class="col-3">
+                    <span class="favorite-place-title">Đà Lạt</span>
+                    <img class="img-favorite-destination" src="./assets/dalat.jpg" />
+                    <!--Hình chỉ để ở assets-->
+                </div>
+                <div class="col-3">
+                    <span class="favorite-place-title">Nha Trang</span>
+                    <img class="img-favorite-destination" src="./assets/nhatrang.jpg" />
+                    <!--Hình chỉ để ở assets-->
+                </div>
+                <div class="col-3">
+                    <span class="favorite-place-title">Đà Nẵng</span>
+                    <img class="img-favorite-destination" src="./assets/danang.jpg" />
+                    <!--Hình chỉ để ở assets-->
+                </div>
+            </div>
         </div>
     </div>
 </body>

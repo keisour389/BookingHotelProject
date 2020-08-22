@@ -17,8 +17,8 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 /*nav-bar*/
-.all-navbar{
-  margin-bottom: 10px;
+.text-in-navbar{
+  vertical-align: middle;
 }
 /*nav-bar*/
 

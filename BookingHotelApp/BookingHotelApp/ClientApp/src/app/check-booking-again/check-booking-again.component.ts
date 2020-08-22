@@ -13,6 +13,7 @@ declare var $: any;
   providers: [DatePipe]
 })
 export class CheckBookingAgainComponent {
+  private defaultURL: String = "https://localhost:44359/api";
   date: Date = new Date();
   //Biến lấy từ cookie
   specialRequirements: "Yêu cầu đặc biệt";
@@ -101,7 +102,7 @@ export class CheckBookingAgainComponent {
     this.titleService.setTitle("Kiểm tra lại");
   }
   public getCustomerInfoById() {
-    this.http.get<any>('https://localhost:44359/api/Customer?customerId=' + this.customerId)
+    this.http.get<any>(this.defaultURL + '/Customer?customerId=' + this.customerId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
@@ -118,7 +119,7 @@ export class CheckBookingAgainComponent {
         });
   }
   public getRoomOfHotelById() {
-    this.http.get<any>('https://localhost:44359/api/RoomOfHotel/search-room-by-id?roomOfHotelId='
+    this.http.get<any>(this.defaultURL + '/RoomOfHotel/search-room-by-id?roomOfHotelId='
       + this.roomOfHotelId)
       .subscribe(result => {
         var res: any = result;
@@ -144,7 +145,7 @@ export class CheckBookingAgainComponent {
   public createCustomerBooking() {
     //Gán giá trị trước khi tạo
     this.setValueToBooking();
-    this.http.post('https://localhost:44359/api/Booking/create-booking', this.booking)
+    this.http.post(this.defaultURL + '/Booking/create-booking', this.booking)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
@@ -152,12 +153,13 @@ export class CheckBookingAgainComponent {
           //Tiếp tục tạo Booking Details
           //Gán giá trị trước khi tạo
           this.setValueToBookingDetails(res.data.bookingID);
-          this.http.post('https://localhost:44359/api/BookingDetails/create-booking-details', this.bookingDetails)
+          this.http.post(this.defaultURL + '/BookingDetails/create-booking-details', this.bookingDetails)
             .subscribe(result => {
               var res: any = result;
               if (res.success) {
                 console.log(res);
                 alert("Chúc mừng bạn đã đặt phòng thành công");
+                window.location.href = '/booking-history' ;
               }
               else {
                 console.log("Booking details client error!!");

@@ -10,6 +10,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 
 export class LoginComponent {
+    private defaultURL: String = "https://localhost:44359/api";
+
     returnUrl: string;
     private data: any ={
         username: "0902725706",
@@ -32,7 +34,7 @@ export class LoginComponent {
     }
 
     public validateUser(){
-        this.http.post('https://localhost:44359/api/CusAccount/validate-user', this.data)
+        this.http.post(this.defaultURL + '/CusAccount/validate-user', this.data)
         .subscribe(result =>{
             var res: any = result;
             if(res.data != null){

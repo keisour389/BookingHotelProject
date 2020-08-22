@@ -12,6 +12,8 @@ import { DatePipe } from '@angular/common';
 })
 
 export class RegisterComponent {
+    private defaultURL: String = "https://localhost:44359/api";
+
     //Biến này map với ngModel
     phoneNumber: String = "";
     password: "";
@@ -63,7 +65,7 @@ export class RegisterComponent {
     }
     checkUserExist(username: String) {
         //Trả về file JSON
-        return this.http.get<any>('https://localhost:44359/api/Customer/check-account-exist/' + username);
+        return this.http.get<any>(this.defaultURL + '/Customer/check-account-exist/' + username);
     }
     createNewCustomer() {
         //Gán lại giá trị sau khi Phone Number được nhập từ input
@@ -77,7 +79,7 @@ export class RegisterComponent {
         //Nếu xác nhận mật khẩu đúng thì mới gửi API, không thì xuất thông báo ở HTML
         if (this.checkPassword) {
             //Gửi API
-            this.http.get<any>('https://localhost:44359/api/Customer/check-account-exist/' + this.phoneNumber).subscribe(
+            this.http.get<any>(this.defaultURL + '/Customer/check-account-exist/' + this.phoneNumber).subscribe(
                 result => {
                     var res: any = result;
                     if (res.exist) {
@@ -85,12 +87,12 @@ export class RegisterComponent {
                     }
                     else {
                         //Tạo bảng account trước
-                        this.http.post('https://localhost:44359/api/CusAccount/create-account', this.customerAccount).subscribe(
+                        this.http.post(this.defaultURL + '/CusAccount/create-account', this.customerAccount).subscribe(
                             result => {
                                 var res: any = result;
                                 if (res.success) {
                                     //Nếu tạo tài khoản thành công sẽ tiếp tục tạo thông tin
-                                    this.http.post('https://localhost:44359/api/Customer/create-customer', this.customerInfo).subscribe(
+                                    this.http.post(this.defaultURL + '/Customer/create-customer', this.customerInfo).subscribe(
                                         result => {
                                             var res: any = result;
                                             if (res.success) {

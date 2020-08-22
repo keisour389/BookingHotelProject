@@ -6,222 +6,223 @@
 </head>
 
 <body>
-    <h1>Chào mừng bạn đến với website Go2Fun</h1>
-    <div class="hotel-result" style="width: 90%;">
-        <div class="hotel-search-filter">
-            <div class="sort-type">
-                <div class="search-title">
-                    <div class="filter-title-text">
-                        Sắp xếp kết quả
+    <div class="container" style="padding: 10px">
+        <div class="hotel-result row">
+            <div class="col-4">
+                <div class="sort-type">
+                    <div class="search-title">
+                        <div class="filter-title-text">
+                            Sắp xếp kết quả
+                        </div>
+                        <div class="filter-content-text">
+                            Sắp xếp kết quả theo lựa chọn
+                        </div>
                     </div>
-                    <div class="filter-content-text">
-                        Sắp xếp kết quả theo lựa chọn
+                    <hr>
+                    <div class="sort-options">
+                        <div class="row" style="padding: 0px; margin: 0px;">
+                            <div class="col-6">
+                                <label class="sort-box">
+                                    <input type="radio" name="sort-box" id="highest-price" value="HIGHEST_PRICE" />
+                                    <span class="filter-option-text">Giá cao nhất</span>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label class="sort-box">
+                                    <input type="radio" name="sort-box" id="lowest-price" value="LOWEST_PRICE" />
+                                    <span class="filter-option-text">Giá thấp nhất</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 0px; margin: 0px;">
+                            <div class="col-6">
+                                <label class="sort-box">
+                                    <input type="radio" name="sort-box" id="highest-price" value="USER_RATING" />
+                                    <span class="filter-option-text">Điểm đánh giá</span>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label class="sort-box">
+                                    <input type="radio" name="sort-box" id="highest-price" value="POPULARITY" />
+                                    <span class="filter-option-text">Độ phổ biến</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <hr>
-                <div class="sort-options">
-                    <div class="row" style="padding: 0px; margin: 0px;">
-                        <div class="col-6">
-                            <label class="sort-box">
-                                <input type="radio" name="sort-box" id="highest-price" value="HIGHEST_PRICE" />
-                                <span class="">Giá cao nhất</span>
-                            </label>
+                <div class="filter-type">
+                    <div class="filter-title">
+                        <div class="filter-title-text">
+                            Lọc kết quả
                         </div>
-                        <div class="col-6">
-                            <label class="sort-box">
-                                <input type="radio" name="sort-box" id="lowest-price" value="LOWEST_PRICE" />
-                                <span class="">Giá thấp nhất</span>
-                            </label>
+                        <div class="filter-content-text">
+                            Hiển thị theo kết quả phân loại:
                         </div>
                     </div>
-                    <div class="row" style="padding: 0px; margin: 0px;">
-                        <div class="col-6">
-                            <label class="sort-box">
-                                <input type="radio" name="sort-box" id="highest-price" value="USER_RATING" />
-                                <span class="">Điểm đánh giá</span>
-                            </label>
+                    <hr />
+                    <div class="booking-rules">
+                        <div class="filter-title-text">
+                            Chính sách hủy phòng
                         </div>
-                        <div class="col-6">
-                            <label class="sort-box">
-                                <input type="radio" name="sort-box" id="highest-price" value="POPULARITY" />
-                                <span class="">Độ phổ biến</span>
+                        <label>
+                            <input type="checkbox" id="free-cancel-booking" value="Hủy phòng miễn phí" />
+                            <span class="filter-option-text">Miễn phí hủy phòng</span>
+                        </label>
+                    </div>
+                    <hr />
+                    <div class="price-for-night-options">
+                        <div class="filter-title-text">
+                            Khoảng giá/đêm
+                        </div>
+                        <div class="price-between-lowest-and-highest" style="margin-top: 10px;">
+                            <span class="price-option-text">
+                                <span>VNĐ</span>
+                                <input type="number" class="price-option" id="lowest_price" value="0" />
+                            </span>
+                            <span class="" style="margin: 10px;">Tới</span>
+                            <span class="price-option-text">
+                                <span>VNĐ</span>
+                                <input type="number" class="price-option" id="highest_price" value="10000000" />
+                            </span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="hotel-rating">
+                        <div class="filter-title-text">
+                            Hạng sao
+                        </div>
+                        <div class="hotel-rating-options">
+                            <label class="select-hotel-rating">
+                                <input type="checkbox" id="one-star" value="1 sao" />
+                                <span class="filter-option-text">
+                                    <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                        stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g transform="translate(-0.133333,-1)">
+                                            <path
+                                                d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </label>
+                            <label class="select-hotel-rating">
+                                <input type="checkbox" id="two-star" value="2 sao" />
+                                <span class="filter-option-text" *ngFor="let i of [0,0]">
+                                    <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                        stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g transform="translate(-0.133333,-1)">
+                                            <path
+                                                d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </label>
+                            <label class="select-hotel-rating">
+                                <input type="checkbox" id="three-star" value="3 sao" />
+                                <span class="filter-option-text" *ngFor="let i of [0,0,0]">
+                                    <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                        stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g transform="translate(-0.133333,-1)">
+                                            <path
+                                                d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </label>
+                            <label class="select-hotel-rating">
+                                <input type="checkbox" id="four-star" value="4 sao" />
+                                <span class="filter-option-text" *ngFor="let i of [0,0,0,0]">
+                                    <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                        stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g transform="translate(-0.133333,-1)">
+                                            <path
+                                                d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </label>
+                            <label class="select-hotel-rating">
+                                <input type="checkbox" id="five-star" value="5 sao" />
+                                <span class="filter-option-text" *ngFor="let i of [0,0,0,0,0]">
+                                    <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
+                                        stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g transform="translate(-0.133333,-1)">
+                                            <path
+                                                d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="filter-type">
-                <div class="filter-title">
-                    <div class="filter-title-text">
-                        Lọc kết quả
+            <div class="col-8">
+                <div class="hotel-search-frame">
+                    <ul id="hotel-search-frame-list">
+                        <li><a href="#">Tất cả</a></li>
+                        <li><a href="#">Không thanh toán trước</a></li>
+                        <li><a href="#">Miễn phí hủy phòng</a></li>
+                    </ul>
+                    <div style="text-align: center; color: white; background-color: turquoise; margin-top: 10px;">
+                        Giá cuối cùng. Không phí giao dịch. Không chi phí ẩn
                     </div>
-                    <div class="filter-content-text">
-                        Hiển thị theo kết quả phân loại:
-                    </div>
-                </div>
-                <hr />
-                <div class="booking-rules">
-                    <div class="filter-title-text">
-                        Chính sách hủy phòng
-                    </div>
-                    <label>
-                        <input type="checkbox" id="free-cancel-booking" value="Hủy phòng miễn phí" />
-                        <span class="filter-content-text" style="margin-left: 5px;">Miễn phí hủy phòng</span>
-                    </label>
-                </div>
-                <hr />
-                <div class="price-for-night-options">
-                    <div class="filter-title-text">
-                        Khoảng giá/đêm
-                    </div>
-                    <div class="price-between-lowest-and-highest" style="margin-top: 10px;">
-                        <span class="price-option-text">
-                            <span>VNĐ</span>
-                            <input type="number" class="price-option" id="lowest_price" value="0" />
-                        </span>
-                        <span class="" style="margin: 10px;">Tới</span>
-                        <span class="price-option-text">
-                            <span>VNĐ</span>
-                            <input type="number" class="price-option" id="highest_price" value="10000000" />
-                        </span>
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="Thành phố, khách sạn hoặc điểm đến" />
+                        </div>
+                        <div class="col-4">
+                            <select id="type-of-hotel-result">
+                                <option value="Phòng/đêm">Phòng/đêm</option>
+                                <option value="Tổng giá tiền">Tổng giá tiền</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <hr />
-                <div class="hotel-rating">
-                    <div class="filter-title-text">
-                        Hạng sao
-                    </div>
-                    <div class="hotel-rating-options">
-                        <label class="select-hotel-rating">
-                            <input type="checkbox" id="one-star" value="1 sao" />
-                            <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
-                                stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <g transform="translate(-0.133333,-1)">
-                                    <path
-                                        d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
-                                    </path>
-                                </g>
-                            </svg>
-                        </label>
-                        <label class="select-hotel-rating">
-                            <input type="checkbox" id="two-star" value="2 sao" />
-                            <span *ngFor="let i of [0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
-                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-0.133333,-1)">
-                                        <path
-                                            d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
-                                        </path>
-                                    </g>
-                                </svg>
+                <div class="hotel-search-list">
+                    <div *ngFor="let hotel of hotelSearchResult; index as i" class="row hotel-search"
+                        (click)="choiceHotel(hotelSearchResult[i].hotelId)">
+                        <div class="col-3">
+                            <img class="hotel-search-image" style="border-radius: 3px;"
+                                src="https://cf.bstatic.com/images/hotel/max1024x768/217/217229743.jpg" />
+                        </div>
+                        <div class="col-6">
+                            <h5 class="hotel-search-name">{{hotel.hotelName}}</h5>
+                            <span class="hotel-search-type">
+                                Khách sạn
                             </span>
-                        </label>
-                        <label class="select-hotel-rating">
-                            <input type="checkbox" id="three-star" value="3 sao" />
-                            <span *ngFor="let i of [0,0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
-                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-0.133333,-1)">
-                                        <path
-                                            d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
-                                        </path>
-                                    </g>
-                                </svg>
-                            </span>
-                        </label>
-                        <label class="select-hotel-rating">
-                            <input type="checkbox" id="four-star" value="4 sao" />
-                            <span *ngFor="let i of [0,0,0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
-                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-0.133333,-1)">
-                                        <path
-                                            d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
-                                        </path>
-                                    </g>
-                                </svg>
-                            </span>
-                        </label>
-                        <label class="select-hotel-rating">
-                            <input type="checkbox" id="five-star" value="5 sao" />
-                            <span *ngFor="let i of [0,0,0,0,0]">
-                                <svg fill="#ffc412" stroke="none" viewBox="0 0 15 12" class="hotel-star" height="24"
-                                    stroke-linecap="round" width="24" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-0.133333,-1)">
-                                        <path
-                                            d="M7.62065263,11.1718057 L4.09190471,12.9302233 C3.59746349,13.1766093 3.27461245,12.9454386 3.37582363,12.3861087 L4.04155097,8.70705634 L1.20404148,6.08542085 C0.794471432,5.70701035 0.901391279,5.33979253 1.45149824,5.26402626 L5.40864616,4.71900805 L7.16232346,1.35099122 C7.41545167,0.864847003 7.824788,0.862800476 8.07898181,1.35099122 L9.83265911,4.71900805 L13.789807,5.26402626 C14.3360437,5.33925947 14.448558,5.70541735 14.0372638,6.08542085 L11.1997543,8.70705634 L11.8654816,12.3861087 C11.9644422,12.9330009 11.6363949,13.1728984 11.1494006,12.9302233 L7.62065263,11.1718057 Z">
-                                        </path>
-                                    </g>
-                                </svg>
-                            </span>
-                        </label>
+                            <span style="margin: 5px;">{{hotel.quality}} sao</span>
+                            <div style="color: grey;">{{hotel.hotelAddress}}, {{hotel.hotelCountry}}</div>
+                            <div style="color: aquamarine;">Ấn tượng - {{hotel.rank}}</div>
+                        </div>
+                        <div class="col-3">
+                            <span style="color: green;">Giảm {{hotel.discount * 100}}%</span>
+                            <div class="hotel-search-price-info">
+                                <div style="color: grey; text-decoration: line-through; margin-bottom: 5px;">
+                                    {{hotel.roomPriceForNight}} VNĐ
+                                </div>
+                                <div style="color: orange; font-size: 18px; font-weight: bold; margin-bottom: 5px;">
+                                    {{hotel.hotelPriceAfterDiscount}} VNĐ
+                                </div>
+                                <div style="color: blue;">
+                                    Giá cuối cùng
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
-        <div class="hotel-search-result">
-            <div class="hotel-search-frame">
-                <ul id="hotel-search-frame-list">
-                    <li><a href="#">Tất cả</a></li>
-                    <li><a href="#">Không thanh toán trước</a></li>
-                    <li><a href="#">Miễn phí hủy phòng</a></li>
-                </ul>
-                <div style="text-align: center; color: white; background-color: turquoise; margin-top: 10px;">
-                    Giá cuối cùng. Không phí giao dịch. Không chi phí ẩn
-                </div>
-                <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-                    <div class="col-8">
-                        <input type="text" class="form-control" placeholder="Thành phố, khách sạn hoặc điểm đến" />
-                    </div>
-                    <div class="col-4">
-                        <select id="type-of-hotel-result">
-                            <option value="Phòng/đêm">Phòng/đêm</option>
-                            <option value="Tổng giá tiền">Tổng giá tiền</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="hotel-search-list">
-                <div *ngFor="let hotel of hotelSearchResult; index as i" class="hotel-search" (click)="choiceHotel(hotelSearchResult[i].hotelId)">
-                    <img class="hotel-search-image" src="{{hotel.hotelImage}}\main_image.jpg" />
-                    <div class="hotel-search-info">
-                        <h5 class="hotel-search-name">{{hotel.hotelName}}</h5>
-                        <span class="hotel-search-type">
-                            Khách sạn
-                        </span>
-                        <span style="margin: 5px;">{{hotel.quality}} sao</span>
-                        <div style="color: grey;">{{hotel.hotelAddress}}, {{hotel.hotelCountry}}</div>
-                        <div style="color: aquamarine;">Ấn tượng - {{hotel.rank}}</div>
-                    </div>
-                    <div class="hotel-search-price">
-                        <span style="color: green;">Giảm {{hotel.discount}}%</span>
-                        <div class="hotel-search-price-info">
-                            <div style="color: grey; text-decoration: line-through; margin-bottom: 5px;">
-                                {{hotel.roomPriceForNight}} VNĐ
-                            </div>
-                            <div style="color: orange; font-size: 18px; font-weight: bold; margin-bottom: 5px;">
-                                {{hotel.hotelPriceAfterDiscount}} VNĐ
-                            </div>
-                            <div style="color: blue;">
-                                Giá cuối cùng
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 </body>
 
 </html>

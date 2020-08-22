@@ -3,7 +3,7 @@
 .banner-adv{
     width: 100%;
     height: 350px;
-    background-color: aqua;
+    background-image: linear-gradient(-180deg,rgba(0,160,255,0),#0770cd);
 }
 /*main-booking-room*/
 .main-booking-room{
@@ -50,6 +50,11 @@
     display: inline;
     margin: 5px; 
 }
+.text-in-benefit-option{
+    vertical-align: middle;
+    font-size: 17px;
+    font-weight: 600;
+}
 /*customer-benefit*/
 
 /*favorite-destination*/
@@ -59,8 +64,8 @@
 }
 .img-favorite-destination{
     /*Scale image*/
-    height: 100px;
-    width: 150px;
+    height: 150px;
+    width: 100%;
     border-radius: 15px; /*Tạo bo tròn cho đường viền*/
 }
 .favorite-place{

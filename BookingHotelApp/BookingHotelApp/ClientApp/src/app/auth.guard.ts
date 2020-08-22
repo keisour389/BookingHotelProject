@@ -11,16 +11,28 @@ import { ActivatedRoute } from "@angular/router";
 })
 
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+  login: boolean;
+  username: String = null;
   constructor(private auth: AuthService, private router: Router, private cookieService: CookieService
     ,private route?: ActivatedRoute) {
-   
+      this.hadLogin().then(data => { //Kiểm tra đăng nhập trước khi vào
+        console.log(data);
+        //Nếu kết quả trả ra là false
+        if(!data){
+          this.login = false;
+        }
+        else{ 
+          this.login = true; //Nếu là trạng thái true vì đã đăng nhập và trả kèm theo username
+        }
+      }); 
+      console.log("logged " + this.login);
   }
-  username: String = null;
-
   get getUserName(){
     console.log("username guard " + this.username);
     return this.username;
   }
+  static username: String;
+  static auth: AuthService;
   async hadLogin() {
     var checkLogin: boolean;
     await this.auth.getUserDetails().toPromise().then(
@@ -53,13 +65,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       }
     });
     //Trả ra giao diện tương ứng
-    if(this.auth.isHadParams()){
-      return result; //Nếu có param thì trả ra là đăng nhập và trang hiện tại
-    }
-    else{
-      return this.router.navigate(['/']); //Trả về trang chủ
-    }
-    
+    return result;
     
     // if (!this.test) { 
     //   return this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});;
