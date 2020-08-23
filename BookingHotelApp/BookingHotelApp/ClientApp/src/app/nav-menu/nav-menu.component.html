@@ -24,7 +24,7 @@
               <a class="nav-link text-dark" [routerLink]="['/login']">Đăng nhập/Đăng kí</a>
             </li>
             <li *ngIf ="loggedIn" class="nav-item" [routerLinkActive]="['link-active']">
-              <button style="background-color: transparent;" class="nav-link text-dark" (click)="logout()">Đăng xuất</button>
+              <button style="background-color: transparent; border: none" class="nav-link text-dark" (click)="logout()">Đăng xuất</button>
             </li>
           </ul>
         </div>

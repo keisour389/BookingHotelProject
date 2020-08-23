@@ -46,7 +46,9 @@ export class BookingHistoryComponent {
     bedAmount: 0,
     peopleAmount: 0,
     checkInTime: null,
-    checkOutTime: null
+    checkOutTime: null,
+    hotelID: null,
+    hotelName: null
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
     , private titleService: Title, private router: Router, private route?: ActivatedRoute) {

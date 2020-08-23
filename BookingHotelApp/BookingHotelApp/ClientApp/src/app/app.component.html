@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
   <div class="not-full" *ngIf="showLogin && showRegister && showFillInInformation && showCheckBookingAgain">
     <app-nav-menu></app-nav-menu>
     <router-outlet></router-outlet>
@@ -18,8 +18,11 @@
     <app-booking-process></app-booking-process>
     <app-check-booking-again></app-check-booking-again>
   </div>
-  <!-- <div class="full" *ngIf="logged == false">
-    <app-login></app-login>
-  </div> -->
+</body> -->
+<body>
+  <div class="content">
+    <app-nav-menu></app-nav-menu>
+    <router-outlet></router-outlet>
+  </div>
 </body>
 

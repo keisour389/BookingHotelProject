@@ -61,7 +61,31 @@ namespace BookingHotelApp.DAL.Repository
                     rOH.BedAmount,
                     rOH.PeopleAmount,
                     rOH.CheckInTime,
-                    rOH.CheckOutTime
+                    rOH.CheckOutTime,
+                    rOH.HotelID
+                })
+                .Join(Context.Hotel, bD => bD.HotelID, h => h.HotelID, (bD, h) => new
+                {
+                    bD.BookingID,
+                    bD.BookingDate,
+                    bD.BookingStatus,
+                    bD.CustomerPaymentMethods,
+                    bD.CheckInDate,
+                    bD.CheckOutDate,
+                    bD.TotalPrice,
+                    bD.CustomerName,
+                    bD.CustomerID, //Dùng để xét điều kiện
+                    bD.RoomOfHotelID,
+                    bD.NightAmount,
+                    bD.Price,
+                    bD.SpecialRequirements,
+                    bD.RoomName,
+                    bD.BedAmount,
+                    bD.PeopleAmount,
+                    bD.CheckInTime,
+                    bD.CheckOutTime,
+                    bD.HotelID,
+                    h.HotelName
                 }).Where(value => value.CustomerID == phoneNumber).ToList(); //Xuất ra danh sách đặt phòng của khách hàng
             var customerAndBookingInfo = new
             {
