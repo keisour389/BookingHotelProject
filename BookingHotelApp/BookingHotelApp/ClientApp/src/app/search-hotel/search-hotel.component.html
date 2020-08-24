@@ -193,7 +193,7 @@
                         (click)="choiceHotel(hotelSearchResult[i].hotelId)">
                         <div class="col-3">
                             <img class="hotel-search-image" style="border-radius: 3px;"
-                                src="https://cf.bstatic.com/images/hotel/max1024x768/217/217229743.jpg" />
+                                src="{{hotel.hotelImage}}" />
                         </div>
                         <div class="col-6">
                             <h5 class="hotel-search-name">{{hotel.hotelName}}</h5>
@@ -201,7 +201,7 @@
                                 Khách sạn
                             </span>
                             <span style="margin: 5px;">{{hotel.quality}} sao</span>
-                            <div style="color: grey;">{{hotel.hotelAddress}}, {{hotel.hotelCountry}}</div>
+                            <div style="color: grey;">{{hotel.street}}, {{hotel.ward}}, {{hotel.district}}, {{hotel.province}}, {{hotel.country}}</div>
                             <div style="color: aquamarine;">Ấn tượng - {{hotel.rank}}</div>
                         </div>
                         <div class="col-3">

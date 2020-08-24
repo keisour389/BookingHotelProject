@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
 
 declare var $: any;
@@ -15,6 +15,16 @@ declare var $: any;
 export class CheckBookingAgainComponent {
   private defaultURL: String = "https://localhost:44359/api";
   date: Date = new Date();
+   //Các biến sẽ nhận được từ URL truyền qua
+   bookingInfo: any = {
+    customerId: "",
+    destination: "",
+    checkInDate: "",
+    checkOutDate: "",
+    nightsAmount: 0,
+    hotelId: "",
+    roomOfHotelId: ""
+  }
   //Biến lấy từ cookie
   specialRequirements: "Yêu cầu đặc biệt";
   //Các biến tính toán
@@ -22,13 +32,8 @@ export class CheckBookingAgainComponent {
   priceAfterDiscount = 0;
   policyApplyList: any;
   policyNotApplyList: any;
-  //Biến nhận từ URL
-  customerId = "0902725706";
-  roomOfHotelId = "TR";
-  nightAmount = 1;
-  checkInDate = "2020-08-18";
-  checkOutDate = "2020-08-19";
   //Biến nhận dữ liệu từ JSON
+  hotelName: String = null;
   customer: any = {
     phoneNumber: null,
     lastName: null,
@@ -41,10 +46,10 @@ export class CheckBookingAgainComponent {
   }
   private setValueToBooking() {
     this.booking.customerName = this.customer.lastName + " " + this.customer.firstName;
-    this.booking.checkInDate = this.parseTimeStringToTimeJSON(this.checkInDate);
-    this.booking.checkOutDate = this.parseTimeStringToTimeJSON(this.checkOutDate);
+    this.booking.checkInDate = this.parseTimeStringToTimeJSON(this.bookingInfo.checkInDate);
+    this.booking.checkOutDate = this.parseTimeStringToTimeJSON(this.bookingInfo.checkOutDate);
     this.booking.totalPrice = this.priceAfterDiscount;
-    this.booking.customerID = this.customerId;
+    this.booking.customerID = this.bookingInfo.customerId;
     this.booking.employeeID = null;
     this.booking.note = null;
   }
@@ -80,7 +85,7 @@ export class CheckBookingAgainComponent {
     //Set mã đặt phòng sau khi tạo booking và nhận được response 
     this.bookingDetails.bookingID = bookingId;
     this.bookingDetails.roomOfHotelID = this.roomOfHotel.roomOfHotelID;
-    this.bookingDetails.nightAmount = this.nightAmount;
+    this.bookingDetails.nightAmount = this.bookingInfo.nightsAmount;
     this.bookingDetails.price = this.priceAfterDiscount;
     this.bookingDetails.specialRequirements = this.specialRequirements;
   }
@@ -92,17 +97,47 @@ export class CheckBookingAgainComponent {
     specialRequirements: null
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
-    , private titleService: Title, private router: Router, private datePipe: DatePipe) {
+    , private titleService: Title, private router: Router, private datePipe: DatePipe
+    , private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
-    this.getCustomerInfoById();
-    this.getRoomOfHotelById();
+    //Nếu gửi theo params thì phải get như thế này
+    this.route.queryParams.subscribe(params => {
+      this.bookingInfo.destination = params["destination"];
+      this.bookingInfo.checkInDate = params["from"];
+      this.bookingInfo.checkOutDate = params["to"];
+      this.bookingInfo.nightsAmount = params["night"];
+      this.bookingInfo.hotelId = params["hotelid"];
+      this.bookingInfo.roomOfHotelId = params["roomid"];
+      this.bookingInfo.customerId = params["customerid"];
+      //Gọi API để tìm room of hotel sau khi get được dữ liệu
+      this.getCustomerInfoById();
+      this.getRoomOfHotelById();
+    });
   }
   //Title phải set ở đây, không được set trong thẻ <title>
   public setTitle() {
     this.titleService.setTitle("Kiểm tra lại");
   }
+  public getHotelById() {
+    this.http.get<any>(this.defaultURL + '/Hotel/search-hotel-by-hotel-id?hotelId=' + this.bookingInfo.hotelId)
+      .subscribe(result => {
+        var res: any = result;
+        if (res.success) {
+          this.hotelName = res.data.hotelName; //Gán dữ liệu để hiển thị
+          console.log(this.hotelName);
+        }
+        else {
+          console.log("Client error!!");
+        }
+
+      },
+        error => {
+          console.error("Get hotel in server error!!");
+        });
+  }
+
   public getCustomerInfoById() {
-    this.http.get<any>(this.defaultURL + '/Customer?customerId=' + this.customerId)
+    this.http.get<any>(this.defaultURL + '/Customer?customerId=' + this.bookingInfo.customerId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
@@ -115,20 +150,27 @@ export class CheckBookingAgainComponent {
 
       },
         error => {
-          alert("Server error!!");
+          console.error("Get customer in server error!!");
         });
   }
   public getRoomOfHotelById() {
     this.http.get<any>(this.defaultURL + '/RoomOfHotel/search-room-by-id?roomOfHotelId='
-      + this.roomOfHotelId)
+      + this.bookingInfo.roomOfHotelId)
       .subscribe(result => {
         var res: any = result;
         if (res.success) {
           this.roomOfHotel = res.data; //Gán dữ liệu để hiển thị
           console.log(this.roomOfHotel);
           //Tính số tiền được giảm và giá khi giảm
-          this.discountPrice = this.roomOfHotel.discount * this.roomOfHotel.roomPriceForNight;
-          this.priceAfterDiscount = this.roomOfHotel.roomPriceForNight - this.discountPrice;
+          try{
+            this.discountPrice = this.roomOfHotel.discount * this.roomOfHotel.roomPriceForNight;
+            this.priceAfterDiscount = this.roomOfHotel.roomPriceForNight - this.discountPrice;
+          }
+          catch{
+            this.discountPrice = 0;
+            this.priceAfterDiscount = 0;
+            console.error("Can't not get price after discount in checking again");
+          }
           //Split policy ra
           // this.policyApplyList = this.splitStringToArray(this.roomOfHotel.policyApply);
           // this.policyNotApplyList = this.splitStringToArray(this.roomOfHotel.policyNotApply);
@@ -139,7 +181,7 @@ export class CheckBookingAgainComponent {
 
       },
         error => {
-          alert("Server error!!");
+          console.error("Get room of hotel in server error!!");
         });
   }
   public createCustomerBooking() {
@@ -167,7 +209,7 @@ export class CheckBookingAgainComponent {
 
             },
               error => {
-                console.log("Booking details server error!!");
+                console.error("Booking details server error!!");
               });
         }
         else {
@@ -176,7 +218,7 @@ export class CheckBookingAgainComponent {
 
       },
         error => {
-          console.log("Booking server error!!");
+          console.error("Booking server error!!");
         });
   }
   //Các hàm khác

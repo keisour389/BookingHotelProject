@@ -121,6 +121,16 @@ export class ChoseHotelComponent {
     //   })
   }
   //Các hàm khác
+  private splitStringToArray(stringToSplit: String) {
+    try {
+      var result = stringToSplit.split(','); //Cách theo dấu phẩy
+      console.log(result);
+      return result;
+    }
+    catch{
+      return stringToSplit; //Không thể split
+    }
+  }
   counter(i: number) {
     return new Array(i);
   }

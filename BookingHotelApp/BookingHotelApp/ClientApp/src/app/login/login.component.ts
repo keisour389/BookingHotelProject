@@ -14,8 +14,8 @@ export class LoginComponent {
 
     returnUrl: string;
     private data: any ={
-        username: "",
-        password: "",
+        username: "0902725706",
+        password: "123456789",
     }
     public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
         , private titleService: Title, private router: Router, private route?: ActivatedRoute) {

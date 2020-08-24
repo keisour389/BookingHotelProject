@@ -19,7 +19,7 @@
         <form class="check-booking-again">
             <div class="row">
                 <div class="col-3 text-center">
-                    <img src="https://floridahotel.vn/uploads/pages/n4-2140-870x0.jpg"
+                    <img src="{{roomOfHotel.image}}"
                         style="width: 200px; height: 200px;" />
                 </div>
                 <div class="col-9">
@@ -31,7 +31,7 @@
                                 Ngày nhận phòng
                             </div>
                             <div class="content-text-details">
-                                {{checkInDate}}
+                                {{bookingInfo.checkInDate}}
                             </div>
                             <div class="content-text-details">
                                 {{roomOfHotel.checkInTime}}
@@ -42,7 +42,7 @@
                                 Ngày trả phòng
                             </div>
                             <div class="content-text-details">
-                                {{checkOutDate}}
+                                {{bookingInfo.checkOutDate}}
                             </div>
                             <div class="content-text-details">
                                 {{roomOfHotel.checkOutTime}}
@@ -53,7 +53,7 @@
                                 Số đêm nghỉ
                             </div>
                             <div class="content-text-details">
-                                {{nightAmount}} đêm
+                                {{bookingInfo.nightsAmount}} đêm
                             </div>
                         </div>
                     </div>
