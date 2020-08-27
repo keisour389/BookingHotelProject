@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./fill-in-information.component.css']
 })
 export class FillInInformationComponent {
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
+
   private defaultURL: String = "https://localhost:44359/api";
 
   //Các biến tính toán

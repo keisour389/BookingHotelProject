@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from "@angular/router";
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -10,9 +11,11 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ['./booking-history.component.css']
 })
 export class BookingHistoryComponent {
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
+
   private defaultURL: String = "https://localhost:44359/api";
 
-  customerId: String = "0902725706";
+  username: String = "";
 
   customerDetails: any = {
     phoneNumber: null,
@@ -48,13 +51,21 @@ export class BookingHistoryComponent {
     checkInTime: null,
     checkOutTime: null,
     hotelID: null,
-    hotelName: null
+    hotelName: null,
+    image: null
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
-    , private titleService: Title, private router: Router, private route?: ActivatedRoute) {
+    , private titleService: Title, private router: Router, private auth: AuthService
+    , private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
-    this.getCustomerBookingHistory();
-
+    this.checkLoginAndShowHistoryList();
+  }
+  public checkLoginAndShowHistoryList() {
+    this.auth.getUserDetails().toPromise().then(
+      data => {
+        this.username = data.username;
+        this.getCustomerBookingHistory(); //Lấy danh sách đặt phòng
+      });
   }
   //Title phải set ở đây, không được set trong thẻ <title>
   public setTitle() {
@@ -62,7 +73,7 @@ export class BookingHistoryComponent {
   }
   public getCustomerBookingHistory() {
     this.http.get<any>(this.defaultURL + '/Customer/customer-booking-history' +
-      '?customerId=' + this.customerId).subscribe(
+      '?customerId=' + this.username).subscribe(
         result => {
           var res: any = result;
           if (res.success) {

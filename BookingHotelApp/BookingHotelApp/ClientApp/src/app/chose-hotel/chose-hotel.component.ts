@@ -13,6 +13,8 @@ declare var $: any;
   styleUrls: ['./chose-hotel.component.css'] //Dùng file css ở đây, không dùng ở thẻ <head>
 })
 export class ChoseHotelComponent {
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
+
   private defaultURL: String = "https://localhost:44359/api";
   //Biến nhận và gửi dữ liệu qua URL
   bookingInfo: any = {
@@ -92,7 +94,9 @@ export class ChoseHotelComponent {
           for (let data in res.data) {
             // this.priceAfterDiscount.push(parseFloat(res.data[index].roomPriceForNight * (1 - res.data[index].discount));
             this.priceAfterDiscountList.push(parseFloat(res.data[index].roomPriceForNight) * (1 - parseFloat(res.data[index].discount))).toString();
+            index++; //Tăng phần tử mảng
           }
+          console.log(this.priceAfterDiscountList);
           console.log(res);
         },
         error => {

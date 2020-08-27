@@ -85,7 +85,8 @@ namespace BookingHotelApp.DAL.Repository
                     bD.CheckInTime,
                     bD.CheckOutTime,
                     bD.HotelID,
-                    h.HotelName
+                    h.HotelName,
+                    h.Image
                 }).Where(value => value.CustomerID == phoneNumber).ToList(); //Xuất ra danh sách đặt phòng của khách hàng
             var customerAndBookingInfo = new
             {

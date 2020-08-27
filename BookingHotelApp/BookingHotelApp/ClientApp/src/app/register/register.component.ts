@@ -12,8 +12,9 @@ import { DatePipe } from '@angular/common';
 })
 
 export class RegisterComponent {
-    private defaultURL: String = "https://localhost:44359/api";
+    //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
 
+    private defaultURL: String = "https://localhost:44359/api";
     //Biến này map với ngModel
     phoneNumber: String = "";
     password: "";

@@ -10,8 +10,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 
 export class LoginComponent {
-    private defaultURL: String = "https://localhost:44359/api";
+    //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
 
+    private defaultURL: String = "https://localhost:44359/api";
     returnUrl: string;
     private data: any ={
         username: "0902725706",

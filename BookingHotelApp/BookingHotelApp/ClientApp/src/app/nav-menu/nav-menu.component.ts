@@ -8,8 +8,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  private defaultURL: String = "https://localhost:44359/api";
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
 
+  private defaultURL: String = "https://localhost:44359/api";
   isExpanded = false;
   loggedIn: boolean;
   username: String;
@@ -31,7 +32,7 @@ export class NavMenuComponent {
   }
   logout(){
     //Không sử dụng biến defaultURL được
-    this.http.post("https://localhost:44359/api/Common/remove-login-session", "no-value").subscribe(
+    this.http.post(this.defaultURL + "/Common/remove-login-session", "no-value").subscribe(
       result =>{
         alert("Bạn đã đăng xuất");
         window.location.href = '/';

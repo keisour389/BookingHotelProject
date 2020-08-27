@@ -12,6 +12,8 @@ import { AuthService } from '../auth.service';
   providers: [DatePipe]
 })
 export class HomePageComponent implements AfterViewInit {
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
+
   private defaultURL: String = "https://localhost:44359/api";
   ngAfterViewInit() {
     //(document.getElementById("myDate") as HTMLInputElement).value = this.nowDate;

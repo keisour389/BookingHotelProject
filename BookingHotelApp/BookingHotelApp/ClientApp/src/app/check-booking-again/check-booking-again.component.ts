@@ -13,6 +13,8 @@ declare var $: any;
   providers: [DatePipe]
 })
 export class CheckBookingAgainComponent {
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
+
   private defaultURL: String = "https://localhost:44359/api";
   date: Date = new Date();
    //Các biến sẽ nhận được từ URL truyền qua

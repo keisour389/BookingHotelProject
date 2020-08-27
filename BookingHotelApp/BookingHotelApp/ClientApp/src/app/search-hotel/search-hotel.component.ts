@@ -10,8 +10,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./search-hotel.component.css'] //Dùng file css ở đây, không dùng ở thẻ <head>
 })
 export class SearchHotelComponent {
-  private defaultURL: String = "https://localhost:44359/api";
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
 
+  private defaultURL: String = "https://localhost:44359/api";
   //Biến nhận và gửi dữ liệu qua URL
   bookingInfo: any = {
     destination: "",
