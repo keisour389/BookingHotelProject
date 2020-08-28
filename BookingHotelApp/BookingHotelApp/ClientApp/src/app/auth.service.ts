@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  //private defaultURL: String = "https://go2fun.azurewebsites.net/api";
+
   private defaultURL: String = "https://localhost:44359/api";
 
   private loggedInStatus: boolean = false;

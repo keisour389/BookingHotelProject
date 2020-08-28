@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from '../auth.service';
+import { CookieService } from 'ngx-cookie-service'
+
+const cookieName = "special-requirement";
 
 @Component({
   selector: 'app-fill-in-information',
@@ -36,6 +39,8 @@ export class FillInInformationComponent {
   // checkOutDate = "19/08/2020";
   fullNameToContact = "";
   fullNameOfCus = "";
+  specialRequirements = "";
+
   //Biến nhận dữ liệu từ JSON
   customer: any = {
     phoneNumber: null,
@@ -63,8 +68,8 @@ export class FillInInformationComponent {
     image: null
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
-    , private titleService: Title, private router: Router, private auth: AuthService,
-    private route?: ActivatedRoute) {
+    , private titleService: Title, private router: Router, private auth: AuthService
+    , private cookieService: CookieService ,private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
     //Nếu gửi theo params thì phải get như thế này
     this.auth.getUserDetails().toPromise().then(
@@ -174,6 +179,8 @@ export class FillInInformationComponent {
           roomid: this.bookingInfo.roomOfHotelId
         }
       });
+    //Ghi yêu cầu đặc biệt xuống cookie
+    this.cookieService.set(cookieName, this.specialRequirements);
   }
   //Các hàm khác
   private splitStringToArray(stringToSplit: String) {

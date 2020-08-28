@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <h5>Yêu cầu đặc biệt (nếu có)</h5>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" [(ngModel)]="specialRequirements"  [ngModelOptions]="{standalone: true}"></textarea>
                         <div class="special-requirement text-break">
                             Nếu bạn có yêu cầu đặc biệt cho phòng của bạn. Thì bạn hãy cho chúng tôi biết để được
                             đáp ứng nguyện vọng và yêu cầu. (Xin lưu ý yêu cầu không được đảm bảo trước và thể thu phí).

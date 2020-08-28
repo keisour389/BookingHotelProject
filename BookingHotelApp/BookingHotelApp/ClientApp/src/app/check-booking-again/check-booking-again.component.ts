@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service'
 
 declare var $: any;
+const cookieName = "special-requirement";
 
 @Component({
   selector: 'app-check-booking-again',
@@ -28,7 +30,7 @@ export class CheckBookingAgainComponent {
     roomOfHotelId: ""
   }
   //Biến lấy từ cookie
-  specialRequirements: "Yêu cầu đặc biệt";
+  specialRequirements = "";
   //Các biến tính toán
   discountPrice = 0;
   priceAfterDiscount = 0;
@@ -100,7 +102,7 @@ export class CheckBookingAgainComponent {
   }
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string
     , private titleService: Title, private router: Router, private datePipe: DatePipe
-    , private route?: ActivatedRoute) {
+    , private cookieService: CookieService, private route?: ActivatedRoute) {
     this.setTitle(); //Đưa lên phương thức khởi tạo
     //Nếu gửi theo params thì phải get như thế này
     this.route.queryParams.subscribe(params => {
@@ -115,6 +117,8 @@ export class CheckBookingAgainComponent {
       this.getCustomerInfoById();
       this.getRoomOfHotelById();
     });
+    //Lấy yêu cầu đặc biệt từ cookie
+    this.specialRequirements = this.cookieService.get(cookieName);
   }
   //Title phải set ở đây, không được set trong thẻ <title>
   public setTitle() {
@@ -203,6 +207,9 @@ export class CheckBookingAgainComponent {
               if (res.success) {
                 console.log(res);
                 alert("Chúc mừng bạn đã đặt phòng thành công");
+                //Xóa cookie yêu cầu đặc biệt sau khi đã đặt phòng
+                this.cookieService.delete(cookieName);
+                //Trả về trang lịch sử đặt phòng
                 window.location.href = '/booking-history' ;
               }
               else {
