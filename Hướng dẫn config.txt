@@ -10,6 +10,6 @@ Liên kết các project: Dependencies -> right click -> add reference -> projec
 Reference ở BLL -> chọn project là DAL với common
 Reference ở DAL -> chọn project là common
 Reference ở Web -> chọn hết project
-=> Khi đó các project sẽ liên kết với nhau tạo nên solution
+=> Khi đó các project sẽ liên kết với nhau tạo nên solution.
 
 
