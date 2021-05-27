@@ -23,6 +23,7 @@ import { BookingProcessComponent } from './booking-process/booking-process.compo
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
 import { ManagementComponent } from './admin/management/management.component';
 import { EmpFunctionComponent } from './share/emp-function/emp-function.component';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EmpFunctionComponent } from './share/emp-function/emp-function.componen
     BookingProcessComponent,
     BookingHistoryComponent,
     ManagementComponent,
-    EmpFunctionComponent
+    EmpFunctionComponent,
+    AdminNavbarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
