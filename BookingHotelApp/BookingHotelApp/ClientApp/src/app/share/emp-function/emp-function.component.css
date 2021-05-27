@@ -1,0 +1,22 @@
+.function{
+    width: fit-content;
+}
+.function-image{
+    border: 1px solid transparent;
+    width: 200px;
+    height: 200px;
+    
+}
+.function-title{
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+
+}
+/*Event*/
+.function-image:hover{
+    cursor: pointer;
+    border: 1px solid #1f80ff;
+    transition: border 1s ease-out;
+}

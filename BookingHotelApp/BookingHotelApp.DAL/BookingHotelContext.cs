@@ -33,7 +33,7 @@ namespace BookingHotelApp.DAL
             //optionsBuilder.UseSqlServer(@"Server=tcp:bookinghotelserver.database.windows.net,1433;Initial Catalog=BookingHotelApp_db;Persist Security Info=False;
             //User ID=keisour389;Password=Banaccroi123;MultipleActiveResultSets=False;Encrypt=True;
             //TrustServerCertificate=False;Connection Timeout=30;");
-            optionsBuilder.UseSqlServer(@"Server=FOURLEAFCLOVER;Initial Catalog=BookingHotelDB;Trusted_Connection=True;"); //Windows Authencation
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6VBT9BQ;Initial Catalog=BookingHotelDB;Trusted_Connection=True;"); //Windows Authencation
             //optionsBuilder.UseSqlServer(@"Data Source =.\SQLEXPRESS; Initial Catalog = BookingHotelDB; Persist Security Info = True; User ID = sa; Password = sa;
             //Pooling = False; MultipleActiveResultSets = False; Encrypt = False; TrustServerCertificate = True"; //SQL Server Authencation
         }

@@ -21,6 +21,8 @@ import { FillInInformationComponent } from './fill-in-information/fill-in-inform
 import { CheckBookingAgainComponent } from './check-booking-again/check-booking-again.component';
 import { BookingProcessComponent } from './booking-process/booking-process.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
+import { ManagementComponent } from './admin/management/management.component';
+import { EmpFunctionComponent } from './share/emp-function/emp-function.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { BookingHistoryComponent } from './booking-history/booking-history.compo
     FillInInformationComponent,
     CheckBookingAgainComponent,
     BookingProcessComponent,
-    BookingHistoryComponent
+    BookingHistoryComponent,
+    ManagementComponent,
+    EmpFunctionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,7 +59,8 @@ import { BookingHistoryComponent } from './booking-history/booking-history.compo
       { path: 'register', component: RegisterComponent },
       { path: 'fill-in-information', component: FillInInformationComponent, canActivate: [AuthGuard]}, //Set Auth cho router tương ứng
       { path: 'check-booking-again', component: CheckBookingAgainComponent },
-      { path: 'booking-history', component: BookingHistoryComponent }
+      { path: 'booking-history', component: BookingHistoryComponent },
+      { path: 'management', component: ManagementComponent }
     ])
   ],
   providers: [AuthService, AuthGuard, CookieService], //Khai báo auth ở đây để protection router

@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>Các chức năng</h2>
+    <div class="row">
+        <div *ngFor="let data of imgListData; index as i;" class="col-sm-3">
+            <app-emp-function [title]="tilteListData[i]" [img]="data"></app-emp-function>
+        </div>
+    </div>
+</div>
