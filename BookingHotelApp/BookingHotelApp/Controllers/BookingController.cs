@@ -33,6 +33,12 @@ namespace BookingHotelApp.Controllers
             var result = _svc.SearchBookingPagination(size, page, keyWord);
             return Ok(result);
         }
+        [HttpGet("search-by-booking-date")]
+        public IActionResult SearchOrderByBookingDate(string hotelId, DateTime startDate, DateTime endDate)
+        {
+            var result = _svc.SearchOrderByBookingDate(hotelId, startDate, endDate);
+            return Ok(result);
+        }
 
         [HttpPut("update-booking")]
         public IActionResult UpdateBooking([FromBody]BookingReq req)

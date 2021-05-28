@@ -81,5 +81,12 @@ namespace BookingHotelApp.BLL.Service
             result.Data = bookingId;
             return result;
         }
+        public SingleResponse SearchOrderByBookingDate(string hotelId, DateTime startDate, DateTime endDate)
+        {
+            
+            var result = new SingleResponse();
+            result = _rep.SearchOrderByBookingDate(hotelId, startDate, endDate);
+            return result;
+        }
     }
 }
