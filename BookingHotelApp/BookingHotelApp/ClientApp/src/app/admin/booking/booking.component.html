@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody *ngIf="!isDataResponseUndefined">
-                <tr *ngFor="let data of dataResponse.data">
+                <tr *ngFor="let data of dataResponse.data; index as i;">
                     <th scope="row">{{data.bookingID}}</th>
                     <td>{{data.bookingDate | date: 'dd-MM-yyyy'}}</td>
                     <td>{{data.checkInDate | date: 'dd-MM-yyyy'}}</td>
@@ -44,8 +44,7 @@
                     <td>{{data.totalPrice}} VNĐ</td>
                     <td>
                         <span class="function">
-                            <button class="btn btn-info function-btn">Xem</button>
-                            <button class="btn btn-warning function-btn">Cập nhật</button>
+                            <button class="btn btn-info function-btn" (click)="openUserInformationModal(i)">Xem</button>
                             <button class="btn btn-danger function-btn">Xóa</button>
                         </span>
                     </td>
@@ -54,3 +53,88 @@
         </table>     
     </div>
 </div>
+<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Thông tin chi tiết</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="infoForm">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="bookingID">Mã đặt</label>
+                            <input [disabled]="true" class="form-control" id="bookingID" name="bookingID" [(ngModel)]="dataIndex.bookingID">
+                        </div>
+                        <div class="col-md-5">
+                            <label for="bookingDate">Ngày đặt</label>
+                            <input [disabled]="true" class="form-control" type="date" id="bookingDate" name="bookingDate" [(ngModel)]="dataIndex.bookingDate">
+                        </div>
+                        <div class="col-md-5">
+                            <label for="bookingStatus">Trạng thái</label>
+                            <input [disabled]="true" class="form-control" id="bookingStatus" name="bookingStatus" [(ngModel)]="dataIndex.bookingStatus">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="checkInDate">Ngày nhận phòng</label>
+                            <input [disabled]="true" class="form-control" type="date" id="checkInDate" name="checkInDate" [(ngModel)]="dataIndex.checkInDate">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="checkOutDate">Ngày trả phòng</label>
+                            <input [disabled]="true" class="form-control" type="date" id="checkOutDate" name="checkOutDate" [(ngModel)]="dataIndex.checkOutDate">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="payment">Phương thức thanh toán</label>
+                            <input [disabled]="true" class="form-control" type="text" id="payment" name="payment" [(ngModel)]="dataIndex.customerPaymentMethods">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="totalPrice">Tổng tiền (VNĐ)</label>
+                            <input [disabled]="true" class="form-control" type="text" id="totalPrice" name="totalPrice" [(ngModel)]="dataIndex.totalPrice">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="customerID">Mã khách hàng</label>
+                            <input [disabled]="true" class="form-control" type="text" id="customerID" name="customerID" [(ngModel)]="dataIndex.customerID">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="customerName">Tên người đặt</label>
+                            <input [disabled]="true" class="form-control" type="text" id="customerName" name="customerName" [(ngModel)]="dataIndex.customerName">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="employeeID">Mã nhân viên</label>
+                            <input [disabled]="true" class="form-control" type="text" id="employeeID" name="employeeID" [(ngModel)]="dataIndex.employeeID">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="bookingNote">Ghi chú</label>
+                            <textarea rows="3" class="form-control" type="text" id="bookingNote" name="bookingNote" [(ngModel)]="dataIndex.bookingNote"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-primary">Duyệt phòng</button>
+        </div>
+      </div>
+    </div>
+  </div>

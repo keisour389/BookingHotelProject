@@ -25,6 +25,7 @@ import { ManagementComponent } from './admin/management/management.component';
 import { EmpFunctionComponent } from './share/emp-function/emp-function.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { BookingComponent } from './admin/booking/booking.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { BookingComponent } from './admin/booking/booking.component';
       ] }
     ])
   ],
-  providers: [AuthService, AuthGuard, CookieService], //Khai báo auth ở đây để protection router
+  providers: [AuthService, AuthGuard, CookieService, DatePipe], //Khai báo auth ở đây để protection router
   bootstrap: [AppComponent]
 })
 export class AppModule { }
