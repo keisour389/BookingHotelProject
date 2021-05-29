@@ -1,0 +1,56 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container">
+    <div class="booking">
+        <h1>Quản lí các đơn đặt phòng</h1>
+        <form (ngSubmit)="onSubmit()" class="shadow-sm p-1 mb-2 bg-white rounded" id="changeBookingDate">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="startDate">Ngày bắt đầu</label>
+                        <input id="startDate" name="startDate" class="form-control" type="date" [(ngModel)]="startDate">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="endDate">Ngày kết thúc đầu</label>
+                        <input id="endDate" name="endDate" class="form-control" type="date" [(ngModel)]="endDate">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="text-breack" id="tip">Tìm kiếm đơn đặt nằm trong khoảng ngày bắt đầu và kết thúc</label>
+                        <button id="tip" class="btn btn-success" type="submit">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Mã đặt</th>
+                    <th scope="col">Ngày đặt</th>
+                    <th scope="col">Ngày nhận</th>
+                    <th scope="col">Ngày trả</th>
+                    <th scope="col">Tên khách hàng</th>
+                    <th scope="col">Số đêm</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="!isDataResponseUndefined">
+                <tr *ngFor="let data of dataResponse.data">
+                    <th scope="row">{{data.bookingID}}</th>
+                    <td>{{data.bookingDate | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{data.checkInDate | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{data.checkOutDate | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{data.customerName}}</td>
+                    <td>{{data.nightAmount}}</td>
+                    <td>{{data.totalPrice}} VNĐ</td>
+                    <td>
+                        <span class="function">
+                            <button class="btn btn-info function-btn">Xem</button>
+                            <button class="btn btn-warning function-btn">Cập nhật</button>
+                            <button class="btn btn-danger function-btn">Xóa</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>     
+    </div>
+</div>
