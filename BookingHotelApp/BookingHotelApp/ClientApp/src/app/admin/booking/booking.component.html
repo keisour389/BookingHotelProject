@@ -13,8 +13,14 @@
                         <label for="endDate">Ngày kết thúc</label>
                         <input id="endDate" name="endDate" class="form-control" type="date" [(ngModel)]="endDate">
                     </div>
-                    <div class="col-md-5">
-                        <label class="text-breack" id="tip">Tìm kiếm đơn đặt nằm trong khoảng ngày bắt đầu và kết thúc</label>
+                    <div class="col-md-3">
+                        <label for="status">Trạng thái phòng</label>
+                        <select id="status" name="status" class="form-control" [(ngModel)]="selectedStatus">
+                            <option *ngFor="let data of bookingStatus" [ngValue]="data">{{data}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label style="display: block;" for="tip">Tìm kiếm</label>
                         <button id="tip" class="btn btn-success" type="submit">Xác nhận</button>
                     </div>
                 </div>
@@ -45,7 +51,7 @@
                     <td>
                         <span class="function">
                             <button class="btn btn-info function-btn" (click)="openUserInformationModal(i)">Xem</button>
-                            <button class="btn btn-danger function-btn">Xóa</button>
+                            <button class="btn btn-danger function-btn" (click)="cancelBookingOfCus(i)">Hủy</button>
                         </span>
                     </td>
                 </tr>

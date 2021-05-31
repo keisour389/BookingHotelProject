@@ -17,7 +17,8 @@ export class BookingService {
      + "&startDate=" + startDate + "&endDate=" + endDate);
   }
   
-  approveBookingOfCus(bookingData: any): Observable<any>{
+  updateBookingOfCus(bookingData: any): Observable<any>{
     return this.http.put(defaultUrl + "/update-booking", bookingData);
   }
+
 }
