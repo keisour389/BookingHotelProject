@@ -50,6 +50,31 @@ export class BookingComponent implements OnInit {
     );
   }
 
+  approveBookingOfCus(): void{
+    //Set status of booking
+    this.dataIndex.bookingStatus = 'Đã tiếp nhận';
+    this.dataIndex.checkInDate = new Date(this.dataIndex.checkInDate).toJSON();
+    this.dataIndex.checkOutDate = new Date(this.dataIndex.checkOutDate).toJSON();
+    this.dataIndex.bookingDate = new Date(this.dataIndex.bookingDate).toJSON();
+    console.log(this.dataIndex)
+    this.bookingService.approveBookingOfCus(this.dataIndex).subscribe(
+      result => {
+        let res: any = result;
+        if(res.success){
+          //Close modal
+          this.closeUserInformationModal();
+          alert('Duyệt phòng thành công');
+        }
+        else{
+          console.error("Response error.");
+        }
+      },
+      error => {
+        console.error("Server error.")
+      }
+    )
+  }
+
   onSubmit(): void{
     console.log(this.startDate);
     this.getOrderByHotelIdAndBookingDate('RHDL', this.startDate, this.endDate);
@@ -82,10 +107,14 @@ export class BookingComponent implements OnInit {
     this.dataIndex.checkOutDate = this.datePipe.transform(this.dataIndex.checkOutDate, 'yyyy-MM-dd');
   }
 
+  closeUserInformationModal(): void{
+    $('#userInfoModal').modal('toggle');
+  }
+
   ngOnInit() {
     //Set default date
     this.startDate = this.createTodayString(-7);
-    this.endDate = this.createTodayString(0);
+    this.endDate = this.createTodayString(1);
     this.isDataResponseUndefined = this.dataResponse !== 'undefined' ? true : false;
     this.getOrderByHotelIdAndBookingDate('RHDL', this.startDate, this.endDate);
   }

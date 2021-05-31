@@ -16,4 +16,8 @@ export class BookingService {
     return this.http.get<any>(defaultUrl + "/search-by-booking-date?hotelId=" + hotelId
      + "&startDate=" + startDate + "&endDate=" + endDate);
   }
+  
+  approveBookingOfCus(bookingData: any): Observable<any>{
+    return this.http.put(defaultUrl + "/update-booking", bookingData);
+  }
 }

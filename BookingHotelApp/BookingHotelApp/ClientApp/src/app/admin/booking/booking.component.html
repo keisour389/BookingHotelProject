@@ -10,7 +10,7 @@
                         <input id="startDate" name="startDate" class="form-control" type="date" [(ngModel)]="startDate">
                     </div>
                     <div class="col-md-3">
-                        <label for="endDate">Ngày kết thúc đầu</label>
+                        <label for="endDate">Ngày kết thúc</label>
                         <input id="endDate" name="endDate" class="form-control" type="date" [(ngModel)]="endDate">
                     </div>
                     <div class="col-md-5">
@@ -133,7 +133,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-          <button type="button" class="btn btn-primary">Duyệt phòng</button>
+          <button type="button" class="btn btn-primary" (click)="approveBookingOfCus()">Duyệt phòng</button>
         </div>
       </div>
     </div>
