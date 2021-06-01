@@ -19,7 +19,7 @@ namespace BookingHotelApp.DAL.Repository
             var dataRemove = Context.Booking.FirstOrDefault(data => data.BookingID == bookingId);
             return base.Remove(dataRemove); //Gọi hàm remove từ đối tượng cha
         }
-        public SingleResponse SearchOrderByBookingDate(string hotelId, DateTime startDate, DateTime endDate)
+        public SingleResponse SearchOrderByBookingDate(string hotelId, string status, DateTime startDate, DateTime endDate)
         {
             var result = new SingleResponse();
             var query = Context.Hotel.Where(value => value.HotelID == hotelId)
@@ -53,7 +53,7 @@ namespace BookingHotelApp.DAL.Repository
                     newData.Price,
                     newData.SpecialRequirements
                 })
-                .Where(value => value.BookingDate >= startDate && value.BookingDate <= endDate); //Check by booking date
+                .Where(value => value.BookingDate >= startDate && value.BookingDate <= endDate && value.BookingStatus == status); //Check by booking date
             result.Data = query;
             return result;
         }

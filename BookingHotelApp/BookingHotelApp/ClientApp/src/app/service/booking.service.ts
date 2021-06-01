@@ -12,9 +12,9 @@ export class BookingService {
   constructor(private http: HttpClient) {}
 
   //Start date and end date use format yyyy-MM-dd
-  getOrderByBookingDate(hotelId: string, startDate: string, endDate: String): Observable<any>{
+  getOrderByBookingDate(hotelId: string,status: string, startDate: string, endDate: String): Observable<any>{
     return this.http.get<any>(defaultUrl + "/search-by-booking-date?hotelId=" + hotelId
-     + "&startDate=" + startDate + "&endDate=" + endDate);
+     + "&status=" + status + "&startDate=" + startDate + "&endDate=" + endDate);
   }
   
   updateBookingOfCus(bookingData: any): Observable<any>{

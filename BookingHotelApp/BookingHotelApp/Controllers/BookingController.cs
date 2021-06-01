@@ -34,9 +34,9 @@ namespace BookingHotelApp.Controllers
             return Ok(result);
         }
         [HttpGet("search-by-booking-date")]
-        public IActionResult SearchOrderByBookingDate(string hotelId, DateTime startDate, DateTime endDate)
+        public IActionResult SearchOrderByBookingDate(string hotelId,string status, DateTime startDate, DateTime endDate)
         {
-            var result = _svc.SearchOrderByBookingDate(hotelId, startDate, endDate);
+            var result = _svc.SearchOrderByBookingDate(hotelId, status, startDate, endDate);
             return Ok(result);
         }
 

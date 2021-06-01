@@ -9,6 +9,7 @@ export class ManagementComponent implements OnInit {
 
   imgListData: Array<any> = ['/assets/ORDER_MANAGEMENT.png', '/assets/HOTEL_MANAGEMENT.png', '/assets/EMPLOYEE_MANAGEMENT.png'];
   tilteListData: Array<any> = ['Quản lí đơn đặt', 'Quản lí phòng', 'Quản lí nhân viên'];
+  managedRouterLink = ['booking'];
 
   constructor() { }
 

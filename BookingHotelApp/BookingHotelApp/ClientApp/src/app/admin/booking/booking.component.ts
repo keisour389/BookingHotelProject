@@ -13,9 +13,10 @@ export class BookingComponent implements OnInit {
   startDate!: string;
   endDate!: string;
   isDataResponseUndefined: boolean = true;
+  isSelectedChange: boolean = false;
   dataResponse!: any;
   selectedStatus: string = 'Chờ duyệt';
-  bookingStatus: Array<string> = ['Chờ duyệt', 'Đã tiếp nhận'];
+  bookingStatus: Array<string> = ['Chờ duyệt', 'Đã tiếp nhận', 'Đã hủy'];
   dataIndex: any = {
     bookingID: null,
     bookingDate: null,
@@ -32,8 +33,8 @@ export class BookingComponent implements OnInit {
 
   constructor(private datePipe: DatePipe, private bookingService: BookingService) { }
 
-  getOrderByHotelIdAndBookingDate(hotelId: string, startDate: string, endDate: string): void {
-    this.bookingService.getOrderByBookingDate(hotelId, startDate, endDate).subscribe(
+  getOrderByHotelIdAndBookingDate(hotelId: string, status: string, startDate: string, endDate: string): void {
+    this.bookingService.getOrderByBookingDate(hotelId, status, startDate, endDate).subscribe(
       result => {
         let res: any = result;
         if (res.success) {
@@ -66,6 +67,8 @@ export class BookingComponent implements OnInit {
           let res: any = result;
           if (res.success) {
             alert('Hủy phòng thành công');
+            //Reload page
+            this.getOrderByHotelIdAndBookingDate('RHDL', this.selectedStatus, this.startDate, this.endDate);
           }
           else {
             console.error("Response error.");
@@ -91,6 +94,8 @@ export class BookingComponent implements OnInit {
           //Close modal
           this.closeUserInformationModal();
           alert('Duyệt phòng thành công');
+          //Reload page
+          this.getOrderByHotelIdAndBookingDate('RHDL', this.selectedStatus, this.startDate, this.endDate);
         }
         else {
           console.error("Response error.");
@@ -103,8 +108,13 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.startDate);
-    this.getOrderByHotelIdAndBookingDate('RHDL', this.startDate, this.endDate);
+    this.isSelectedChange = false;
+    this.getOrderByHotelIdAndBookingDate('RHDL', this.selectedStatus, this.startDate, this.endDate);
+  }
+
+  onChange(): void{
+    this.isSelectedChange = true;
+    this.getOrderByHotelIdAndBookingDate('RHDL', this.selectedStatus, this.startDate, this.endDate);
   }
 
   //offset is the numbers will be increase from today
@@ -143,7 +153,7 @@ export class BookingComponent implements OnInit {
     this.startDate = this.createTodayString(-7);
     this.endDate = this.createTodayString(1);
     this.isDataResponseUndefined = this.dataResponse !== 'undefined' ? true : false;
-    this.getOrderByHotelIdAndBookingDate('RHDL', this.startDate, this.endDate);
+    this.getOrderByHotelIdAndBookingDate('RHDL', this.selectedStatus, this.startDate, this.endDate);
   }
 
 }
