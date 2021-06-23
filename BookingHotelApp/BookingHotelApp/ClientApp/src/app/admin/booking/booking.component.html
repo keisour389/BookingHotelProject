@@ -2,7 +2,7 @@
 <div class="container">
     <div class="booking">
         <h1>Quản lí các đơn đặt phòng</h1>
-        <form class="shadow-sm p-1 mb-2 bg-white rounded" id="changeBookingDate">
+        <form (ngSubmit)="onSubmit()" class="shadow-sm p-1 mb-2 bg-white rounded" id="changeBookingDate">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
@@ -18,6 +18,10 @@
                         <select (change)="onChange()" id="status" name="status" class="form-control" [(ngModel)]="selectedStatus">
                             <option *ngFor="let data of bookingStatus" [ngValue]="data">{{data}}</option>
                         </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label style="display: block;" for="tip">Tìm kiếm</label>
+                        <button id="tip" class="btn btn-success" type="submit">Xác nhận</button>
                     </div>
                 </div>
             </div>

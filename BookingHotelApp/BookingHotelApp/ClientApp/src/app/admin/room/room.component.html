@@ -1,0 +1,144 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="container">
+    <div class="room">
+        <h1>Quản lí các phòng</h1>
+        <button class="btn btn-success" style="margin: 5px 0 5px 0;" (click)="openRoomInfoModal(0)">Tạo phòng mới</button>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Mã phòng</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Giờ nhận</th>
+                    <th scope="col">Giờ trả</th>
+                    <th scope="col">Giá/đêm</th>
+                    <th scope="col">Khuyến mãi</th>
+                    <th scope="col">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of dataResponse; index as i;">
+                    <th scope="row">{{data.roomOfHotelID}}</th>
+                    <td>{{data.roomName}}</td>
+                    <td>{{data.roomAmount}}</td>
+                    <td>{{data.checkInTime}}h</td>
+                    <td>{{data.checkOutTime}}</td>
+                    <td>{{data.roomPriceForNight}}.VNĐ</td>
+                    <td>{{data.discount}}</td>
+                    <td>
+                        <span class="function">
+                            <button class="btn btn-info function-btn" (click)="openRoomInfoModal(1)">Xem</button>
+                            <button class="btn btn-warning function-btn" (click)="openRoomInfoModal(2)">Sửa</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="roomInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông tin phòng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="roomInfoForm">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="roomId">Mã</label>
+                                <input type="text" class="form-control" id="roomId">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="peopleAmount">Tổng người</label>
+                                <input type="text" class="form-control" id="peopleAmount">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="roomAmount">Tổng phòng</label>
+                                <input type="text" class="form-control" id="roomAmount">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="roomName">Tên</label>
+                                <input type="text" class="form-control" id="roomName">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="checkIn">Giờ nhận</label>
+                                <input type="text" class="form-control" id="checkIn">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="checkOut">Giờ trả</label>
+                                <input type="text" class="form-control" id="checkOut">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">Giá</label>
+                                <input type="text" class="form-control" id="price">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="createdOn">Giờ nhận</label>
+                                <input type="date" class="form-control" id="createdOn">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="hotelId">Khách sạn</label>
+                                <input type="text" class="form-control" id="hotelId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="discount">Khuyến mãi</label>
+                                <input type="text" class="form-control" id="discount">
+                            </div>
+                            <div class="col-md-9">
+                                <label for="imageURL">Đường dẫn ảnh</label>
+                                <input type="text" class="form-control" id="imageURL">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="policyApply">Chính sách áp dụng</label>
+                                <textarea cols="3" type="text" class="form-control" id="policyApply"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="policyNotApply">Chính sách không dụng</label>
+                                <textarea type="text" class="form-control" id="policyNotApply"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="note">Ghi chú</label>
+                                <textarea type="text" class="form-control" id="note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button *ngIf="isCreatedOrUpdated" type="button" class="btn btn-success">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

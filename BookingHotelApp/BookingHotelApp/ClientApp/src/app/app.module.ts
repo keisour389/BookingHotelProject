@@ -26,6 +26,7 @@ import { EmpFunctionComponent } from './share/emp-function/emp-function.componen
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { BookingComponent } from './admin/booking/booking.component';
 import { DatePipe } from '@angular/common';
+import { RoomComponent } from './admin/room/room.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { DatePipe } from '@angular/common';
     ManagementComponent,
     EmpFunctionComponent,
     AdminNavbarComponent,
-    BookingComponent
+    BookingComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -67,7 +69,8 @@ import { DatePipe } from '@angular/common';
       { path: 'booking-history', component: BookingHistoryComponent },
       { path: 'management', component: AppComponent, children: [
         {path: '', component: ManagementComponent, pathMatch: 'full'},
-        {path: 'booking', component: BookingComponent}
+        {path: 'booking', component: BookingComponent},
+        {path: 'room', component: RoomComponent}
       ] }
     ])
   ],
